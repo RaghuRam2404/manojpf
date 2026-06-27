@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manoj Shakar — AI-Native Lead Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#080808;
+  --bg2:#0f0f0f;
+  --bg3:#161616;
+  --fg:#f0ede6;
+  --fg2:#6e6b64;
+  --fg3:#9a9790;
+  --accent:#53B772;
+  --accent-dim:rgba(83,183,114,0.08);
+  --accent-border:rgba(83,183,114,0.3);
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.11);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;}
+
+/* CURSOR */
+#cursor{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .18s,height .18s;will-change:transform;}
+#cring{position:fixed;width:38px;height:38px;border:1px solid rgba(83,183,114,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .22s,height .22s,border-color .22s;will-change:transform;}
+#cursor.big{width:5px;height:5px;}
+#cring.big{width:60px;height:60px;border-color:var(--accent);}
+a,button,[data-h]{cursor:none;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:22px 48px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,padding .3s,border-color .4s;border-bottom:1px solid transparent;}
+nav.sc{background:rgba(8,8,8,.94);backdrop-filter:blur(20px);padding:15px 48px;border-bottom-color:var(--border);}
+.nlogo{font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--fg);text-decoration:none;}
+.nlinks{display:flex;gap:32px;list-style:none;}
+.nlinks a{font-size:13px;color:var(--fg2);text-decoration:none;transition:color .2s;}
+.nlinks a:hover{color:var(--fg);}
+@keyframes blink{0%,100%{opacity:.8}50%{opacity:.2}}
+
+/* HERO */
+.hero{position:relative;height:100svh;min-height:640px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+.hgrid{position:absolute;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 70% 80% at 28% 50%,black 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 80% at 28% 50%,black 10%,transparent 70%);}
+.hleft{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:120px 56px 80px 48px;}
+.htag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border2);border-radius:24px;padding:7px 18px;font-size:10px;letter-spacing:.14em;color:var(--fg3);margin-bottom:28px;width:fit-content;opacity:1;}
+.hdot{width:5px;height:5px;background:var(--accent);border-radius:50%;animation:blink 2s infinite;}
+h1.hn{font-size:clamp(42px,5.2vw,76px);font-weight:700;letter-spacing:-.04em;line-height:.96;margin-bottom:22px;opacity:1;}
+h1.hn .ac{color:var(--accent);}
+.hintro{font-size:clamp(14px,1.3vw,15px);color:var(--fg2);line-height:1.72;max-width:420px;margin-bottom:40px;opacity:1;}
+.hbtns{display:flex;gap:14px;flex-wrap:wrap;opacity:1;}
+.bl{background:var(--accent);color:#fff;font-size:13px;font-weight:600;padding:13px 28px;border-radius:28px;text-decoration:none;display:inline-block;transition:transform .15s,box-shadow .2s;}
+.bl:hover{transform:scale(1.04);box-shadow:0 0 28px rgba(83,183,114,.35);}
+.bo{background:transparent;color:var(--fg3);font-size:13px;padding:12px 24px;border-radius:28px;text-decoration:none;border:1px solid var(--border2);display:inline-block;transition:border-color .2s,color .2s,transform .15s;}
+.bo:hover{border-color:rgba(255,255,255,.22);color:var(--fg);transform:scale(1.02);}
+
+
+
+50%{transform:scaleX(1);transform-origin:left}51%{transform:scaleX(1);transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+
+/* PHOTO PANEL */
+.hright{position:relative;overflow:hidden;opacity:1;}
+.pbase{position:absolute;inset:0;background-image:url('image/baseimg.jpeg');background-size:cover;background-position:center top;}
+#brushCanvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:1;}
+.pring{position:absolute;width:20px;height:20px;border:1.5px solid rgba(83,183,114,.9);border-radius:50%;pointer-events:none;top:0;left:0;opacity:0;z-index:3;will-change:transform,opacity;}
+.plabel{position:absolute;font-size:9px;letter-spacing:.16em;color:rgba(83,183,114,.9);white-space:nowrap;pointer-events:none;top:0;left:0;opacity:0;z-index:4;text-transform:uppercase;will-change:transform,opacity;}
+.hright::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,var(--bg) 0%,rgba(8,8,8,.45) 14%,transparent 24%);}
+
+/* STATS */
+.stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:stretch;}
+.stat{flex:1;padding:28px 0;text-align:center;border-right:1px solid var(--border);opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s;}
+.stat:last-child{border-right:none;}
+.stat.in{opacity:1;transform:translateY(0);}
+.sn{font-size:28px;font-weight:700;letter-spacing:-.03em;color:var(--accent);line-height:1;}
+.sl{font-size:10px;color:var(--fg2);letter-spacing:.1em;margin-top:5px;text-transform:uppercase;}
+
+/* COMPANIES */
+.cos{padding:36px 48px;display:flex;align-items:center;gap:40px;border-bottom:1px solid var(--border);}
+.col{font-size:10px;letter-spacing:.14em;color:var(--fg2);white-space:nowrap;flex-shrink:0;text-transform:uppercase;}
+.con{display:flex;gap:40px;flex-wrap:wrap;align-items:center;}
+.co{font-size:14px;font-weight:500;color:var(--fg2);transition:color .2s;}
+.co:hover{color:var(--fg);}
+
+/* SECTION BASE */
+.sec{padding:96px 48px;}
+.sec-gap{padding:120px 48px;}
+.ey{font-size:10px;letter-spacing:.16em;color:var(--fg2);margin-bottom:16px;text-transform:uppercase;}
+.sh{font-size:clamp(26px,3.8vw,46px);font-weight:700;letter-spacing:-.025em;line-height:1.08;margin-bottom:56px;}
+.sh em{color:var(--accent);font-style:normal;}
+
+/* WORK CARDS */
+.wlist{display:flex;flex-direction:column;gap:24px;}
+.wcard{position:relative;overflow:hidden;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:48px;display:grid;grid-template-columns:1fr 48px;gap:32px;align-items:start;opacity:0;transform:translateY(24px);transition:border-color .3s,transform .3s,opacity .6s;}
+.wcard.in{opacity:1;transform:translateY(0);}
+.wcard:hover{border-color:var(--accent-border);transform:translateY(-3px);}
+.wcard::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 50% at var(--px,50%) var(--py,50%),var(--accent-dim) 0%,transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none;}
+.wcard:hover::after{opacity:1;}
+.wnum{font-size:10px;letter-spacing:.14em;color:var(--fg2);margin-bottom:18px;text-transform:uppercase;}
+.wtitle{font-size:clamp(16px,2vw,21px);font-weight:600;letter-spacing:-.015em;line-height:1.32;margin-bottom:14px;}
+.wdesc{font-size:14px;color:var(--fg2);line-height:1.72;max-width:560px;margin-bottom:28px;}
+
+/* WORK META TAGS — pill style */
+.wmeta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.wm-tag{display:inline-flex;flex-direction:column;gap:2px;border:1px solid var(--border2);border-radius:10px;padding:8px 14px;}
+.wm-label{font-size:9px;letter-spacing:.13em;color:var(--fg2);text-transform:uppercase;}
+.wm-val{font-size:13px;color:var(--fg3);font-weight:500;}
+.wm-tag.impact{border-color:var(--accent-border);background:rgba(83,183,114,.06);}
+.wm-tag.impact .wm-val{color:var(--accent);}
+
+.wtags{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{font-size:11px;letter-spacing:.03em;border:1px solid var(--border);border-radius:20px;padding:4px 12px;color:var(--fg2);}
+.tag.a{border-color:var(--accent-border);color:var(--accent);background:rgba(83,183,114,.06);}
+.warr{width:48px;height:48px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--fg2);text-decoration:none;flex-shrink:0;align-self:start;transition:background .2s,border-color .2s,color .2s,transform .2s;}
+.wcard:hover .warr{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(45deg);}
+
+/* PHILOSOPHY */
+.philgrid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.philstick{position:sticky;top:120px;}
+.philbody{font-size:15px;color:var(--fg2);line-height:1.75;max-width:360px;margin-top:18px;}
+.phillist{display:flex;flex-direction:column;}
+.philitem{padding:32px 0;border-bottom:1px solid var(--border);opacity:0;transform:translateX(18px);transition:opacity .55s,transform .55s;}
+.philitem:first-child{border-top:1px solid var(--border);}
+.philitem.in{opacity:1;transform:translateX(0);}
+.philnum{font-size:10px;color:var(--accent);letter-spacing:.12em;margin-bottom:8px;}
+.philh{font-size:15px;font-weight:500;line-height:1.38;margin-bottom:8px;}
+.philp{font-size:13px;color:var(--fg2);line-height:1.65;}
+.proof{display:inline-block;margin-top:8px;font-size:11px;color:var(--accent);opacity:.8;letter-spacing:.02em;}
+
+/* PROCESS */
+.procgrid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.procstick{position:sticky;top:120px;}
+.proclist{display:flex;flex-direction:column;}
+.procitem{padding:32px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:28px 1fr;gap:20px;align-items:start;opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s;}
+.procitem:first-child{border-top:1px solid var(--border);}
+.procitem.in{opacity:1;transform:translateY(0);}
+.procn{font-size:11px;color:var(--accent);font-weight:600;margin-top:2px;}
+.proch{font-size:14px;font-weight:600;margin-bottom:8px;line-height:1.3;}
+.procp{font-size:13px;color:var(--fg2);line-height:1.65;}
+
+/* TRAITS */
+.traitsgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.trait{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px 28px;display:flex;align-items:flex-start;gap:16px;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s,border-color .2s;}
+.trait.in{opacity:1;transform:translateY(0);}
+.trait:hover{border-color:var(--accent-border);}
+.trait-icon{color:var(--accent);flex-shrink:0;margin-top:2px;opacity:.85;}
+.trait-strong{font-size:14px;font-weight:600;color:var(--fg);margin-bottom:3px;line-height:1.3;}
+.trait-sub{font-size:13px;color:var(--fg2);line-height:1.55;}
+
+/* FOOTER CTA */
+.footer-cta{padding:120px 48px 80px;position:relative;overflow:hidden;border-top:1px solid var(--border);}
+.fcta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 65% at 50% 50%,rgba(83,183,114,.055) 0%,transparent 65%);pointer-events:none;}
+.fcta-h{font-size:clamp(32px,5.5vw,72px);font-weight:700;letter-spacing:-.035em;line-height:.96;margin-bottom:20px;position:relative;z-index:1;max-width:780px;}
+.fcta-h em{color:var(--accent);font-style:normal;}
+.fcta-sub{font-size:16px;color:var(--fg2);line-height:1.65;max-width:540px;margin-bottom:44px;position:relative;z-index:1;}
+.fcta-em{font-size:18px;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(83,183,114,.25);padding-bottom:3px;position:relative;z-index:1;display:inline-block;transition:border-color .2s;}
+.fcta-em:hover{border-color:var(--accent);}
+
+/* FOOTER BOTTOM */
+footer{padding:24px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.fl{font-size:12px;color:var(--fg2);}
+.flinks{display:flex;gap:28px;align-items:center;}
+.flinks a{font-size:12px;color:var(--fg2);text-decoration:none;letter-spacing:.04em;transition:color .2s;}
+.flinks a:hover{color:var(--fg);}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:18px 24px;} nav.sc{padding:14px 24px;}
+  .nlinks{display:none;}
+  .hero{grid-template-columns:1fr;grid-template-rows:auto;}
+  .hright{height:62vw;min-height:280px;}
+  .hright::before{background:linear-gradient(180deg,var(--bg) 0%,rgba(8,8,8,.4) 22%,transparent 38%);}
+  .hleft{padding:100px 24px 32px;}
+  .sec,.sec-gap{padding:72px 24px;}
+  .wcard{padding:28px 24px;grid-template-columns:1fr;}
+  .warr{display:none;}
+  .philgrid,.procgrid{grid-template-columns:1fr;gap:40px;}
+  .philstick,.procstick{position:static;}
+  .traitsgrid{grid-template-columns:1fr 1fr;}
+  .stats{flex-wrap:wrap;}
+  .stat{flex:1 1 40%;border-bottom:1px solid var(--border);}
+  .cos{padding:24px;gap:16px;flex-wrap:wrap;}
+  footer{padding:20px 24px;flex-direction:column;gap:16px;text-align:center;}
+  .footer-cta{padding:80px 24px 60px;}
+  .fcta-h{font-size:clamp(28px,8vw,48px);}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+  #cursor,#cring{display:none;} body{cursor:auto;}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nlogo" href="#hero">MS</a>
+  <ul class="nlinks">
+    <li><a href="https://manojshakar.in/index.html">Home</a></li>
+    <li><a href="https://manojshakar.in/about.html">About</a></li>
+    <li><a href="https://manojshakar.in/craft.html">Craft</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hgrid"></div>
+  <div class="hleft">
+    <div class="htag"><span class="hdot"></span>OPEN TO THE RIGHT OPPORTUNITY</div>
+    <h1 class="hn">I turn complex<br>problems into<br>products people<br><span class="ac">actually use</span></h1>
+    <p class="hintro">A Lead product designer with 10+ years shaping AI-powered and enterprise SaaS products. Built Flo AI from 0 to 1, transformed entire platforms, led design teams, and driven measurable business outcomes.</p>
+    <div class="hbtns">
+      <a href="https://manojshakar.in/assets/Manoj%20Shakar%20-%20Lead%20Product%20Designer%20resume.pdf" class="bl" data-h target="_blank">Download CV</a>
+      <a href="#work" class="bo" data-h>View Case Studies</a>
+    </div></div>
+  </div>
+  <div class="hright" id="hr">
+    <div class="pbase"></div>
+    <canvas id="brushCanvas"></canvas>
+    <div class="pring" id="pring"></div>
+    <div class="plabel" id="plabel">Hallstatt, Austria</div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="sn">10+</div><div class="sl">Years of experience</div></div>
+  <div class="stat"><div class="sn">15+</div><div class="sl">Products launched</div></div>
+  <div class="stat"><div class="sn">35%</div><div class="sl">Adoption increase</div></div>
+  <div class="stat"><div class="sn">0&rarr;1</div><div class="sl">AI product built</div></div>
+</div>
+
+<!-- COMPANIES -->
+<div class="cos">
+  <span class="col">Had the privilege to work with</span>
+  <div class="con">
+    <span class="co">Spendflo</span>
+    <span class="co">Freshworks</span>
+    <span class="co">Vajro</span>
+    <span class="co">Trimble</span>
+  </div>
+</div>
+
+<!-- WORK -->
+<section class="sec" id="work">
+  <p class="ey">Recent Work</p>
+  <h2 class="sh">My recent and past <em>accomplishments</em></h2>
+  <div class="wlist">
+
+    <div class="wcard rv">
+      <div>
+        <p class="wnum">01 &nbsp;/&nbsp; Spendflo &nbsp;&middot;&nbsp; Lead Product Designer</p>
+        <h3 class="wtitle">Building Flo AI from 0 to 1, transforming a SaaS tool into an AI-native procurement platform</h3>
+        <p class="wdesc">Transformed Spendflo from a SaaS management tool into a fully AI-native procurement platform covering intake-to-procure and procure-to-pay. Built Flo AI, the conversational AI procurement assistant, entirely from scratch. Defined AI interaction patterns, trust signals, explainability frameworks, and human-override flows.</p>
+        <div class="wmeta">
+          <div class="wm-tag"><span class="wm-label">Timeline</span><span class="wm-val">5 Months</span></div>
+          <div class="wm-tag"><span class="wm-label">Role</span><span class="wm-val">Lead Product Designer</span></div>
+          <div class="wm-tag impact"><span class="wm-label">Impact</span><span class="wm-val">&#8595;40% effort &middot; &#8593;35% adoption</span></div>
+        </div>
+      </div>
+      <a href="https://manojshakar.in/casestudy1.html" class="warr" data-h target="_blank">&#8599;</a>
+    </div>
+
+    <div class="wcard rv" style="transition-delay:.08s">
+      <div>
+        <p class="wnum">02 &nbsp;/&nbsp; Spendflo &nbsp;&middot;&nbsp; Lead Product Designer</p>
+        <h3 class="wtitle">Redesigning procurement workflows: from manual requests to intelligent automation</h3>
+        <p class="wdesc">Procurement teams were drowning in manual request handling and approval bottlenecks. Redesigned the end-to-end request and approval workflow, streamlining intake, automating routing, and surfacing the right information at the right moment to reduce friction across the entire procurement cycle.</p>
+        <div class="wmeta">
+          <div class="wm-tag"><span class="wm-label">Timeline</span><span class="wm-val">3 Months</span></div>
+          <div class="wm-tag"><span class="wm-label">Role</span><span class="wm-val">Lead Product Designer</span></div>
+          <div class="wm-tag impact"><span class="wm-label">Impact</span><span class="wm-val">&#8593;22% workflow self-serve</span></div>
+        </div>
+      </div>
+      <a href="https://manojshakar.in/casestudy2.html" class="warr" data-h target="_blank">&#8599;</a>
+    </div>
+
+    <div class="wcard rv" style="transition-delay:.16s">
+      <div>
+        <p class="wnum">03 &nbsp;/&nbsp; Freshworks &nbsp;&middot;&nbsp; Senior Product Designer</p>
+        <h3 class="wtitle">From clutter to clarity: redesigning the social media campaign creation experience</h3>
+        <p class="wdesc">Freshworks marketers were spending too many clicks creating multi-platform campaigns. Redesigned the campaign creation workflow from scratch, simplified the flow, added live preview, and enabled multi-platform posting in a single interaction.</p>
+        <div class="wmeta">
+          <div class="wm-tag"><span class="wm-label">Timeline</span><span class="wm-val">1 Month</span></div>
+          <div class="wm-tag"><span class="wm-label">Role</span><span class="wm-val">Senior Product Designer</span></div>
+          <div class="wm-tag impact"><span class="wm-label">Impact</span><span class="wm-val">&#8595;83% task time</span></div>
+        </div>
+      </div>
+      <a href="https://manojshakar.in/casestudy3.html" class="warr" data-h target="_blank">&#8599;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="sec-gap" id="philosophy">
+  <div class="philgrid">
+    <div class="philstick">
+      <p class="ey">Design Philosophy</p>
+      <h2 class="sh" style="margin-bottom:0">Six things I've<br>learned the <em>hard way</em></h2>
+      <p class="philbody">Not borrowed frameworks. These came from shipping real products for users who had real jobs on the line.</p>
+    </div>
+    <div class="phillist">
+      <div class="philitem rvx">
+        <p class="philnum">01</p>
+        <p class="philh">Design that doesn't move a number is just art</p>
+        <p class="philp">Every design decision I make connects back to a business outcome — adoption, retention, efficiency, or churn. Aesthetics serve strategy, not the other way around.<span class="proof">35% adoption at Spendflo post-AI redesign</span></p>
+      </div>
+      <div class="philitem rvx" style="transition-delay:.06s">
+        <p class="philnum">02</p>
+        <p class="philh">AI must earn user trust. It can't demand it.</p>
+        <p class="philp">Intelligence without transparency creates friction. Every AI feature needs explainability, confidence signals, and a clear way out. I've shipped this, not just theorised about it.<span class="proof">Built Flo AI from 0&rarr;1 at Spendflo</span></p>
+      </div>
+      <div class="philitem rvx" style="transition-delay:.12s">
+        <p class="philnum">03</p>
+        <p class="philh">Systems beat heroics every single time</p>
+        <p class="philp">Scalable design systems and repeatable processes outlast individual brilliance. I've built design systems at 2 companies, because the foundation is what makes the team faster.<span class="proof">Lotus at Spendflo &middot; Needle at Vajro</span></p>
+      </div>
+      <div class="philitem rvx" style="transition-delay:.18s">
+        <p class="philnum">04</p>
+        <p class="philh">The right problem is more valuable than a clever solution</p>
+        <p class="philp">At Vajro, the 64% onboarding improvement didn't come from a redesign. It came from identifying 6 steps nobody had questioned in years. Diagnosis before prescription.<span class="proof">64% onboarding completion</span></p>
+      </div>
+      <div class="philitem rvx" style="transition-delay:.24s">
+        <p class="philnum">05</p>
+        <p class="philh">Designers who understand revenue make better decisions</p>
+        <p class="philp">If you don't know what moves the business needle, you can't prioritise the right problems. I engage with roadmap, growth metrics, and churn data, not just design briefs.<span class="proof">Influenced product roadmap at Spendflo</span></p>
+      </div>
+      <div class="philitem rvx" style="transition-delay:.30s">
+        <p class="philnum">06</p>
+        <p class="philh">Scale changes everything about how you should design</p>
+        <p class="philp">At 50,000+ users, one wrong pattern costs you thousands of support tickets. At 500 enterprise customers, one confused workflow costs a renewal. Scale demands a different kind of precision.<span class="proof">50K users impacted &middot; 60% support reduction</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec-gap" id="process">
+  <div class="procgrid">
+    <div class="procstick">
+      <p class="ey">Design Process</p>
+      <h2 class="sh" style="margin-bottom:0">From ambiguous<br>problem to <em>shipped product</em></h2>
+      <p class="philbody" style="margin-top:18px">My process is not a waterfall. It's a loop. I move between research, decision-making, and execution iteratively, always keeping the business outcome visible at every step.</p>
+    </div>
+    <div class="proclist">
+      <div class="procitem rvp">
+        <p class="procn">01</p>
+        <div><p class="proch">Discover: Understand the business problem, not just the design brief</p><p class="procp">Stakeholder interviews, usage analytics, CS support tickets, and user research. I look for the gap between what the business thinks users want and what users actually do. The insight that changed Spendflo's direction: users didn't want a better dashboard, they wanted answers.</p></div>
+      </div>
+      <div class="procitem rvp" style="transition-delay:.08s">
+        <p class="procn">02</p>
+        <div><p class="proch">Frame: Define the right problem before designing anything</p><p class="procp">I turn research into a crisp problem statement and success criteria. "How might we help procurement teams trust AI recommendations enough to change their daily workflows?" is more useful than "redesign the dashboard." This framing guides every decision that follows.</p></div>
+      </div>
+      <div class="procitem rvp" style="transition-delay:.16s">
+        <p class="procn">03</p>
+        <div><p class="proch">Design: Make decisions, not deliverables</p><p class="procp">Wireframes and prototypes are decision-making tools, not deliverables. Every screen answers a question: what does the user need to see here? What should they feel confident doing? For AI features, I always design for the moment the AI is wrong, not just when it's right.</p></div>
+      </div>
+      <div class="procitem rvp" style="transition-delay:.24s">
+        <p class="procn">04</p>
+        <div><p class="proch">Validate: Test with real users before engineering builds</p><p class="procp">Usability testing, stakeholder reviews, and data review before a single line of code is written. I look for hesitation, confusion, and unexpected workarounds. Those are the signals. At Vajro, testing revealed the 6 redundant steps that nobody had questioned before.</p></div>
+      </div>
+      <div class="procitem rvp" style="transition-delay:.32s">
+        <p class="procn">05</p>
+        <div><p class="proch">Ship and measure: Design isn't done at handoff</p><p class="procp">I stay close to engineering during implementation, catch edge cases that weren't in the spec, and track the metric we set out to move. If adoption doesn't improve post-launch, I go back. The number is the signal, not the Figma file.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAITS -->
+<section class="sec-gap" id="traits">
+  <p class="ey">Professional Traits</p>
+  <h2 class="sh">What you get when you <em>hire me</em></h2>
+  <div class="traitsgrid">
+    <div class="trait rvt" style="transition-delay:0.0s">
+      <div class="trait-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.3"/><circle cx="10" cy="10" r="2.8" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="1.5" x2="10" y2="4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="10" y1="15.5" x2="10" y2="18.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="1.5" y1="10" x2="4.5" y2="10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="15.5" y1="10" x2="18.5" y2="10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+      <div>
+        <p class="trait-strong">Strategic &amp; hands-on.</p>
+        <p class="trait-sub">I don't choose between them.</p>
+      </div>
+    </div>
+    <div class="trait rvt" style="transition-delay:0.05s">
+      <div class="trait-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5C10 2.5 15 4.5 15.5 9.5L17 13L13.5 14L12 12C11 12.5 10.5 12.7 10 12.9C9.5 12.7 9 12.5 8 12L6.5 14L3 13L4.5 9.5C5 4.5 10 2.5 10 2.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="10" cy="8" r="1.5" stroke="currentColor" stroke-width="1.1"/><path d="M7.5 13.5L6.5 17.5H8.5L10 15.5L11.5 17.5H13.5L12.5 13.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+      <div>
+        <p class="trait-strong">0&rarr;1 builder.</p>
+        <p class="trait-sub">I've shipped AI products from scratch, not just iterated.</p>
+      </div>
+    </div>
+    <div class="trait rvt" style="transition-delay:0.1s">
+      <div class="trait-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="12" width="3.5" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="8.25" y="7" width="3.5" height="11" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="14.5" y="3" width="3.5" height="15" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M3.75 9L8.25 6M11.75 5L14.5 4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg></div>
+      <div>
+        <p class="trait-strong">Metric-first.</p>
+        <p class="trait-sub">I design for the outcome, not the deliverable.</p>
+      </div>
+    </div>
+    <div class="trait rvt" style="transition-delay:0.15000000000000002s">
+      <div class="trait-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L18 6.5L10 11L2 6.5L10 2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M2 10.5L10 15L18 10.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M2 14.5L10 19L18 14.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+      <div>
+        <p class="trait-strong">Design system builder.</p>
+        <p class="trait-sub">Token-based, scalable, adopted by engineers.</p>
+      </div>
+    </div>
+    <div class="trait rvt" style="transition-delay:0.2s">
+      <div class="trait-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="7.5" cy="6" r="2.5" stroke="currentColor" stroke-width="1.3"/><path d="M2 17C2 13.7 4.5 11 7.5 11C10.5 11 13 13.7 13 17" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="14.5" cy="6.5" r="2" stroke="currentColor" stroke-width="1.3"/><path d="M14.5 11C16.6 11 18.5 12.8 18.5 15.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+      <div>
+        <p class="trait-strong">Cross-functional.</p>
+        <p class="trait-sub">I can run a stakeholder workshop and a design critique.</p>
+      </div>
+    </div>
+    <div class="trait rvt" style="transition-delay:0.25s">
+      <div class="trait-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 3.5H17C17.6 3.5 18 3.9 18 4.5V13C18 13.6 17.6 14 17 14H6.5L2.5 18V4.5C2.5 3.9 2.9 3.5 3 3.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><line x1="6.5" y1="8" x2="13.5" y2="8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="6.5" y1="11" x2="11" y2="11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+      <div>
+        <p class="trait-strong">Clear communicator.</p>
+        <p class="trait-sub">Design rationale, not design opinions.</p>
+      </div>
+    </div>
+    <div class="trait rvt" style="transition-delay:0.30000000000000004s">
+      <div class="trait-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M11.5 2L4 11.5H10.5L8.5 18L16 8.5H9.5L11.5 2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+      <div>
+        <p class="trait-strong">Team multiplier.</p>
+        <p class="trait-sub">I raise the floor, not just my own ceiling.</p>
+      </div>
+    </div>
+    <div class="trait rvt" style="transition-delay:0.35000000000000003s">
+      <div class="trait-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.3"/><path d="M13.5 6.5L11.2 10.8L6.5 13.5L8.8 9.2L13.5 6.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="10" cy="10" r="1.2" fill="currentColor"/></svg></div>
+      <div>
+        <p class="trait-strong">Ambiguity doesn't slow me down.</p>
+        <p class="trait-sub">It's where the best problems live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta" id="contact">
+  <div class="fcta-bg"></div>
+  <h2 class="fcta-h">Let's craft experiences that <em>move people</em> and the numbers</h2>
+  <p class="fcta-sub">Exploring opportunities where design has a real seat at the table. Based out of Chennai, India, open to relocate across the globe.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;position:relative;z-index:1;">
+  <a href="mailto:manojshakar.com@gmail.com" class="fcta-em" data-h>manojshakar.com@gmail.com</a>
+  <a href="tel:+919994448205" class="fcta-em" data-h style="border-bottom-color:rgba(83,183,114,.18);">+91 999 444 8205</a>
+</div>
+</section>
+
+<!-- FOOTER BOTTOM -->
+<footer>
+  <span class="fl">Manoj Shakar &copy; 2025</span>
+  <div class="flinks">
+    <a href="https://dribbble.com/manojshakar" target="_blank" rel="noopener">Dribbble</a>
+    <a href="https://linkedin.com/in/manoj-shakar" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://instagram.com/manoj.designs" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+const cur = document.getElementById('cursor');
+const crng = document.getElementById('cring');
+let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx+'px'; cur.style.top = my+'px';
+});
+(function raf(){
+  rx += (mx-rx)*.13; ry += (my-ry)*.13;
+  crng.style.left = Math.round(rx)+'px';
+  crng.style.top  = Math.round(ry)+'px';
+  requestAnimationFrame(raf);
+})();
+document.querySelectorAll('a,button,[data-h],.co,.wcard').forEach(el => {
+  el.addEventListener('mouseenter', () => { cur.classList.add('big'); crng.classList.add('big'); });
+  el.addEventListener('mouseleave', () => { cur.classList.remove('big'); crng.classList.remove('big'); });
+});
+
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('sc', scrollY > 60);
+}, {passive:true});
+
+// CURSOR SPOTLIGHT
+const hr          = document.getElementById('hr');
+const brushCanvas = document.getElementById('brushCanvas');
+const pring       = document.getElementById('pring');
+const plabel      = document.getElementById('plabel');
+
+// --- Canvas setup ---
+const bCtx       = brushCanvas.getContext('2d');
+const maskCanvas = document.createElement('canvas');
+const mCtx       = maskCanvas.getContext('2d');
+
+const austriaImg = new Image();
+austriaImg.src = 'image/austria.jpeg';
+
+function resizeCanvas() {
+  brushCanvas.width = maskCanvas.width  = hr.offsetWidth;
+  brushCanvas.height = maskCanvas.height = hr.offsetHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// CSS background-size:cover + background-position:center top
+function drawCoverImg(ctx, W, H) {
+  if (!austriaImg.complete || !austriaImg.naturalWidth) return;
+  const scale = Math.max(W / austriaImg.naturalWidth, H / austriaImg.naturalHeight);
+  const dw = austriaImg.naturalWidth * scale;
+  const dh = austriaImg.naturalHeight * scale;
+  ctx.drawImage(austriaImg, (W - dw) / 2, 0, dw, dh);
+}
+
+// Composite mask → final canvas
+function renderToCanvas() {
+  const W = brushCanvas.width, H = brushCanvas.height;
+  bCtx.clearRect(0, 0, W, H);
+  drawCoverImg(bCtx, W, H);
+  bCtx.globalCompositeOperation = 'destination-in';
+  bCtx.drawImage(maskCanvas, 0, 0);
+  bCtx.globalCompositeOperation = 'source-over';
+}
+
+function clearAll() {
+  bCtx.clearRect(0, 0, brushCanvas.width, brushCanvas.height);
+  mCtx.clearRect(0, 0, maskCanvas.width, maskCanvas.height);
+}
+
+// Demo stroke — uses pre-baked randomness so it's stable across redraws (no shimmer)
+function paintDemoStroke(ctx, pts, maxW) {
+  if (!pts || pts.length < 2) return;
+  const n = pts.length;
+  for (let i = 1; i < n; i++) {
+    const t     = i / (n - 1);
+    const taper = Math.sin(t * Math.PI);
+    const w     = maxW * (0.06 + taper * 0.94);
+    ctx.beginPath();
+    ctx.lineWidth   = Math.max(1, w * pts[i].w);
+    ctx.lineCap     = 'round';
+    ctx.lineJoin    = 'round';
+    ctx.strokeStyle = 'white';
+    ctx.globalAlpha = pts[i].a;
+    ctx.moveTo(pts[i-1].x + pts[i].jx * w, pts[i-1].y + pts[i].jy * w);
+    ctx.lineTo(pts[i].x   + pts[i].jx * w, pts[i].y   + pts[i].jy * w);
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
+
+// Hover stroke — smooth taper at tail only, full width at cursor head
+function paintHoverStroke(ctx, pts, maxW) {
+  if (!pts || pts.length < 2) return;
+  const n = pts.length;
+  const TAIL = 10; // points over which tail tapers
+  for (let i = 1; i < n; i++) {
+    const taper = Math.min(1, i / TAIL);
+    const w     = maxW * taper;
+    ctx.beginPath();
+    ctx.lineWidth   = Math.max(1, w);
+    ctx.lineCap     = 'round';
+    ctx.lineJoin    = 'round';
+    ctx.strokeStyle = 'white';
+    ctx.globalAlpha = Math.min(1, taper * 1.5);
+    ctx.moveTo(pts[i-1].x, pts[i-1].y);
+    ctx.lineTo(pts[i].x,   pts[i].y);
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
+
+// Catmull-Rom spline interpolation for smooth continuous path
+function catmullRom(p0, p1, p2, p3, t) {
+  const t2 = t * t, t3 = t2 * t;
+  return {
+    x: 0.5 * (2*p1.x + (-p0.x+p2.x)*t + (2*p0.x-5*p1.x+4*p2.x-p3.x)*t2 + (-p0.x+3*p1.x-3*p2.x+p3.x)*t3),
+    y: 0.5 * (2*p1.y + (-p0.y+p2.y)*t + (2*p0.y-5*p1.y+4*p2.y-p3.y)*t2 + (-p0.y+3*p1.y-3*p2.y+p3.y)*t3)
+  };
+}
+
+// One long continuous path that meanders across the entire image
+function generateContinuousPath() {
+  const W = brushCanvas.width, H = brushCanvas.height;
+  // Entry point from one edge
+  const wps = [{ x: -50, y: H * (0.25 + Math.random() * 0.5) }];
+  // 8 random interior waypoints spread across the image
+  for (let i = 0; i < 8; i++) {
+    wps.push({
+      x: W * (0.05 + Math.random() * 0.9),
+      y: H * (0.06 + Math.random() * 0.88)
+    });
+  }
+  // Exit point on opposite side
+  wps.push({ x: W + 50, y: H * (0.25 + Math.random() * 0.5) });
+
+  // Sample smooth Catmull-Rom through all waypoints
+  const pts = [];
+  for (let i = 0; i < wps.length - 1; i++) {
+    const p0 = wps[Math.max(0, i - 1)];
+    const p1 = wps[i];
+    const p2 = wps[i + 1];
+    const p3 = wps[Math.min(wps.length - 1, i + 2)];
+    for (let t = 0; t < 1; t += 0.007) {
+      const pt = catmullRom(p0, p1, p2, p3, t);
+      // Pre-bake randomness per point — stable across redraws
+      pt.w  = 1 + (Math.random() - 0.5) * 0.22;
+      pt.a  = 0.75 + Math.random() * 0.25;
+      pt.jx = (Math.random() - 0.5) * 0.06;
+      pt.jy = (Math.random() - 0.5) * 0.06;
+      pts.push(pt);
+    }
+  }
+  return pts;
+}
+
+// --- State ---
+let isUserInteracting = false;
+let demoActive = false;
+let demoTween  = null;
+
+// Hover: circular buffer trail — no fade loop needed, buffer length controls trail
+const TRAIL_LEN = 55;
+const MIN_TRAIL  = 14; // stop retreating here — cursor end stays at full brush width
+let hoverTrail   = [];
+let hoverRaf     = null;
+let lastMoveTime = 0;
+
+function hoverLoop() {
+  if (!isUserInteracting) { hoverRaf = null; return; }
+  // Retreat trail from tail when idle, but keep MIN_TRAIL so cursor end stays full-width
+  if (Date.now() - lastMoveTime > 40 && hoverTrail.length > MIN_TRAIL) {
+    hoverTrail.shift();
+  }
+  mCtx.clearRect(0, 0, maskCanvas.width, maskCanvas.height);
+  if (hoverTrail.length >= 2) paintHoverStroke(mCtx, hoverTrail, 110);
+  renderToCanvas();
+  hoverRaf = requestAnimationFrame(hoverLoop);
+}
+
+function stopHoverLoop() {
+  if (hoverRaf) { cancelAnimationFrame(hoverRaf); hoverRaf = null; }
+}
+
+// --- Demo animation ---
+function startDemoAnimation() {
+  if (isUserInteracting || demoActive) return;
+  demoActive = true;
+  gsap.set(brushCanvas, { opacity: 1 });
+  gsap.set([pring, plabel], { opacity: 0 });
+
+  function doStroke() {
+    if (!demoActive || isUserInteracting) return;
+    const strokePath = generateContinuousPath();
+    const totalPts   = strokePath.length;
+    const BRUSH_WIN  = 160; // sliding window — brush stroke length in points
+    const strokeW    = 120 + Math.random() * 50;
+    const prog       = { t: 0 };
+    clearAll();
+
+    // Animate progress over totalPts + BRUSH_WIN so tip enters AND exits cleanly
+    demoTween = gsap.to(prog, {
+      t: 1,
+      duration: 4.125 + Math.random() * 1.125,
+      ease: 'sine.inOut',
+      onUpdate: () => {
+        const tipIdx   = Math.floor(prog.t * (totalPts + BRUSH_WIN));
+        const startIdx = Math.max(0, tipIdx - BRUSH_WIN);
+        const endIdx   = Math.min(tipIdx, totalPts);
+        const visible  = strokePath.slice(startIdx, endIdx);
+        mCtx.clearRect(0, 0, maskCanvas.width, maskCanvas.height);
+        if (visible.length >= 2) paintDemoStroke(mCtx, visible, strokeW);
+        renderToCanvas();
+      },
+      onComplete: () => {
+        if (!demoActive || isUserInteracting) return;
+        gsap.to(brushCanvas, {
+          opacity: 0, duration: 0.375, ease: 'power1.in',
+          onComplete: () => {
+            clearAll();
+            if (demoActive && !isUserInteracting) {
+              gsap.set(brushCanvas, { opacity: 1 });
+              setTimeout(doStroke, 300 + Math.random() * 450);
+            }
+          }
+        });
+      }
+    });
+  }
+
+  doStroke();
+}
+
+window.addEventListener('load', () => setTimeout(startDemoAnimation, 800));
+
+hr.addEventListener('mouseenter', e => {
+  isUserInteracting = true;
+  demoActive = false;
+  if (demoTween) { demoTween.kill(); demoTween = null; }
+  gsap.killTweensOf(brushCanvas); // kill any in-progress fade from demo
+  hoverTrail = [];
+  clearAll();
+  gsap.set(brushCanvas, { opacity: 1 });
+  gsap.to([pring, plabel], { opacity: 1, duration: 0.2 });
+  hr.classList.add('on');
+  if (!hoverRaf) hoverRaf = requestAnimationFrame(hoverLoop);
+});
+
+hr.addEventListener('mouseleave', () => {
+  isUserInteracting = false;
+  stopHoverLoop();
+  hoverTrail = [];
+  hr.classList.remove('on');
+  gsap.to([pring, plabel], { opacity: 0, duration: 0.2 });
+  gsap.to(brushCanvas, {
+    opacity: 0, duration: 0.4, ease: 'power2.out',
+    onComplete: () => { clearAll(); setTimeout(startDemoAnimation, 200); }
+  });
+});
+
+hr.addEventListener('mousemove', e => {
+  isUserInteracting = true;
+  lastMoveTime = Date.now();
+  const rect = hr.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  hoverTrail.push({ x, y });
+  if (hoverTrail.length > TRAIL_LEN) hoverTrail.shift();
+  gsap.set(pring,  { x, y, xPercent: -50, yPercent: -50 });
+  gsap.set(plabel, { x, y: y + 26, xPercent: -50 });
+});
+
+// WORK CARD GLOW
+document.querySelectorAll('.wcard').forEach(c => {
+  c.addEventListener('mousemove', e => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty('--px', ((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+    c.style.setProperty('--py', ((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+  });
+});
+
+// INTERSECTION OBSERVERS
+const io1 = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('in');io1.unobserve(e.target);} });
+}, {threshold:.1});
+const io2 = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('in');io2.unobserve(e.target);} });
+}, {threshold:.07});
+
+document.querySelectorAll('.stat').forEach((el,i) => { el.style.transitionDelay=(i*.06)+'s'; io1.observe(el); });
+document.querySelectorAll('.rv').forEach(el => io1.observe(el));
+document.querySelectorAll('.rvx,.rvp,.rvt').forEach(el => io2.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+</script>
+</body>
+</html>
