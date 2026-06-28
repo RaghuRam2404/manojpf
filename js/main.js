@@ -55,3 +55,10 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if(t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
   });
 });
+
+// FOOTER LOADER
+fetch('footer.html')
+  .then(r => r.text())
+  .then(html => {
+    document.getElementById('footer-placeholder').outerHTML = html;
+  });
