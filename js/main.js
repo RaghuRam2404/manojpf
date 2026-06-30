@@ -38,13 +38,16 @@ if(menuBtn){
 
 // HERO ANIMATION (index only)
 if(typeof HeroAnimation !== 'undefined' && document.getElementById('hr')){
-  HeroAnimation.init({
-    container   : '#hr',
-    bgImage     : 'image/baseimg.jpeg',
-    topImage    : 'image/austria.jpeg',
-    label       : 'Creating memories',
-    staticLabel : 'Building products ↗'
-  });
+  function initHeroAnimation(){
+    HeroAnimation.init({
+      container   : '#hr',
+      bgImage     : 'image/baseimg.jpeg',
+      topImage    : 'image/austria.jpeg',
+      label       : 'Creating memories',
+      staticLabel : 'Building products ↗'
+    });
+  }
+  window.addEventListener('bodyshown', initHeroAnimation, { once: true });
 }
 
 // CARD GLOW (work + craft)
