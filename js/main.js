@@ -23,10 +23,11 @@ window.addEventListener('scroll', () => {
 // HERO ANIMATION (index only)
 if(typeof HeroAnimation !== 'undefined' && document.getElementById('hr')){
   HeroAnimation.init({
-    container : '#hr',
-    bgImage   : 'image/baseimg.jpeg',
-    topImage  : 'image/austria.jpeg',
-    label     : 'Hallstatt, Austria'
+    container   : '#hr',
+    bgImage     : 'image/baseimg.jpeg',
+    topImage    : 'image/austria.jpeg',
+    label       : 'Creating memories',
+    staticLabel : 'Building products ↗'
   });
 }
 

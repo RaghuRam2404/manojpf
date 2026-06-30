@@ -46,7 +46,12 @@
       plabel.className = 'ha-label';
       plabel.textContent = options.label || '';
 
-      container.append(pbase, brushCanvas, pring, plabel);
+      const pstaticLabel = document.createElement('div');
+      pstaticLabel.className = 'ha-static-label';
+      pstaticLabel.textContent = options.staticLabel || '';
+      if (!options.staticLabel) pstaticLabel.style.display = 'none';
+
+      container.append(pbase, brushCanvas, pring, plabel, pstaticLabel);
 
       /* ---- canvas setup -------------------------------------------------- */
       const bCtx = brushCanvas.getContext('2d');
@@ -259,6 +264,7 @@
         clearAll();
         gsap.set(brushCanvas, { opacity: 1 });
         gsap.to([pring, plabel], { opacity: 1, duration: 0.2 });
+        gsap.to(pstaticLabel, { opacity: 0, duration: 0.2 });
         container.classList.add('ha-active');
         if (!hoverRaf) hoverRaf = requestAnimationFrame(hoverLoop);
       });
@@ -269,6 +275,7 @@
         hoverTrail = [];
         container.classList.remove('ha-active');
         gsap.to([pring, plabel], { opacity: 0, duration: 0.2 });
+        gsap.to(pstaticLabel, { opacity: 1, duration: 0.3 });
         gsap.to(brushCanvas, {
           opacity: 0,
           duration: 0.4,

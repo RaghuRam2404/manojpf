@@ -56,3 +56,19 @@
   text-transform: uppercase;
   will-change: transform, opacity;
 }
+
+.ha-static-label {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.72);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 1;
+  text-transform: uppercase;
+  will-change: opacity;
+  transition: opacity 0.2s;
+}
