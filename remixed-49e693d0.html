@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Manoj Shakar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#080808;--bg2:#0f0f0f;--bg3:#161616;
+  --fg:#f0ede6;--fg2:#6e6b64;--fg3:#9a9790;
+  --accent:#53B772;--accent-dim:rgba(83,183,114,.08);
+  --accent-border:rgba(83,183,114,.3);
+  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.11);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;overflow-x:clip;cursor:none;-webkit-font-smoothing:antialiased;}
+#cursor{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .18s,height .18s;}
+#cring{position:fixed;width:38px;height:38px;border:1px solid rgba(83,183,114,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .22s,height .22s,border-color .22s;}
+#cursor.big{width:5px;height:5px;}
+#cring.big{width:60px;height:60px;border-color:var(--accent);}
+a,button,[data-h]{cursor:none;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:22px 48px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,padding .3s,border-color .4s;border-bottom:1px solid transparent;}
+nav.sc{background:rgba(8,8,8,.94);backdrop-filter:blur(20px);padding:15px 48px;border-bottom-color:var(--border);}
+.nlogo{font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--fg);text-decoration:none;}
+.nlinks{display:flex;gap:32px;list-style:none;}
+.nlinks a{font-size:13px;color:var(--fg2);text-decoration:none;transition:color .2s;letter-spacing:.01em;}
+.nlinks a:hover{color:var(--fg);}
+.nlinks a.active{color:var(--fg);}
+.sec{padding:96px 48px;}
+.sec-gap{padding:120px 48px;}
+.ey{font-size:10px;letter-spacing:.16em;color:var(--fg2);margin-bottom:16px;text-transform:uppercase;}
+.sh{font-size:clamp(26px,3.8vw,52px);font-weight:700;letter-spacing:-.025em;line-height:1.05;margin-bottom:48px;}
+.sh em{color:var(--accent);font-style:normal;}
+.page-hero{padding:160px 48px 96px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 80% at 20% 40%,black 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 20% 40%,black 10%,transparent 70%);}
+.page-eyebrow{font-size:10px;letter-spacing:.16em;color:var(--fg2);margin-bottom:20px;text-transform:uppercase;}
+.page-h{font-size:clamp(36px,5.5vw,80px);font-weight:700;letter-spacing:-.04em;line-height:.95;max-width:900px;margin-bottom:24px;position:relative;z-index:1;}
+.page-h em{color:var(--accent);font-style:normal;}
+.page-intro{font-size:clamp(15px,1.5vw,17px);color:var(--fg2);line-height:1.72;max-width:640px;position:relative;z-index:1;}
+.footer-cta{padding:120px 48px 80px;position:relative;overflow:hidden;border-top:1px solid var(--border);}
+.fcta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 65% at 50% 50%,rgba(83,183,114,.055) 0%,transparent 65%);pointer-events:none;}
+.fcta-h{font-size:clamp(32px,5.5vw,72px);font-weight:700;letter-spacing:-.035em;line-height:.96;margin-bottom:20px;position:relative;z-index:1;max-width:780px;}
+.fcta-h em{color:var(--accent);font-style:normal;}
+.fcta-sub{font-size:16px;color:var(--fg2);line-height:1.65;max-width:540px;margin-bottom:44px;position:relative;z-index:1;}
+.fcta-row{display:flex;flex-wrap:wrap;gap:24px;align-items:center;position:relative;z-index:1;}
+.fcta-em{font-size:18px;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(83,183,114,.25);padding-bottom:3px;display:inline-block;transition:border-color .2s;}
+.fcta-em:hover{border-color:var(--accent);}
+footer{padding:24px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.fl{font-size:12px;color:var(--fg2);}
+.flinks{display:flex;gap:28px;align-items:center;}
+.flinks a{font-size:12px;color:var(--fg2);text-decoration:none;letter-spacing:.04em;transition:color .2s;}
+.flinks a:hover{color:var(--fg);}
+@keyframes blink{0%,100%{opacity:.8}50%{opacity:.2}}
+@media(max-width:768px){
+  nav{padding:18px 24px;}nav.sc{padding:14px 24px;}
+  .nlinks{display:none;}
+  .page-hero{padding:120px 24px 72px;}
+  .sec,.sec-gap{padding:72px 24px;}
+  footer{padding:20px 24px;flex-direction:column;gap:16px;text-align:center;}
+  .footer-cta{padding:80px 24px 60px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+  #cursor,#cring{display:none;}body{cursor:auto;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width:768px){
+  
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width:768px){
+  }
+.story-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:start;
+}
+.story-left{
+  position:sticky;
+  top:120px;
+  align-self:start;
+}
+.story-intro{font-size:17px;color:var(--fg2);line-height:1.78;margin-bottom:20px;max-width:420px;}
+.story-intro:last-child{margin-bottom:0;}
+.story-right{display:flex;flex-direction:column;}
+.story-item{padding:40px 0;border-bottom:1px solid var(--border);opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}
+.story-item:first-child{border-top:1px solid var(--border);}
+.story-item.in{opacity:1;transform:translateY(0);}
+.story-p{font-size:15px;color:var(--fg2);line-height:1.78;margin-bottom:20px;}
+.story-metric{display:flex;gap:8px;flex-wrap:wrap;}
+.sm-pill{font-size:12px;border:1px solid var(--accent-border);border-radius:24px;padding:5px 14px;color:var(--accent);background:rgba(83,183,114,.06);}
+@media(max-width:768px){
+  .story-layout{grid-template-columns:1fr;gap:40px;}
+  .story-left{position:static;}
+}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cring"></div>
+<nav id="nav"><a class="nlogo" href="index.html">MS</a><ul class="nlinks"><li><a href="index.html">Home</a></li><li><a href="about.html" class='active'>About</a></li><li><a href="craft.html">Craft</a></li></ul></nav>
+
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <p class="page-eyebrow">About Me</p>
+  <h1 class="page-h">Design that moves <em>metrics,</em><br>not just pixels</h1>
+  <p class="page-intro">I have shipped AI products, rebuilt design systems from scratch, and transformed platforms that 50,000+ people depend on. At Spendflo I built Flo AI from 0 to 1. At Freshworks I redesigned workflows for 50,000+ users. At Vajro I turned a broken onboarding into a 64% completion lift. The thread through all of it: design that drives real outcomes, not just good-looking screens.</p>
+</section>
+
+<section class="sec-gap" id="story" style="overflow:visible;">
+  <div class="story-layout">
+
+    <!-- STICKY LEFT -->
+    <div class="story-left">
+      <p class="ey">My Story</p>
+      <p class="story-intro">I've spent 10 years solving one problem: why do enterprise SaaS products frustrate the people who use them every day?</p>
+      <p class="story-intro">The answer is almost always the same. The product was built around features, not around the moment a user needs to make a decision. My job is to find that moment, redesign around it, and make sure the numbers follow.</p>
+    </div>
+
+    <!-- SCROLLING RIGHT -->
+    <div class="story-right">
+
+      <div class="story-item rv">
+        <p class="story-p">At Spendflo, I didn't redesign screens. I transformed the entire platform from a SaaS management tool into a fully AI-native procurement platform. I built Flo AI from 0 to 1: Spendflo's conversational AI procurement assistant covering intake-to-procure and procure-to-pay. I defined the AI interaction patterns, trust signals, explainability frameworks, and human-override flows that became the product's design foundation. I also rebuilt the UI with a token-based design system from scratch.</p>
+        <div class="story-metric">
+          <span class="sm-pill">&#8595;40% effort reduction</span>
+          <span class="sm-pill">&#8593;35% adoption</span>
+          <span class="sm-pill">0&rarr;1 AI product</span>
+        </div>
+      </div>
+
+      <div class="story-item rv" style="transition-delay:.08s">
+        <p class="story-p">At Freshworks, I redesigned the Journey Builder for 50,000+ global users, improving workflow efficiency by 28% and campaign performance by 22%. I also helped establish and scale the Freshworks product design system.</p>
+        <div class="story-metric">
+          <span class="sm-pill">&#8593;28% workflow efficiency</span>
+          <span class="sm-pill">&#8593;22% campaign performance</span>
+          <span class="sm-pill">50K+ users</span>
+        </div>
+      </div>
+
+      <div class="story-item rv" style="transition-delay:.16s">
+        <p class="story-p">At Vajro, I owned end-to-end product design for the mobile app builder platform. I rebuilt merchant onboarding from scratch, found 6 redundant steps nobody had questioned, and brought completion up 64%. Built Needle, the unified design system across mobile and web.</p>
+        <div class="story-metric">
+          <span class="sm-pill">64% onboarding lift</span>
+          <span class="sm-pill">Needle design system</span>
+        </div>
+      </div>
+
+      <div class="story-item rv" style="transition-delay:.24s">
+        <p class="story-p">At Trimble, I worked on the transformation of a legacy enterprise platform into 8 modern SaaS products, cutting support tickets 60% and growing mobile usage 46%.</p>
+        <div class="story-metric">
+          <span class="sm-pill">&#8595;60% support tickets</span>
+          <span class="sm-pill">&#8593;46% mobile usage</span>
+          <span class="sm-pill">8 SaaS products</span>
+        </div>
+      </div>
+
+      <div class="story-item rv" style="transition-delay:.32s">
+        <p class="story-p">Throughout, I've operated as both strategic design leader and senior IC. The kind of designer who can run a stakeholder workshop in the morning and ship a prototype by afternoon.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="footer-cta">
+  <div class="fcta-bg"></div>
+  <h2 class="fcta-h">Let's craft experiences that <em>move people</em> and the numbers</h2>
+  <p class="fcta-sub">Exploring opportunities where design has a real seat at the table. Based out of Chennai, India, open to relocate across the globe.</p>
+  <div class="fcta-row">
+    <a href="mailto:manojshakar.com@gmail.com" class="fcta-em" data-h>manojshakar.com@gmail.com</a>
+    <a href="tel:+919994448205" class="fcta-em" data-h style="border-bottom-color:rgba(83,183,114,.18);">+91 999 444 8205</a>
+  </div>
+</section>
+<footer>
+  <span class="fl">Manoj Shakar &copy; 2025</span>
+  <div class="flinks">
+    <a href="https://dribbble.com/manojshakar" target="_blank" rel="noopener">Dribbble</a>
+    <a href="https://linkedin.com/in/manoj-shakar" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://instagram.com/manoj.designs" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+<script>
+const cur=document.getElementById('cursor'),crng=document.getElementById('cring');
+let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function raf(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;crng.style.left=Math.round(rx)+'px';crng.style.top=Math.round(ry)+'px';requestAnimationFrame(raf);})();
+document.querySelectorAll('a,button,[data-h]').forEach(el=>{el.addEventListener('mouseenter',()=>{cur.classList.add('big');crng.classList.add('big');});el.addEventListener('mouseleave',()=>{cur.classList.remove('big');crng.classList.remove('big');});});
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('sc',scrollY>60);},{passive:true});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

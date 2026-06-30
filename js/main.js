@@ -20,16 +20,18 @@ window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('sc', scrollY > 60);
 }, {passive:true});
 
-// HERO ANIMATION
-HeroAnimation.init({
-  container : '#hr',
-  bgImage   : 'image/baseimg.jpeg',
-  topImage  : 'image/austria.jpeg',
-  label     : 'Hallstatt, Austria'
-});
+// HERO ANIMATION (index only)
+if(typeof HeroAnimation !== 'undefined' && document.getElementById('hr')){
+  HeroAnimation.init({
+    container : '#hr',
+    bgImage   : 'image/baseimg.jpeg',
+    topImage  : 'image/austria.jpeg',
+    label     : 'Hallstatt, Austria'
+  });
+}
 
-// WORK CARD GLOW
-document.querySelectorAll('.wcard').forEach(c => {
+// CARD GLOW (work + craft)
+document.querySelectorAll('.wcard,.craft-card').forEach(c => {
   c.addEventListener('mousemove', e => {
     const r = c.getBoundingClientRect();
     c.style.setProperty('--px', ((e.clientX-r.left)/r.width*100).toFixed(1)+'%');

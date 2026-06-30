@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Craft — Manoj Shakar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#080808;--bg2:#0f0f0f;--bg3:#161616;
+  --fg:#f0ede6;--fg2:#6e6b64;--fg3:#9a9790;
+  --accent:#53B772;--accent-dim:rgba(83,183,114,.08);
+  --accent-border:rgba(83,183,114,.3);
+  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.11);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;}
+#cursor{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .18s,height .18s;}
+#cring{position:fixed;width:38px;height:38px;border:1px solid rgba(83,183,114,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .22s,height .22s,border-color .22s;}
+#cursor.big{width:5px;height:5px;}
+#cring.big{width:60px;height:60px;border-color:var(--accent);}
+a,button,[data-h]{cursor:none;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:22px 48px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,padding .3s,border-color .4s;border-bottom:1px solid transparent;}
+nav.sc{background:rgba(8,8,8,.94);backdrop-filter:blur(20px);padding:15px 48px;border-bottom-color:var(--border);}
+.nlogo{font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--fg);text-decoration:none;}
+.nlinks{display:flex;gap:32px;list-style:none;}
+.nlinks a{font-size:13px;color:var(--fg2);text-decoration:none;transition:color .2s;letter-spacing:.01em;}
+.nlinks a:hover{color:var(--fg);}
+.nlinks a.active{color:var(--fg);}
+.sec{padding:96px 48px;}
+.sec-gap{padding:120px 48px;}
+.ey{font-size:10px;letter-spacing:.16em;color:var(--fg2);margin-bottom:16px;text-transform:uppercase;}
+.sh{font-size:clamp(26px,3.8vw,52px);font-weight:700;letter-spacing:-.025em;line-height:1.05;margin-bottom:48px;}
+.sh em{color:var(--accent);font-style:normal;}
+.page-hero{padding:160px 48px 96px;position:relative;overflow:hidden;}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 80% at 20% 40%,black 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 20% 40%,black 10%,transparent 70%);}
+.page-eyebrow{font-size:10px;letter-spacing:.16em;color:var(--fg2);margin-bottom:20px;text-transform:uppercase;}
+.page-h{font-size:clamp(36px,5.5vw,80px);font-weight:700;letter-spacing:-.04em;line-height:.95;max-width:900px;margin-bottom:24px;position:relative;z-index:1;}
+.page-h em{color:var(--accent);font-style:normal;}
+.page-intro{font-size:clamp(15px,1.5vw,17px);color:var(--fg2);line-height:1.72;max-width:640px;position:relative;z-index:1;}
+.footer-cta{padding:120px 48px 80px;position:relative;overflow:hidden;border-top:1px solid var(--border);}
+.fcta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 65% at 50% 50%,rgba(83,183,114,.055) 0%,transparent 65%);pointer-events:none;}
+.fcta-h{font-size:clamp(32px,5.5vw,72px);font-weight:700;letter-spacing:-.035em;line-height:.96;margin-bottom:20px;position:relative;z-index:1;max-width:780px;}
+.fcta-h em{color:var(--accent);font-style:normal;}
+.fcta-sub{font-size:16px;color:var(--fg2);line-height:1.65;max-width:540px;margin-bottom:44px;position:relative;z-index:1;}
+.fcta-row{display:flex;flex-wrap:wrap;gap:24px;align-items:center;position:relative;z-index:1;}
+.fcta-em{font-size:18px;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(83,183,114,.25);padding-bottom:3px;display:inline-block;transition:border-color .2s;}
+.fcta-em:hover{border-color:var(--accent);}
+footer{padding:24px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.fl{font-size:12px;color:var(--fg2);}
+.flinks{display:flex;gap:28px;align-items:center;}
+.flinks a{font-size:12px;color:var(--fg2);text-decoration:none;letter-spacing:.04em;transition:color .2s;}
+.flinks a:hover{color:var(--fg);}
+@keyframes blink{0%,100%{opacity:.8}50%{opacity:.2}}
+@media(max-width:768px){
+  nav{padding:18px 24px;}nav.sc{padding:14px 24px;}
+  .nlinks{display:none;}
+  .page-hero{padding:120px 24px 72px;}
+  .sec,.sec-gap{padding:72px 24px;}
+  footer{padding:20px 24px;flex-direction:column;gap:16px;text-align:center;}
+  .footer-cta{padding:80px 24px 60px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+  #cursor,#cring{display:none;}body{cursor:auto;}
+}
+
+.craft-intro{font-size:clamp(15px,1.4vw,16px);color:var(--fg2);line-height:1.75;max-width:640px;margin-top:8px;position:relative;z-index:1;}
+.craft-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.craft-card{position:relative;overflow:hidden;background:var(--bg2);border:1px solid var(--border);border-radius:14px;transition:border-color .3s,transform .25s;opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s,border-color .3s;}
+.craft-card.in{opacity:1;transform:translateY(0);}
+.craft-card:hover{border-color:var(--accent-border);transform:translateY(-3px);}
+.craft-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 50% at var(--px,50%) var(--py,50%),rgba(83,183,114,.06) 0%,transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none;}
+.craft-card:hover::after{opacity:1;}
+.craft-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--bg3);}
+.craft-body{padding:28px 32px 32px;}
+.craft-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.craft-tag{font-size:10px;letter-spacing:.08em;border:1px solid var(--border2);border-radius:20px;padding:3px 10px;color:var(--fg2);}
+.craft-h{font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.3;margin-bottom:8px;}
+.craft-sub{font-size:13px;color:var(--fg2);line-height:1.55;margin-bottom:20px;}
+.craft-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--accent);text-decoration:none;letter-spacing:.04em;border-bottom:1px solid rgba(83,183,114,.2);padding-bottom:2px;transition:border-color .2s;}
+.craft-link:hover{border-color:var(--accent);}
+.learnings{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.learn-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:28px;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s;}
+.learn-card.in{opacity:1;transform:translateY(0);}
+
+.learn-h{font-size:14px;font-weight:600;margin-bottom:8px;}
+.learn-p{font-size:13px;color:var(--fg2);line-height:1.62;}
+@media(max-width:768px){
+  .craft-grid{grid-template-columns:1fr;}
+  .learnings{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cring"></div>
+<nav id="nav"><a class="nlogo" href="index.html">MS</a><ul class="nlinks"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="craft.html" class='active'>Craft</a></li></ul></nav>
+
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <p class="page-eyebrow">Craft &amp; Early Work</p>
+  <h1 class="page-h">Where it <em>all started</em></h1>
+  <p class="craft-intro">Brand identity and graphic design work from 2015–2016, before I moved fully into product design. These projects built my foundation in visual thinking, typography, and how to communicate brand through design.</p>
+</section>
+
+<section class="sec">
+  <div class="craft-grid">
+    
+    <div class="craft-card rv" style="transition-delay:0.0s">
+      <img src="https://manojshakar.in/assets/c1.png" alt="Brand Identity - Women's Apparel, UK" class="craft-img" onerror="this.style.background='#161616'">
+      <div class="craft-body">
+        <div class="craft-tags"><span class="craft-tag">Logo</span><span class="craft-tag">Brand System</span><span class="craft-tag">Packaging</span></div>
+        <p class="craft-h">Brand Identity - Women's Apparel, UK</p>
+        <p class="craft-sub">Elysium</p>
+        <a href="https://manojshakar.in/op1.html" class="craft-link" target="_blank" data-h>View Case Study &#8599;</a>
+      </div>
+    </div>
+    <div class="craft-card rv" style="transition-delay:0.0s">
+      <img src="https://manojshakar.in/assets/c2.png" alt="Brand Identity - Premium Meat Shop, US" class="craft-img" onerror="this.style.background='#161616'">
+      <div class="craft-body">
+        <div class="craft-tags"><span class="craft-tag">Logo</span><span class="craft-tag">Typography</span><span class="craft-tag">Packaging</span><span class="craft-tag">Collateral</span></div>
+        <p class="craft-h">Brand Identity - Premium Meat Shop, US</p>
+        <p class="craft-sub">The Cut</p>
+        <a href="https://manojshakar.in/op2.html" class="craft-link" target="_blank" data-h>View Case Study &#8599;</a>
+      </div>
+    </div>
+    <div class="craft-card rv" style="transition-delay:0.08s">
+      <img src="https://manojshakar.in/assets/c3.png" alt="Brand Identity - Tech Startup, Lebanon" class="craft-img" onerror="this.style.background='#161616'">
+      <div class="craft-body">
+        <div class="craft-tags"><span class="craft-tag">Logo</span><span class="craft-tag">Brand System</span><span class="craft-tag">Stationery</span></div>
+        <p class="craft-h">Brand Identity - Tech Startup, Lebanon</p>
+        <p class="craft-sub">Purpl</p>
+        <a href="https://manojshakar.in/op3.html" class="craft-link" target="_blank" data-h>View Case Study &#8599;</a>
+      </div>
+    </div>
+    <div class="craft-card rv" style="transition-delay:0.08s">
+      <img src="https://manojshakar.in/assets/c4.png" alt="Brand Identity - Fintech Platform, UK" class="craft-img" onerror="this.style.background='#161616'">
+      <div class="craft-body">
+        <div class="craft-tags"><span class="craft-tag">Logo</span><span class="craft-tag">Brand System</span><span class="craft-tag">Business Cards</span></div>
+        <p class="craft-h">Brand Identity - Fintech Platform, UK</p>
+        <p class="craft-sub">Payabli</p>
+        <a href="https://manojshakar.in/op4.html" class="craft-link" target="_blank" data-h>View Case Study &#8599;</a>
+      </div>
+    </div>
+    <div class="craft-card rv" style="transition-delay:0.16s">
+      <img src="https://manojshakar.in/assets/c5.png" alt="Brand Identity - Import & Export, India" class="craft-img" onerror="this.style.background='#161616'">
+      <div class="craft-body">
+        <div class="craft-tags"><span class="craft-tag">Logo</span><span class="craft-tag">Brand Identity</span></div>
+        <p class="craft-h">Brand Identity - Import & Export, India</p>
+        <p class="craft-sub">Revanth Exports</p>
+        <a href="https://manojshakar.in/op5.html" class="craft-link" target="_blank" data-h>View Case Study &#8599;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-gap" style="padding-top:0">
+  <p class="ey">What This Work Taught Me</p>
+  <h2 class="sh">Skills that still show up in <em>every product</em> I design</h2>
+  <div class="learnings">
+    <div class="learn-card rv">
+      <p class="learn-h">Typography systems</p>
+      <p class="learn-p">Building brand type hierarchies from scratch taught me how to create purposeful, readable type in complex SaaS interfaces, where hierarchy carries meaning, not just style.</p>
+    </div>
+    <div class="learn-card rv" style="transition-delay:.08s">
+      <p class="learn-h">Colour &amp; visual language</p>
+      <p class="learn-p">Building brand palettes gave me a sharp eye for colour contrast, accessibility, and visual consistency at scale — skills that directly inform how I approach design tokens today.</p>
+    </div>
+    <div class="learn-card rv" style="transition-delay:.16s">
+      <p class="learn-h">First impressions as a discipline</p>
+      <p class="learn-p">Brand design is about communicating a feeling instantly. That same discipline — "what does this say in the first 2 seconds?" — applies to every UI decision I make in product work.</p>
+    </div>
+  </div>
+</section>
+
+<section class="footer-cta">
+  <div class="fcta-bg"></div>
+  <h2 class="fcta-h">Let's craft experiences that <em>move people</em> and the numbers</h2>
+  <p class="fcta-sub">Exploring opportunities where design has a real seat at the table. Based out of Chennai, India, open to relocate across the globe.</p>
+  <div class="fcta-row">
+    <a href="mailto:manojshakar.com@gmail.com" class="fcta-em" data-h>manojshakar.com@gmail.com</a>
+    <a href="tel:+919994448205" class="fcta-em" data-h style="border-bottom-color:rgba(83,183,114,.18);">+91 999 444 8205</a>
+  </div>
+</section>
+<footer>
+  <span class="fl">Manoj Shakar &copy; 2025</span>
+  <div class="flinks">
+    <a href="https://dribbble.com/manojshakar" target="_blank" rel="noopener">Dribbble</a>
+    <a href="https://linkedin.com/in/manoj-shakar" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://instagram.com/manoj.designs" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+<script>
+const cur=document.getElementById('cursor'),crng=document.getElementById('cring');
+let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function raf(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;crng.style.left=Math.round(rx)+'px';crng.style.top=Math.round(ry)+'px';requestAnimationFrame(raf);})();
+document.querySelectorAll('a,button,[data-h]').forEach(el=>{el.addEventListener('mouseenter',()=>{cur.classList.add('big');crng.classList.add('big');});el.addEventListener('mouseleave',()=>{cur.classList.remove('big');crng.classList.remove('big');});});
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('sc',scrollY>60);},{passive:true});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
