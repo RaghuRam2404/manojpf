@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Campaign - Case Study · Manoj Shakar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E0E0E;
+  --muted:#5B5F5D;
+  --line:#E7E9E8;
+  --accent:#1A9E72;
+  --accent-soft:#EAF6F1;
+  --bg:#FFFFFF;
+  --serif:'DM Serif Display',serif;
+  --sans:'DM Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;font-size:17px}
+img{max-width:100%;display:block;border-radius:12px;border:1px solid var(--line)}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:28px 0}
+nav .logo img{border:none;height:28px;border-radius:0}
+nav ul{display:flex;gap:32px;list-style:none}
+nav a{text-decoration:none;font-weight:500;font-size:15px;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+
+.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:64px 0 20px}
+h1{font-family:var(--serif);font-size:clamp(38px,5.5vw,60px);line-height:1.12;font-weight:400;max-width:880px}
+h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:19px;color:var(--muted);max-width:720px;margin:24px 0 40px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0;margin-bottom:48px}
+.facts div{padding:0 20px;border-left:1px solid var(--line)}
+.facts div:first-child{border-left:none;padding-left:0}
+.facts dt{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+.facts dd{font-weight:700;font-size:16px}
+.caption{font-size:14px;color:var(--muted);margin-top:12px}
+
+section{margin:96px 0}
+.kicker{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:14px}
+h2{font-family:var(--serif);font-size:clamp(28px,3.6vw,40px);font-weight:400;line-height:1.2;max-width:760px;margin-bottom:18px}
+h2 em{font-style:italic;color:var(--accent)}
+h3{font-family:var(--serif);font-size:26px;font-weight:400;margin:48px 0 14px}
+h3 em{font-style:italic;color:var(--accent)}
+.lede{font-size:18px;color:var(--muted);max-width:720px;margin-bottom:36px}
+
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:32px 0}
+.card{border:1px solid var(--line);border-radius:14px;padding:24px}
+.card .num{font-family:var(--serif);font-size:28px;color:var(--accent);margin-bottom:10px}
+.card h4{font-size:16px;margin-bottom:8px}
+.card p{font-size:15px;color:var(--muted)}
+.card .icon{font-size:24px;margin-bottom:12px}
+
+.method{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin:32px 0}
+.method .m{border-left:3px solid var(--accent);padding:4px 0 4px 18px}
+.method dt{font-weight:700;font-size:15px}
+.method dd{font-size:14px;color:var(--muted);margin-top:4px}
+
+.persona{border:1px solid var(--line);border-radius:14px;padding:24px}
+.persona .role{font-weight:700;font-size:17px}
+.persona .tag{display:inline-block;font-size:12px;background:var(--accent-soft);color:var(--accent);font-weight:700;border-radius:999px;padding:3px 10px;margin:6px 0 16px}
+.persona dt{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.persona dd{font-size:15px;margin-top:3px}
+
+.callout{background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0;font-size:16px}
+.callout strong{color:var(--accent)}
+
+.twb{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin:28px 0}
+.twb .col{border:1px solid var(--line);border-radius:14px;padding:22px}
+.twb .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:10px;color:var(--muted)}
+.twb .built{border-color:var(--accent);background:var(--accent-soft)}
+.twb .built .label{color:var(--accent)}
+.twb p{font-size:15px;color:var(--ink)}
+
+.moment{border:1px solid var(--line);border-radius:14px;padding:28px;margin:20px 0}
+.moment h4{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:8px}
+.moment .setup{font-weight:700;font-size:15px;margin-bottom:10px}
+.moment p{font-size:15px;color:var(--muted)}
+
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin:36px 0}
+.metric{border:1px solid var(--line);border-radius:14px;padding:28px 24px}
+.metric .big{font-family:var(--serif);font-size:44px;color:var(--accent);line-height:1}
+.metric .sub{font-size:14px;color:var(--muted);margin-top:10px}
+
+.footnav{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:40px 0 64px;margin-top:96px}
+.footnav a{text-decoration:none;font-weight:700;color:var(--accent)}
+
+figure{margin:32px 0}
+hr{border:none;border-top:1px solid var(--line);margin:0}
+@media(max-width:640px){.facts div{border-left:none;padding:8px 0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+  <a class="logo" href="index.html"><img src="assets/logo.svg" alt="Manoj Shakar"></a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="craft.html">Craft</a></li>
+  </ul>
+</nav>
+
+<p class="eyebrow">Freshworks / Marketing Suite / Campaign UX</p>
+<h1>One designer. One month. <em>One campaign experience.</em></h1>
+<p class="hero-sub">Marketers inside Freshworks' suite were stitching together a scheduler, a design tool, and email threads to ship a single campaign. Posts existed, campaigns didn't. As the sole designer on a one-month timeline, I took the flow from a six-tool competitive teardown to engineering handoff, cutting a measured two-hour creation task to under twenty minutes.</p>
+
+<dl class="facts">
+  <div><dt>Company</dt><dd>Freshworks</dd></div>
+  <div><dt>Timeline</dt><dd>1 month</dd></div>
+  <div><dt>Role</dt><dd>Sole Product Designer</dd></div>
+  <div><dt>Team</dt><dd>1 PM · 5 Engineers</dd></div>
+  <div><dt>Task time</dt><dd>↓ 2 hrs to &lt;20 min</dd></div>
+</dl>
+
+<figure>
+  <img src="Case study 3 Images/1112.png" alt="Redesigned campaign creation interface with multi-page posting and live Facebook preview">
+  <figcaption class="caption">The final creation screen: campaign name, post to multiple pages, customise per page, and a live desktop and mobile preview of the post as it will appear on each platform.</figcaption>
+</figure>
+
+<hr>
+
+<!-- 01 CONTEXT -->
+<section>
+  <p class="kicker">01 · Context</p>
+  <h2>Posts existed. <em>Campaigns didn't.</em></h2>
+  <p class="lede">Every existing flow treated a post as the unit of work. But marketing teams don't think in posts, they think in campaigns: a goal, a set of coordinated posts across pages and platforms, and a result they report upward. The tooling forced them to hold the campaign in their head, or in a spreadsheet.</p>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="icon">🧩</div>
+      <h4>Fragmented creation flow</h4>
+      <p>Drafting in a design tool, copy in a doc, scheduling in a third product. Publishing one post meant context-switching across three surfaces, with approval happening over email.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🫥</div>
+      <h4>No campaign-level status</h4>
+      <p>Was the campaign scheduled, published, or stuck in draft? No screen answered that. Status lived in the marketer's memory and in Slack threads, and performance lived in platform exports.</p>
+    </div>
+    <div class="card">
+      <div class="icon">⏱️</div>
+      <h4>Two hours to publish</h4>
+      <p>We timed the existing multi-tool process with a marketer: roughly two hours from brief to a scheduled multi-platform post. The cost wasn't effort, it was campaigns that never shipped.</p>
+    </div>
+  </div>
+
+  <div class="callout">⚡ <strong>Constraint:</strong> one month, one designer, scope locked. Five phases, research to final design, with every research method having to pay for its calendar time. No phase got a second week.</div>
+</section>
+
+<hr>
+
+<!-- 02 RESEARCH -->
+<section>
+  <p class="kicker">02 · Research</p>
+  <h2>Six tools, two categories. <em>Three shared gaps.</em></h2>
+  <p class="lede">The market split cleanly in two: post-management tools (Ryzely, Publer, Later, Zoho Social) and comprehensive campaign suites (Mailchimp, HubSpot). I walked the full creation-to-publish flow in all six and scored them on a feature matrix: multiple post creation, live preview, character limit validation, and media upload support.</p>
+
+  <dl class="method">
+    <div class="m">
+      <dt>Competitive teardown · 6 tools</dt>
+      <dd>Full creation-to-publish walkthrough in each, scored on a four-row feature matrix. Answered: where does every tool break down, and what does nobody solve?</dd>
+    </div>
+    <div class="m">
+      <dt>Baseline task timing</dt>
+      <dd>Timed a marketer running the existing multi-tool process end to end, brief to scheduled post. The ~2 hour result became the benchmark every iteration was tested against.</dd>
+    </div>
+    <div class="m">
+      <dt>Moderated sessions · 2 rounds</dt>
+      <dd>Task-based sessions with practising marketers at iteration 1 and iteration 3, same task, same timer. Answered: does the design actually reduce the load, or just look like it does?</dd>
+    </div>
+  </dl>
+
+  <figure><img src="Case study 3 Images/003.png" alt="Market map: post management tools vs comprehensive campaign tools"></figure>
+  <figure>
+    <img src="Case study 3 Images/004.png" alt="Feature matrix across the six tools">
+    <figcaption class="caption">The matrix that set the brief. Multiple post creation: only Publer and HubSpot. Live preview: four of six. Character limit validation: zero of six.</figcaption>
+  </figure>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="num">1</div>
+      <h4>Multi-page posting was rare and clunky</h4>
+      <p>Only Publer and HubSpot supported creating the same post across multiple pages, and both buried it. The rest forced page-by-page repetition. Campaign-level coordination didn't exist anywhere.</p>
+    </div>
+    <div class="card">
+      <div class="num">2</div>
+      <h4>Live preview was inconsistent</h4>
+      <p>Later and Zoho Social had no preview at all. The four that did showed a generic render, not how the post would actually appear per platform, per device. Marketers published on faith.</p>
+    </div>
+    <div class="card">
+      <div class="num">3</div>
+      <h4>Character limit validation: zero of six</h4>
+      <p>Not one tool validated content against each platform's character limits before publish. Posts silently truncated or failed on the platform's side. This gap was free to own, and it shaped both the composer and the error-state designs.</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- 03 WHO WE DESIGNED FOR -->
+<section>
+  <p class="kicker">03 · Who we designed for</p>
+  <h2>One marketing team. <em>Three people in the flow.</em></h2>
+  <p class="lede">Research centred on a medium-sized e-commerce marketing team, where a campaign passes through three pairs of hands: the manager who owns the outcome, the designer who makes the creative, and the content creator who writes and ships the posts. Each shaped a structural decision in the product.</p>
+
+  <div class="grid-3">
+    <div class="persona">
+      <div class="role">Prem · Digital Marketing Manager</div>
+      <span class="tag">Owns the campaign</span>
+      <dl>
+        <dt>Goals</dt><dd>Increase brand visibility, drive website traffic and conversions, optimise campaigns, and improve ROI.</dd>
+        <dt>Challenges</dt><dd>Limited time, managing multiple platforms, and analysing campaign performance across them.</dd>
+        <dt>Shaped in the product</dt><dd>The campaign list with status, impressions, and interactions per campaign, and one-click metrics. Performance without exports.</dd>
+      </dl>
+    </div>
+    <div class="persona">
+      <div class="role">Alex · Graphic Designer</div>
+      <span class="tag">Makes the creative</span>
+      <dl>
+        <dt>Goals</dt><dd>Showcase creativity, attract clients, and collaborate with the rest of the marketing team.</dd>
+        <dt>Challenges</dt><dd>Balancing creativity with branding, finding the target audience, and time management.</dd>
+        <dt>Shaped in the product</dt><dd>The media gallery: upload once, reuse across posts and campaigns, with format and size validation at upload, not at publish.</dd>
+      </dl>
+    </div>
+    <div class="persona">
+      <div class="role">Anju · Content Creator</div>
+      <span class="tag">Writes and ships</span>
+      <dl>
+        <dt>Goals</dt><dd>Craft engaging content, increase brand awareness, and drive website traffic.</dd>
+        <dt>Challenges</dt><dd>Staying current with trends, maintaining consistency across platforms, and measuring what worked.</dd>
+        <dt>Shaped in the product</dt><dd>One composer for all pages with customise-per-page, live per-platform previews, and character counters per platform while typing.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <figure><img src="Case study 3 Images/005.png" alt="Persona: Prem, Digital Marketing Manager"></figure>
+  <figure><img src="Case study 3 Images/006.png" alt="Persona: Alex, Graphic Designer"></figure>
+  <figure><img src="Case study 3 Images/007.png" alt="Persona: Anju, Content Creator"></figure>
+</section>
+
+<hr>
+
+<!-- 04 DESIGN DECISIONS -->
+<section>
+  <p class="kicker">04 · Design decisions</p>
+  <h2>From sketches to a shipped flow <em>in four iterations.</em></h2>
+  <p class="lede">Early sketches explored two flows on paper: connecting social media platforms, and creating a campaign across them. Linear vs modular approaches were tested before anything reached Figma, and every iteration after that was annotated with what it still got wrong.</p>
+
+  <figure>
+    <img src="Case study 3 Images/008.png" alt="Ideation sketches: connecting social media platform flow and creating social media campaign flow">
+    <figcaption class="caption">The two sketched flows: connecting platform accounts, and creating a campaign across them.</figcaption>
+  </figure>
+  <figure>
+    <img src="Case study 3 Images/009.png" alt="Wireframes - campaign creation flow with composer and preview layout">
+    <figcaption class="caption">Low-fidelity wireframes locking the composer, page selection, media gallery, and preview layout. Validated with the PM and engineers before high-fidelity work.</figcaption>
+  </figure>
+
+  <h3>Decision 1: one composer, <em>many pages.</em></h3>
+  <div class="twb">
+    <div class="col">
+      <div class="label">What we tried</div>
+      <p>Iteration 1 put everything on one screen with no way to switch between social platforms and no option to clone a post. Iteration 2's fix made creating multiple posts take far too many clicks.</p>
+    </div>
+    <div class="col">
+      <div class="label">Why it didn't work</div>
+      <p>Both versions treated each post as separate work. The annotations tell the story directly: "no option to switch between social platform," "no option to clone the post," "creating multiple posts needs a lot of clicks."</p>
+    </div>
+    <div class="col built">
+      <div class="label">What we built</div>
+      <p>"Post to" page cards at the top of one composer: add Facebook, Instagram, and LinkedIn pages, write once, and post to all of them in a single click. A customise-posts toggle opens per-page editing only when content needs to differ.</p>
+    </div>
+  </div>
+  <figure><img src="Case study 3 Images/010.png" alt="Iteration 1 - single screen, no platform switching, no post cloning"></figure>
+  <figure><img src="Case study 3 Images/011.png" alt="Iteration 2 - phased reveal, multiple posts took too many clicks"></figure>
+
+  <h3>Decision 2: a live preview <em>per platform, per device.</em></h3>
+  <div class="twb">
+    <div class="col">
+      <div class="label">What we tried</div>
+      <p>Iterations 2 and 3 shipped without a live preview. Review annotations flagged it both times: "no live preview," alongside "no option to delete the post."</p>
+    </div>
+    <div class="col">
+      <div class="label">Why it didn't work</div>
+      <p>In sessions, marketers kept asking "how will this look?" while typing. Four of six competitors had some preview; the two without it felt the most uncertain to use. We were repeating their worst gap.</p>
+    </div>
+    <div class="col built">
+      <div class="label">What we built</div>
+      <p>A split layout: composer on the left, live preview on the right, with platform tabs (Facebook, LinkedIn, Instagram) and a desktop/mobile toggle. The preview renders the post as each platform will actually display it, updating as users type.</p>
+    </div>
+  </div>
+
+  <h3>Decision 3: validate at the keystroke, <em>not at publish.</em></h3>
+  <div class="twb">
+    <div class="col">
+      <div class="label">What we tried</div>
+      <p>Following the market: no character validation. Every one of the six tools we tore down let users publish first and find out later.</p>
+    </div>
+    <div class="col">
+      <div class="label">Why it didn't work</div>
+      <p>Posts truncated or failed silently on the platform's side. The same caption has different ceilings on Facebook, LinkedIn, and Instagram. The research matrix showed this gap was universal, which made it the cheapest trust win available.</p>
+    </div>
+    <div class="col built">
+      <div class="label">What we built</div>
+      <p>Per-platform character counters inside the composer, counting against each platform's limit simultaneously. Overflow flags the specific platforms exceeded before save, with the exact overage shown. The one feature no competitor had.</p>
+    </div>
+  </div>
+  <figure><img src="Case study 3 Images/012.png" alt="Iteration 3 - refined transitions, still missing delete and live preview"></figure>
+  <figure><img src="Case study 3 Images/013.png" alt="Iteration 4 - preview-first split layout, near final"></figure>
+
+  <h3>The final solution</h3>
+  <figure>
+    <img src="Case study 3 Images/014.png" alt="Final shipped design">
+    <figcaption class="caption">Create a multi-platform campaign in a single click: page cards across Facebook, Instagram, and LinkedIn, customise per page, per-platform character counters, media gallery, live desktop and mobile preview, and save as draft, schedule, or post now. Approved at design review and handed to engineering in week 3.</figcaption>
+  </figure>
+</section>
+
+<hr>
+
+<!-- 05 EDGE CASES -->
+<section>
+  <p class="kicker">05 · Edge cases & error states</p>
+  <h2>What happens when <em>things go wrong.</em></h2>
+  <p class="lede">A creation flow is only as good as its error handling, and the research finding that no tool validated content made this section the differentiator. Every limit is specific, surfaced before publish, and tells the user exactly what to fix.</p>
+
+  <figure>
+    <img src="Case study 3 Images/016.png" alt="Edge cases: per-platform character overflow, media gallery limits, upload size validation, video runtime limits, upload retry states">
+    <figcaption class="caption">The validation layer: character overflow per platform, page pagination at scale, gallery and file-size limits, video runtime rules, and upload states with retry.</figcaption>
+  </figure>
+
+  <div class="grid-3">
+    <div class="card">
+      <h4>Character overflow, per platform</h4>
+      <p>The composer counts against Facebook, LinkedIn, and Instagram limits simultaneously. Exceed one and the error names the platform and the exact overage, before save, not after a silent truncation.</p>
+    </div>
+    <div class="card">
+      <h4>Media validation at upload</h4>
+      <p>Image size capped at 5MB across all three platforms, a maximum of 10 images per gallery upload, and video runtime validated against the strictest platform in the post: 10 minutes for Facebook and LinkedIn, 1 minute when Instagram is included.</p>
+    </div>
+    <div class="card">
+      <h4>Upload states with retry</h4>
+      <p>Multi-file uploads show per-file progress, time remaining, and pause. A failed file states the reason, photo size, video length, format, with a one-tap retry. One failure never blocks the rest of the batch.</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- 06 OUTCOME -->
+<section>
+  <p class="kicker">06 · Outcome</p>
+  <h2>Benchmarked against the flow <em>it replaced.</em></h2>
+  <p class="lede">The same task that set the baseline was re-run on the final design in a moderated walkthrough: Prem, a Digital Marketing Manager at Dunzo Daily, connecting his Facebook pages, composing one post for three Dunzo pages, attaching creative from the media gallery, previewing per platform, and scheduling, then tracking the published campaign's impressions and interactions from the campaign list.</p>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="big">&lt;20 min</div>
+      <div class="sub">Brief to scheduled multi-page campaign in the final timed walkthrough, against the ~2 hour baseline across three tools. Performance one click away from the campaign list. No exports, no spreadsheets.</div>
+    </div>
+    <div class="metric">
+      <div class="big">Week 3</div>
+      <div class="sub">Approved at design review and handed to engineering with edge cases and error states specced. Shipped within the one-month window with no design rework during build.</div>
+    </div>
+    <div class="metric">
+      <div class="big">1 of 1</div>
+      <div class="sub">Sole designer across research, strategy, sketches, wireframes, four high-fidelity iterations, edge cases, and handoff. Every artifact on this page was produced inside the same month.</div>
+    </div>
+  </div>
+
+  <figure>
+    <img src="Case study 3 Images/015.png" alt="End-to-end walkthrough: connect Facebook, add pages, compose, upload media, preview per platform, schedule, track metrics">
+    <figcaption class="caption">The full walkthrough: connect Facebook, add Dunzo pages, compose once for all pages, upload from the media gallery, preview on Facebook, LinkedIn, and Instagram, schedule, campaign published with impressions, interactions, and per-platform post review.</figcaption>
+  </figure>
+</section>
+
+<hr>
+
+<!-- 07 MOMENTS -->
+<section>
+  <p class="kicker">07 · Moments that shaped the product</p>
+  <h2>Two times the work <em>changed direction.</em></h2>
+
+  <div class="moment">
+    <h4>The matrix found the feature nobody built</h4>
+    <p class="setup">Character limit validation scored zero across all six competitors.</p>
+    <p>The teardown matrix was meant to tell us what to match. Its most useful row told us what to own: not one tool validated content against platform limits before publish. That single empty row became the per-platform character counters in the composer and an entire validation layer in the edge-case designs. The cheapest differentiator is the gap everyone shares.</p>
+  </div>
+
+  <div class="moment">
+    <h4>The annotations were the roadmap</h4>
+    <p class="setup">Each iteration was reviewed with its failures written directly on the screen.</p>
+    <p>"No option to switch between platforms." "Creating multiple posts needs a lot of clicks." "No live preview." Instead of vague feedback rounds, every review produced specific annotations pinned to the design, and each became the brief for the next iteration. Four iterations in three weeks was only possible because the criticism was this concrete.</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- 08 REFLECTIONS -->
+<section>
+  <p class="kicker">08 · Reflections</p>
+  <h2>What I'd do <em>differently.</em></h2>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="num">1</div>
+      <h4>Design platform logic as a configurable layer</h4>
+      <p>Character limits, media caps, and video runtimes shift whenever a platform changes its rules. Keeping that logic configurable rather than hardcoded meant updates without a full redeploy. I'd push this even further from day one.</p>
+    </div>
+    <div class="card">
+      <div class="num">2</div>
+      <h4>Test earlier, even on tight timelines</h4>
+      <p>The sessions that exposed iteration 1 happened in week 2. Running them in week 1, against the sketches, would have saved a full high-fidelity pass.</p>
+    </div>
+    <div class="card">
+      <div class="num">3</div>
+      <h4>Design the expert path alongside the guided one</h4>
+      <p>The structured flow was the right call for launch, but power users who run campaigns daily need shortcuts: clone a past campaign, skip straight to scheduling. That escape hatch should have been in the v1 spec, not the backlog.</p>
+    </div>
+  </div>
+</section>
+
+<div class="footnav">
+  <a href="index.html">← All work</a>
+  <a href="casestudy1.html">Next case study →</a>
+</div>
+
+</div>
+</body>
+</html>

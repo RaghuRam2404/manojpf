@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spendflo - Case Study · Manoj Shakar</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ────────────────────────────────────────────
+       Case-study design tokens
+    ──────────────────────────────────────────── */
+    :root {
+      --g:   #53B772;
+      --gm:  #3d8f56;
+      --gl:  rgba(83, 183, 114, 0.12);
+      --gp:  rgba(83, 183, 114, 0.06);
+      --k:   #1a1a1a;
+      --k7:  #333333;
+      --k5:  #888888;
+      --k4:  #aaaaaa;
+      --k3:  #cccccc;
+      --k2:  #e8e8e8;
+      --k1:  #f5f5f5;
+      --w:   #ffffff;
+      --bl:  #3B5BDB;
+      --bll: #EEF2FF;
+      --or:  #C46A00;
+      --orl: #FFF8F0;
+      --orb: #F5C89A;
+      --rd:  #993C3C;
+      --rdl: #FFF5F5;
+      --rdb: #F5DADA;
+    }
+
+    /* ────────────────────────────────────────────
+       Hero
+    ──────────────────────────────────────────── */
+    .cs-hero {
+      padding: 40px 40px 56px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--g);
+      background: var(--gl);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .tag.blue  { color: var(--bl); background: var(--bll); }
+    .tag.gray  { color: var(--k5); background: var(--k1); }
+
+    .sep { color: var(--k3); font-size: 11px; }
+
+    .cs-h1 {
+      font-size: clamp(30px, 5vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--k);
+      letter-spacing: -0.025em;
+      max-width: 860px;
+      margin-bottom: 1rem;
+    }
+
+    .cs-h1 em { font-style: normal; color: var(--g); }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--k5);
+      max-width: 540px;
+      line-height: 1.65;
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+    }
+
+    .meta {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--k2);
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 720px;
+    }
+
+    .mi {
+      flex: 1;
+      padding: 1rem 1.25rem;
+      border-right: 1px solid var(--k2);
+    }
+
+    .mi:last-child { border-right: none; }
+
+    .ml {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--k3);
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .mv { font-size: 13px; font-weight: 600; color: var(--k); }
+    .mv.hi { color: var(--g); }
+
+    /* ────────────────────────────────────────────
+       Image wrapper
+    ──────────────────────────────────────────── */
+    .iw {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .if {
+      width: 100%;
+      border-radius: 14px;
+      background: var(--k1);
+      border: 1px solid var(--k2);
+      overflow: hidden;
+    }
+
+    /* height classes kept for backwards-compat but overridden to auto */
+    .if.h480, .if.h400, .if.h380, .if.h360,
+    .if.h300, .if.h280, .if.h260, .if.h240,
+    .if.h220 { height: auto; }
+
+    .if img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Side-by-side pairs: both locked to the shorter image's height */
+    .g2 .if {
+      height: 340px;
+    }
+
+    .g2 .if img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .cap {
+      font-size: 12px;
+      color: var(--k4);
+      margin-top: 0.6rem;
+      padding: 0 40px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ────────────────────────────────────────────
+       Sections
+    ──────────────────────────────────────────── */
+    .s {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4.5rem 40px;
+    }
+
+    .s-num {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--k3);
+      margin-bottom: 0.4rem;
+    }
+
+    .s-title {
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--k);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .s-title em { font-style: normal; color: var(--g); }
+
+    .s-lead {
+      font-size: 15px;
+      color: var(--k5);
+      max-width: 540px;
+      line-height: 1.65;
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    /* ────────────────────────────────────────────
+       Dividers
+    ──────────────────────────────────────────── */
+    hr { border: none; border-top: 1px solid var(--k1); }
+
+    .div-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .div-label span {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--k4);
+      white-space: nowrap;
+    }
+
+    .div-label::before,
+    .div-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--k2);
+    }
+
+    /* ────────────────────────────────────────────
+       Split layout
+    ──────────────────────────────────────────── */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .split.flip { grid-template-columns: 1.6fr 1fr; }
+
+    .split-title {
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--k);
+      letter-spacing: -0.015em;
+      margin-bottom: 0.75rem;
+    }
+
+    .split-title em { font-style: normal; color: var(--g); }
+
+    .split-body {
+      font-size: 14px;
+      color: var(--k5);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .bullets li {
+      font-size: 13px;
+      color: var(--k7);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .bullets li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--g);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    /* ────────────────────────────────────────────
+       Constraint pill
+    ──────────────────────────────────────────── */
+    .constraint {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 6px;
+      background: var(--orl);
+      border: 1px solid var(--orb);
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-bottom: 1.25rem;
+    }
+
+    .constraint-icon { font-size: 13px; }
+
+    .constraint-text {
+      font-size: 12px;
+      color: var(--or);
+      line-height: 1.4;
+    }
+
+    .constraint-text strong { font-weight: 600; }
+
+    /* ────────────────────────────────────────────
+       Grids
+    ──────────────────────────────────────────── */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+    .g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+
+    /* ────────────────────────────────────────────
+       Screen card
+    ──────────────────────────────────────────── */
+    .sc { border: 1px solid var(--k2); border-radius: 12px; overflow: hidden; }
+
+    .sc-info {
+      padding: 0.875rem 1rem;
+      border-top: 1px solid var(--k1);
+    }
+
+    .sc-name { font-size: 13px; font-weight: 600; color: var(--k); margin-bottom: 2px; }
+    .sc-note { font-size: 12px; color: var(--k5); line-height: 1.45; }
+
+    /* ────────────────────────────────────────────
+       Why cards
+    ──────────────────────────────────────────── */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+
+    .wc {
+      padding: 1.25rem;
+      border: 1px solid var(--k2);
+      border-radius: 12px;
+    }
+
+    .wc-icon { font-size: 18px; margin-bottom: 0.625rem; }
+    .wc-title { font-size: 13px; font-weight: 600; color: var(--k); margin-bottom: 0.3rem; }
+    .wc-desc { font-size: 13px; color: var(--k5); line-height: 1.55; }
+
+    /* ────────────────────────────────────────────
+       Competitor cards
+    ──────────────────────────────────────────── */
+    .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+
+    .cc {
+      border: 1px solid var(--k2);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .cc-name { font-size: 14px; font-weight: 600; color: var(--k); margin-bottom: 1px; }
+    .cc-cat  { font-size: 11px; color: var(--k4); margin-bottom: 0.75rem; }
+
+    .pills { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 0.75rem; }
+
+    .pill { font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 100px; }
+    .pill-gap  { background: #FFF0F0; color: var(--rd); }
+    .pill-take { background: var(--gl); color: var(--gm); }
+
+    .cc-insight {
+      font-size: 12px;
+      color: var(--k5);
+      line-height: 1.5;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--k1);
+    }
+
+    /* ────────────────────────────────────────────
+       Insight strip
+    ──────────────────────────────────────────── */
+    .ins-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--k2);
+      border: 1px solid var(--k2);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .ic { background: var(--w); padding: 1.25rem; }
+    .ic.hi { background: var(--gl); }
+
+    .ic-n {
+      font-size: 26px;
+      color: var(--k2);
+      line-height: 1;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .ic.hi .ic-n { color: rgba(83, 183, 114, 0.28); }
+
+    .ic-title { font-size: 13px; font-weight: 600; color: var(--k); margin-bottom: 0.3rem; }
+    .ic.hi .ic-title { color: var(--gm); }
+
+    .ic-desc { font-size: 13px; color: var(--k5); line-height: 1.55; }
+    .ic.hi .ic-desc { color: var(--gm); }
+
+    /* ────────────────────────────────────────────
+       Persona cards
+    ──────────────────────────────────────────── */
+    .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+
+    .pc { border: 1px solid var(--k2); border-radius: 12px; overflow: hidden; }
+
+    .pc-head { padding: 1rem; border-bottom: 1px solid var(--k2); }
+
+    .pc-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      margin-bottom: 0.5rem;
+    }
+
+    .pc-name { font-size: 14px; font-weight: 600; color: var(--k); letter-spacing: -0.01em; }
+    .pc-role { font-size: 11px; font-weight: 500; margin-top: 2px; }
+
+    .pc-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.625rem; }
+
+    .pc-rl {
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--k3);
+      margin-bottom: 2px;
+    }
+
+    .pc-rv { font-size: 13px; color: var(--k7); line-height: 1.45; }
+    .pc-rv.ac-t { color: var(--gm); font-weight: 500; }
+    .pc-rv.ac-b { color: var(--bl); font-weight: 500; }
+    .pc-rv.ac-a { color: var(--or); font-weight: 500; }
+
+    /* ────────────────────────────────────────────
+       Roles table
+    ──────────────────────────────────────────── */
+    .rt {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--k2);
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 13px;
+    }
+
+    .rt th {
+      background: var(--k1);
+      padding: 9px 14px;
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--k4);
+      text-align: left;
+      border-bottom: 1px solid var(--k2);
+    }
+
+    .rt td {
+      padding: 10px 14px;
+      color: var(--k7);
+      border-bottom: 1px solid var(--k1);
+      line-height: 1.45;
+      vertical-align: top;
+    }
+
+    .rt tr:last-child td { border-bottom: none; }
+    .rt .step { font-weight: 600; color: var(--k); }
+    .star { color: var(--g); font-weight: 700; margin-right: 3px; }
+    .dim  { color: var(--k3); }
+
+    /* ────────────────────────────────────────────
+       Flow strip
+    ──────────────────────────────────────────── */
+    .flow { border: 1px solid var(--k2); border-radius: 12px; overflow: hidden; }
+
+    .flow-hd {
+      padding: 9px 14px;
+      background: var(--k1);
+      border-bottom: 1px solid var(--k2);
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--k4);
+    }
+
+    .flow-bd { padding: 1.25rem 1.5rem; overflow-x: auto; }
+
+    .flow-nodes { display: flex; align-items: center; flex-wrap: nowrap; }
+
+    .fn {
+      padding: 7px 12px;
+      background: var(--k1);
+      border-radius: 6px;
+      font-size: 12px;
+      color: var(--k5);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .fn.t { background: var(--g);  color: #fff; font-weight: 600; }
+    .fn.b { background: var(--bl); color: #fff; font-weight: 600; }
+
+    .fa  { width: 18px; height: 1px; background: var(--k3); flex-shrink: 0; }
+    .fg  { display: flex; align-items: center; gap: 3px; padding: 0 8px; flex-shrink: 0; }
+    .fg-bar { width: 2px; height: 22px; background: var(--k2); border-radius: 1px; }
+
+    .flow-leg {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--k1);
+    }
+
+    .fli { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--k5); }
+    .fli-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+    /* ────────────────────────────────────────────
+       IA grid
+    ──────────────────────────────────────────── */
+    .ia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+
+    .ia-card { border: 1px solid var(--k2); border-radius: 12px; overflow: hidden; }
+
+    .ia-hd {
+      padding: 9px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--k2);
+    }
+
+    .ia-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 100px;
+    }
+
+    .ia-lbl { font-size: 13px; font-weight: 500; color: var(--k); }
+    .ia-body { padding: 1.25rem; }
+
+    /* ────────────────────────────────────────────
+       Decision callout
+    ──────────────────────────────────────────── */
+    .dc {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--k2);
+      border: 1px solid var(--k2);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .dcc { background: var(--w); padding: 1rem 1.1rem; }
+    .dcc.chosen   { background: var(--gl);  }
+    .dcc.chosen-b { background: var(--bll); }
+
+    .dc-lbl {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--k3);
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+    }
+
+    .dcc.chosen   .dc-lbl { color: var(--g);  }
+    .dcc.chosen-b .dc-lbl { color: var(--bl); }
+
+    .dc-txt { font-size: 13px; color: var(--k7); line-height: 1.55; }
+    .dcc.chosen .dc-txt, .dcc.chosen-b .dc-txt { color: var(--k); }
+
+    /* ────────────────────────────────────────────
+       3-way match
+    ──────────────────────────────────────────── */
+    .match {
+      border: 1px solid var(--k2);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .match-hd {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--k4);
+      margin-bottom: 1rem;
+    }
+
+    .match-nodes { display: flex; align-items: stretch; }
+
+    .mn { flex: 1; padding: 0.875rem 1rem; text-align: center; }
+
+    .mn-l {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .mn-d { font-size: 11px; color: var(--k7); line-height: 1.4; }
+
+    .ms {
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      color: var(--k3);
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .match-note {
+      font-size: 12px;
+      color: var(--k4);
+      margin-top: 0.875rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--k1);
+      line-height: 1.5;
+    }
+
+    /* ────────────────────────────────────────────
+       Impact band
+    ──────────────────────────────────────────── */
+    .impact-band {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--k2);
+      border: 1px solid var(--k2);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .imc { background: var(--w); padding: 1.75rem 1.5rem; }
+    .imc.dark { background: var(--g); }
+
+    .im-arr { font-size: 16px; color: var(--g); margin-bottom: 0.3rem; }
+    .imc.dark .im-arr { color: rgba(255, 255, 255, 0.5); }
+
+    .im-num {
+      font-size: 46px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--k);
+      margin-bottom: 0.3rem;
+    }
+
+    .imc.dark .im-num { color: #fff; }
+
+    .im-desc { font-size: 12px; color: var(--k5); line-height: 1.5; }
+    .imc.dark .im-desc { color: rgba(255, 255, 255, 0.75); }
+
+    /* ────────────────────────────────────────────
+       Learnings
+    ──────────────────────────────────────────── */
+    .lg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+
+    .lc { border-top: 2px solid var(--k2); padding-top: 1.25rem; }
+
+    .lc-n {
+      font-size: 26px;
+      color: var(--k2);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .lc-title { font-size: 13px; font-weight: 600; color: var(--k); margin-bottom: 0.3rem; }
+    .lc-desc  { font-size: 13px; color: var(--k5); line-height: 1.55; }
+
+    /* ────────────────────────────────────────────
+       Pull-quote
+    ──────────────────────────────────────────── */
+    .pq {
+      margin: 2rem 0;
+      padding: 1.25rem 1.5rem;
+      border-radius: 12px;
+      background: var(--gl);
+      border-left: 3px solid var(--g);
+      max-width: 580px;
+    }
+
+    .pq p { font-size: 17px; line-height: 1.5; color: var(--k); }
+
+    .pq cite {
+      display: block;
+      margin-top: 0.4rem;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--g);
+    }
+
+    /* ────────────────────────────────────────────
+       Footer note
+    ──────────────────────────────────────────── */
+    .fn-note {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--k1);
+      border-radius: 10px;
+      margin-top: 2rem;
+    }
+
+    .fn-note p { font-size: 13px; color: var(--k5); line-height: 1.5; }
+
+    .fn-note a {
+      color: var(--g);
+      font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ────────────────────────────────────────────
+       Case-study footer
+    ──────────────────────────────────────────── */
+    .cs-footer {
+      border-top: 1px solid var(--k1);
+      padding: 2.5rem 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cs-footer a { font-size: 13px; color: var(--g); text-decoration: none; font-weight: 500; white-space: nowrap; }
+    .cs-footer-c { font-size: 12px; color: var(--k3); white-space: nowrap; }
+
+    /* ────────────────────────────────────────────
+       Overflow prevention (global)
+    ──────────────────────────────────────────── */
+    html { overflow-x: hidden; }
+
+    /* Table horizontal scroll wrapper */
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 12px;
+      border: 1px solid var(--k2);
+    }
+    .table-scroll .rt { border: none; border-radius: 0; }
+
+    /* ────────────────────────────────────────────
+       Responsive - 768 px
+    ──────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      /* Sections */
+      .cs-hero, .iw, .s, .cs-footer, .cap {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      /* Footer - 2 row layout on mobile */
+      .cs-footer {
+        flex-wrap: wrap;
+        gap: 0.75rem 0;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .cs-footer a    { flex: 1; }
+      .cs-footer a:last-child { text-align: right; }
+      .cs-footer-c    { order: 1; flex: 0 0 100%; text-align: center; }
+
+      /* Hero */
+      .cs-h1    { font-size: 26px; line-height: 1.15; }
+      .hero-sub { font-size: 15px; }
+
+      /* Grids → single column */
+      .split, .split.flip,
+      .g2, .g3, .g4,
+      .ia-grid, .why-grid, .comp-grid, .persona-grid,
+      .ins-strip, .dc, .impact-band, .lg-grid { grid-template-columns: 1fr; }
+
+      /* Meta strip → 2 per row */
+      .meta {
+        flex-wrap: wrap;
+      }
+      .mi {
+        flex: 0 0 calc(50% - 0.5px);
+        padding: 0.75rem 1rem;
+        border-right: none;
+        border-bottom: 1px solid var(--k2);
+      }
+      .mi:nth-child(odd)              { border-right: 1px solid var(--k2); }
+      .mi:last-child,
+      .mi:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+
+      /* Flow strip - scroll internally, don't blow out page */
+      .flow-bd {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.5rem;
+      }
+
+      /* Match nodes - stack vertically */
+      .match-nodes { flex-direction: column; gap: 4px; }
+      .ms          { display: none; }
+      .mn          { border-radius: 8px !important; border: 1px solid var(--k2); }
+
+      /* Constraint pill - allow wrapping */
+      .constraint  { display: flex; align-items: flex-start; }
+    }
+
+    /* ────────────────────────────────────────────
+       Responsive - 480 px (small phones)
+    ──────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .cs-h1    { font-size: 22px; }
+      .hero-sub { font-size: 14px; }
+      .s-title  { font-size: 20px; }
+      .split-title { font-size: 17px; }
+      .im-num   { font-size: 36px; }
+      .meta     { max-width: 100%; }
+    }
+  </style>
+  <link rel="stylesheet" href="loader.css" />
+</head>
+<body class="detail-page" onload="bodyLoad()">
+
+  <div id="loading_holder" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#fff;z-index:9999;width:100vw;height:100vh;">
+    <img src="./assets/logo.svg" style="display:inline-block;width:80px;height:auto;margin:0;" />
+    <div class="loading-icon">
+      <div class="rect rect1"></div>
+      <div class="rect rect2"></div>
+      <div class="rect rect3"></div>
+    </div>
+  </div>
+
+  <div class="body" style="display:none">
+
+  <!-- ═══════════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════════ -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="assets/logo.svg" alt="Manoj Shakar" class="nav__logo-img" />
+    </a>
+    <ul class="nav__links">
+      <li><a href="index.html" class="nav__link">Home</a></li>
+      <li><a href="about.html" class="nav__link">About</a></li>
+      <li><a href="craft.html" class="nav__link">Craft</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <div class="cs-hero">
+    <div class="eyebrow">
+      <span class="tag">Spendflo</span>
+      <span class="sep">/</span>
+      <span class="tag gray">Platform Redesign</span>
+      <span class="sep">/</span>
+      <span class="tag gray">AI Integration</span>
+    </div>
+
+    <h1 class="cs-h1">SaaS tool to <em>AI-native procurement platform.</em></h1>
+
+    <p class="hero-sub">Spendflo was losing deals to Coupa and Zip, and churning customers who needed more than spend tracking. This is how we repositioned the product - and what I learned designing the platform that followed.</p>
+
+    <div class="meta">
+      <div class="mi"><div class="ml">Timeline</div><div class="mv">5 months</div></div>
+      <div class="mi"><div class="ml">Role</div><div class="mv">Lead Product Designer</div></div>
+      <div class="mi"><div class="ml">Effort saved</div><div class="mv hi">↓ 40%</div></div>
+      <div class="mi"><div class="ml">Adoption</div><div class="mv hi">↑ 35%</div></div>
+      <div class="mi"><div class="ml">AI trust</div><div class="mv hi">4.3 / 5</div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       HERO IMAGE
+  ═══════════════════════════════════════════ -->
+  <div class="iw">
+    <div class="if h480">
+      <img src="Case study 1 Images/1. Full platform dashboard.png" alt="Full platform dashboard - the redesigned Spendflo interface" />
+    </div>
+  </div>
+  <p class="cap">The redesigned Spendflo - intake-to-procure and procure-to-pay in one unified AI-native interface.</p>
+
+  <hr style="margin: 4rem 0 0" />
+
+  <!-- ═══════════════════════════════════════════
+       01  CONTEXT
+  ═══════════════════════════════════════════ -->
+  <section class="s" id="why">
+    <div class="s-num">01 &nbsp;·&nbsp; Context</div>
+    <h2 class="s-title">The product worked. <em>The business was at risk.</em></h2>
+    <p class="s-lead">We were losing deals to Coupa and Zip. Customers were churning to tools that owned more of their workflow. A large enterprise deal had procurement features as a hard requirement to close. The platform shift wasn't a product bet - it was a survival move.</p>
+
+    <div style="background:var(--k1);border-radius:12px;padding:1.5rem;margin-bottom:2rem;max-width:680px;border-left:3px solid var(--g)">
+      <p style="font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--g);margin-bottom:0.75rem">The moment that changed the direction</p>
+      <p style="font-size:15px;color:var(--k);line-height:1.6">"Research showed procurement leads didn't care about spend visibility at all. They cared about getting purchases approved and vendors onboarded without the back-and-forth. That finding killed the original roadmap and reframed what the product needed to be."</p>
+      <p style="font-size:12px;color:var(--k5);margin-top:0.75rem">This came out of 8 interviews with procurement leads across existing and prospective accounts. The insight went directly to the founding team and became the basis for the new platform strategy.</p>
+    </div>
+
+    <div class="g2" style="margin-bottom:1.5rem">
+      <div class="sc">
+        <div style="padding:7px 10px;background:var(--rdl);border-bottom:1px solid var(--rdb);font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--rd)">Before</div>
+        <div class="if h220">
+          <img src="Case study 1 Images/2. Old UI screenshot.png" alt="Old Spendflo UI - passive data views" />
+        </div>
+        <div class="sc-info"><div class="sc-note">Passive data views. No workflow. Procurement decisions happened outside the product - in email, Slack, and spreadsheets.</div></div>
+      </div>
+      <div class="sc">
+        <div style="padding:7px 10px;background:var(--gl);border-bottom:1px solid rgba(83,183,114,.25);font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--gm)">After</div>
+        <div class="if h220">
+          <img src="Case study 1 Images/3. New platform screenshot.png" alt="New Spendflo platform - end-to-end procurement workflow" />
+        </div>
+        <div class="sc-info"><div class="sc-note">End-to-end procurement workflow. Request, approve, contract, pay, renew - all in one place.</div></div>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="wc">
+        <div class="wc-icon">📉</div>
+        <div class="wc-title">Losing deals to Coupa and Zip</div>
+        <p class="wc-desc">Enterprise prospects needed full procurement coverage. Spendflo's SaaS tracking scope wasn't enough to get past procurement evaluation. Deals were being lost at the shortlist stage.</p>
+      </div>
+      <div class="wc">
+        <div class="wc-icon">🔁</div>
+        <div class="wc-title">Customers churning for fuller tools</div>
+        <p class="wc-desc">Teams outgrew Spendflo as their procurement complexity grew. They needed a tool that could run the full workflow - not just track spend after the fact.</p>
+      </div>
+      <div class="wc">
+        <div class="wc-icon">🤝</div>
+        <div class="wc-title">A deal that required procurement features to close</div>
+        <p class="wc-desc">One large enterprise account had intake-to-procure as a hard requirement. It set the timeline - and gave us a real customer to design against from day one.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- ═══════════════════════════════════════════
+       02  RESEARCH
+  ═══════════════════════════════════════════ -->
+  <section class="s" id="research">
+    <div class="s-num">02 &nbsp;·&nbsp; Research</div>
+    <h2 class="s-title">Six tools. <em>One shared gap.</em></h2>
+    <p class="s-lead">Evaluated the market to find what was worth borrowing and where every tool broke down. The shared gaps became the design brief.</p>
+
+    <div class="comp-grid">
+      <div class="cc">
+        <div class="cc-name">Zip</div>
+        <div class="cc-cat">End-to-end procurement</div>
+        <div class="pills">
+          <span class="pill pill-take">Intake UX</span>
+          <span class="pill pill-take">Approval routing</span>
+          <span class="pill pill-gap">No AI layer</span>
+          <span class="pill pill-gap">No contract intelligence</span>
+        </div>
+        <p class="cc-insight">Covers the full procurement loop well. Weak on AI-driven decisions and contract management depth.</p>
+      </div>
+      <div class="cc">
+        <div class="cc-name">Airbase</div>
+        <div class="cc-cat">Spend management</div>
+        <div class="pills">
+          <span class="pill pill-take">Audit trail</span>
+          <span class="pill pill-take">Policy guardrails</span>
+          <span class="pill pill-gap">Finance-first IA</span>
+        </div>
+        <p class="cc-insight">Finance trusts it. Too rigid for procurement leads who need flexibility.</p>
+      </div>
+      <div class="cc">
+        <div class="cc-name">Coupa</div>
+        <div class="cc-cat">Enterprise procurement</div>
+        <div class="pills">
+          <span class="pill pill-take">Full lifecycle</span>
+          <span class="pill pill-gap">Months to implement</span>
+          <span class="pill pill-gap">Form-heavy</span>
+        </div>
+        <p class="cc-insight">Right scope, wrong weight class for mid-market teams.</p>
+      </div>
+      <div class="cc">
+        <div class="cc-name">Procurify</div>
+        <div class="cc-cat">Mid-market procurement</div>
+        <div class="pills">
+          <span class="pill pill-take">Budget visibility</span>
+          <span class="pill pill-gap">No AI layer</span>
+          <span class="pill pill-gap">Fully reactive</span>
+        </div>
+        <p class="cc-insight">Well designed but passive by design. No proactive intelligence anywhere.</p>
+      </div>
+      <div class="cc">
+        <div class="cc-name">Ironclad</div>
+        <div class="cc-cat">Contract lifecycle</div>
+        <div class="pills">
+          <span class="pill pill-take">Contract timeline UI</span>
+          <span class="pill pill-gap">Legal-only silo</span>
+        </div>
+        <p class="cc-insight">Best-in-class for legal. Disconnected from procurement entirely.</p>
+      </div>
+      <div class="cc">
+        <div class="cc-name">Vendr</div>
+        <div class="cc-cat">SaaS buying</div>
+        <div class="pills">
+          <span class="pill pill-take">Renewal framing</span>
+          <span class="pill pill-take">Benchmark pricing</span>
+          <span class="pill pill-gap">Human-dependent</span>
+        </div>
+        <p class="cc-insight">Great recommendations. Service model - not scalable, not self-serve.</p>
+      </div>
+    </div>
+
+    <div class="ins-strip" style="margin-top:1.5rem">
+      <div class="ic">
+        <div class="ic-n">1</div>
+        <div class="ic-title">Nobody owned the full loop</div>
+        <p class="ic-desc">Every tool owned one slice. None connected intake to contracts to renewals. Teams stitched 3–4 tools and lost context at every handoff.</p>
+      </div>
+      <div class="ic">
+        <div class="ic-n">2</div>
+        <div class="ic-title">AI was the missing layer everywhere</div>
+        <p class="ic-desc">Benchmarking, routing, renewal timing - all data problems every tool handled manually. AI wasn't a feature. It was the unlock.</p>
+      </div>
+      <div class="ic hi">
+        <div class="ic-n">3</div>
+        <div class="ic-title">Research killed the original roadmap</div>
+        <p class="ic-desc">The plan was to deepen spend visibility. Research showed that was the wrong problem entirely. Procurement leads needed workflow, not dashboards. That finding went to the founding team and became the new product strategy.</p>
+      </div>
+    </div>
+
+    <div class="div-label" style="margin-top:2.5rem"><span>Who we designed for</span></div>
+
+    <div class="persona-grid">
+      <div class="pc">
+        <div class="pc-head" style="background:var(--gl);border-color:rgba(83,183,114,.25)">
+          <div class="pc-avatar" style="background:var(--g)">👩‍💼</div>
+          <div class="pc-name">Procurement Lead</div>
+          <div class="pc-role" style="color:var(--gm)">Primary user</div>
+        </div>
+        <div class="pc-body">
+          <div><div class="pc-rl">Goal</div><div class="pc-rv">Right vendor, right price, least back-and-forth.</div></div>
+          <div><div class="pc-rl">Frustration</div><div class="pc-rv">Chasing approvals on Slack. Renewal deadlines with no notice.</div></div>
+          <div><div class="pc-rl">Needed from us</div><div class="pc-rv ac-t">One place for the full cycle. AI that does prep, not decisions.</div></div>
+        </div>
+      </div>
+      <div class="pc">
+        <div class="pc-head" style="background:#F0F4FF;border-color:#C5D0F5">
+          <div class="pc-avatar" style="background:var(--bl)">👨‍💻</div>
+          <div class="pc-name">Finance Manager</div>
+          <div class="pc-role" style="color:var(--bl)">Approver + budget owner</div>
+        </div>
+        <div class="pc-body">
+          <div><div class="pc-rl">Goal</div><div class="pc-rv">Control spend without being a bottleneck. No surprises.</div></div>
+          <div><div class="pc-rl">Frustration</div><div class="pc-rv">Approval requests with no context. Bills that don't match contracts.</div></div>
+          <div><div class="pc-rl">Needed from us</div><div class="pc-rv ac-b">Full context on every approval. Bills reconciled automatically.</div></div>
+        </div>
+      </div>
+      <div class="pc">
+        <div class="pc-head" style="background:var(--orl);border-color:var(--orb)">
+          <div class="pc-avatar" style="background:#E8820C">🧑‍🤝‍🧑</div>
+          <div class="pc-name">Business Requester</div>
+          <div class="pc-role" style="color:var(--or)">Occasional user</div>
+        </div>
+        <div class="pc-body">
+          <div><div class="pc-rl">Goal</div><div class="pc-rv">Get what the team needs, fast, without a procurement course.</div></div>
+          <div><div class="pc-rl">Frustration</div><div class="pc-rv">Requests disappearing with no update. Not knowing what to fill in.</div></div>
+          <div><div class="pc-rl">Needed from us</div><div class="pc-rv ac-a">Guided intake. Live status so they're never left wondering.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="div-label"><span>Who does what</span></div>
+
+    <div class="table-scroll">
+    <table class="rt">
+      <thead>
+        <tr>
+          <th style="width:18%">Step</th>
+          <th style="color:var(--g)">Procurement Lead</th>
+          <th style="color:var(--bl)">Finance Manager</th>
+          <th style="color:var(--or)">Business Requester</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="step">New request</td><td>Reviews and routes</td><td class="dim">Notified if above threshold</td><td><span class="star">✦</span>Raises + tracks status</td></tr>
+        <tr><td class="step">Approval</td><td><span class="star">✦</span>First-level approver</td><td><span class="star">✦</span>Final approver, high-value</td><td class="dim">Notified on decision</td></tr>
+        <tr><td class="step">Vendor selection</td><td><span class="star">✦</span>Shortlists, uses Flo AI</td><td class="dim">Reviews cost benchmarks</td><td class="dim">Provides team context</td></tr>
+        <tr><td class="step">Contract</td><td><span class="star">✦</span>Uploads, owns contract</td><td>Reviews payment terms</td><td class="dim">No access</td></tr>
+        <tr><td class="step">Bills</td><td>Flags mismatches</td><td><span class="star">✦</span>Approves payment</td><td class="dim">No access</td></tr>
+        <tr><td class="step">Renewals</td><td><span class="star">✦</span>Reviews Flo AI rec, acts</td><td>Approves or cancels</td><td class="dim">Usage feedback if asked</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:11px;color:var(--k4);margin-top:0.5rem">✦ Primary owner of this step</p>
+  </section>
+
+  <hr />
+
+  <!-- ═══════════════════════════════════════════
+       03  PLATFORM DESIGN
+  ═══════════════════════════════════════════ -->
+  <section class="s" id="platform">
+    <div class="s-num">03 &nbsp;·&nbsp; Platform Design</div>
+    <h2 class="s-title">Old IA: organised around data. <em>New IA: organised around workflow.</em></h2>
+    <p class="s-lead">Once research reframed the problem, I had to make the case for rebuilding the IA rather than patching it. Adding procurement features to the existing structure would have created the same disconnected experience we were trying to move away from.</p>
+
+    <div class="ia-grid" style="margin-bottom:2rem">
+      <div class="ia-card">
+        <div class="ia-hd" style="background:var(--rdl);border-color:var(--rdb)">
+          <span class="ia-badge" style="background:#FFDEDE;color:var(--rd)">Before</span>
+          <span class="ia-lbl">Four disconnected data views</span>
+        </div>
+        <div class="ia-body">
+          <svg viewBox="-6 -4 312 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <rect x="90" y="8" width="120" height="26" rx="5" fill="#f5f5f5" stroke="#e8e8e8" stroke-width="1"/>
+            <text x="150" y="25" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#333333" font-weight="600">Spendflo</text>
+            <line x1="150" y1="34" x2="150" y2="48" stroke="#cccccc" stroke-width="1.5"/>
+            <line x1="34"  y1="48" x2="266" y2="48" stroke="#cccccc" stroke-width="1.5"/>
+            <line x1="34"  y1="48" x2="34"  y2="60" stroke="#cccccc" stroke-width="1.5"/>
+            <line x1="112" y1="48" x2="112" y2="60" stroke="#cccccc" stroke-width="1.5"/>
+            <line x1="190" y1="48" x2="190" y2="60" stroke="#cccccc" stroke-width="1.5"/>
+            <line x1="266" y1="48" x2="266" y2="60" stroke="#cccccc" stroke-width="1.5"/>
+            <rect x="2"   y="60" width="64" height="24" rx="4" fill="#f5f5f5" stroke="#e8e8e8" stroke-width="1"/>
+            <text x="34"  y="76" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#888888">Vendors</text>
+            <rect x="80"  y="60" width="64" height="24" rx="4" fill="#f5f5f5" stroke="#e8e8e8" stroke-width="1"/>
+            <text x="112" y="76" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#888888">Contracts</text>
+            <rect x="158" y="60" width="64" height="24" rx="4" fill="#f5f5f5" stroke="#e8e8e8" stroke-width="1"/>
+            <text x="190" y="76" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#888888">Spend</text>
+            <rect x="234" y="60" width="64" height="24" rx="4" fill="#f5f5f5" stroke="#e8e8e8" stroke-width="1"/>
+            <text x="266" y="76" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#888888">Renewals</text>
+            <rect x="60"  y="102" width="180" height="20" rx="4" fill="#FFF0F0" stroke="#F5DADA" stroke-width="1"/>
+            <text x="150" y="116" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#993C3C">No connection between sections</text>
+            <text x="150" y="138" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#cccccc">Decisions still happen outside the product</text>
+          </svg>
+        </div>
+      </div>
+      <div class="ia-card">
+        <div class="ia-hd" style="background:var(--gl);border-color:rgba(83,183,114,.25)">
+          <span class="ia-badge" style="background:rgba(83,183,114,.25);color:var(--gm)">After</span>
+          <span class="ia-lbl">Two connected workflows, AI across both</span>
+        </div>
+        <div class="ia-body">
+          <svg viewBox="-6 -4 312 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <defs>
+              <marker id="a1" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#53B772"/></marker>
+              <marker id="a2" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#3B5BDB"/></marker>
+              <marker id="a3" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#cccccc"/></marker>
+            </defs>
+            <rect x="2"   y="6"  width="296" height="16" rx="4" fill="#FFF8F0" stroke="#F5C89A" stroke-width="1"/>
+            <text x="150" y="18" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" fill="#C46A00" font-weight="600">Flo AI - intelligence layer</text>
+            <rect x="2"   y="28" width="136" height="14" rx="3" fill="#53B772"/>
+            <text x="70"  y="39" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#fff" font-weight="600">Intake to Procure (I2P)</text>
+            <rect x="162" y="28" width="136" height="14" rx="3" fill="#3B5BDB"/>
+            <text x="230" y="39" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#fff" font-weight="600">Procure to Pay (P2P)</text>
+            <rect x="2"   y="48" width="38" height="36" rx="3" fill="rgba(83,183,114,.12)" stroke="rgba(83,183,114,.25)" stroke-width="1"/>
+            <text x="21"  y="63" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#3d8f56" font-weight="600">Request</text>
+            <text x="21"  y="75" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#888888">Raise+route</text>
+            <line x1="40"  y1="66" x2="48"  y2="66" stroke="#53B772" stroke-width="1.5" marker-end="url(#a1)"/>
+            <rect x="48"  y="48" width="38" height="36" rx="3" fill="rgba(83,183,114,.12)" stroke="rgba(83,183,114,.25)" stroke-width="1"/>
+            <text x="67"  y="63" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#3d8f56" font-weight="600">Approve</text>
+            <text x="67"  y="75" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#888888">Review+sign</text>
+            <line x1="86"  y1="66" x2="94"  y2="66" stroke="#53B772" stroke-width="1.5" marker-end="url(#a1)"/>
+            <rect x="94"  y="48" width="44" height="36" rx="3" fill="rgba(83,183,114,.12)" stroke="rgba(83,183,114,.25)" stroke-width="1"/>
+            <text x="116" y="63" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#3d8f56" font-weight="600">Contract</text>
+            <text x="116" y="75" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#888888">Create+store</text>
+            <line x1="138" y1="66" x2="160" y2="66" stroke="#cccccc" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#a3)"/>
+            <rect x="162" y="48" width="38" height="36" rx="3" fill="#EEF2FF" stroke="#C5D0F5" stroke-width="1"/>
+            <text x="181" y="63" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#3B5BDB" font-weight="600">PO+Bills</text>
+            <text x="181" y="75" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#888888">3-way match</text>
+            <line x1="200" y1="66" x2="208" y2="66" stroke="#3B5BDB" stroke-width="1.5" marker-end="url(#a2)"/>
+            <rect x="208" y="48" width="38" height="36" rx="3" fill="#EEF2FF" stroke="#C5D0F5" stroke-width="1"/>
+            <text x="227" y="63" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#3B5BDB" font-weight="600">Payment</text>
+            <text x="227" y="75" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#888888">Approve+pay</text>
+            <line x1="246" y1="66" x2="254" y2="66" stroke="#3B5BDB" stroke-width="1.5" marker-end="url(#a2)"/>
+            <rect x="254" y="48" width="44" height="36" rx="3" fill="#EEF2FF" stroke="#C5D0F5" stroke-width="1"/>
+            <text x="276" y="63" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#3B5BDB" font-weight="600">Renew</text>
+            <text x="276" y="75" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#888888">AI-guided</text>
+            <path d="M 298 84 Q 298 108 150 108 Q 2 108 2 84" fill="none" stroke="#cccccc" stroke-width="1" stroke-dasharray="3,2"/>
+            <text x="150" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#888888">Renewal triggers a new request - the loop continues</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLOW STRIP -->
+    <div class="flow">
+      <div class="flow-hd">Full procurement flow - modules covered below are highlighted</div>
+      <div class="flow-bd">
+        <div class="flow-nodes">
+          <div class="fn">Request</div><div class="fa"></div>
+          <div class="fn">Approval</div><div class="fa"></div>
+          <div class="fn">PR created</div><div class="fa"></div>
+          <div class="fn t">Contract</div><div class="fa"></div>
+          <div class="fn">Renewal</div>
+          <div class="fg"><div class="fg-bar"></div><div class="fg-bar"></div></div>
+          <div class="fn">PO to vendor</div><div class="fa"></div>
+          <div class="fn b">Invoice / Bill</div><div class="fa"></div>
+          <div class="fn">3-way match</div><div class="fa"></div>
+          <div class="fn">Payment</div>
+        </div>
+        <div class="flow-leg">
+          <div class="fli"><div class="fli-dot" style="background:var(--g)"></div>I2P - Intake to Procure</div>
+          <div class="fli"><div class="fli-dot" style="background:var(--bl)"></div>P2P - Procure to Pay</div>
+          <div class="fli"><div class="fli-dot" style="background:var(--k2)"></div>Covered in separate case studies</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTRACTS -->
+    <div style="margin-top:3rem">
+      <div class="split">
+        <div>
+          <div class="eyebrow" style="margin-bottom:0.75rem"><span class="tag">I2P</span></div>
+          <h3 class="split-title">Contracts - <em>from black box to structured data.</em></h3>
+          <div class="constraint">
+            <span class="constraint-icon">⚡</span>
+            <span class="constraint-text"><strong>Constraint:</strong> AI model capabilities were still being defined by engineering while we were designing the UI - so every AI-powered feature had to be designed with a non-AI fallback from day one.</span>
+          </div>
+          <p class="split-body">Contracts lived in legal's Drive. Critical terms - notice periods, auto-renewals - never reached procurement until too late. The challenge: make contracts legible for non-lawyers without adding more manual work.</p>
+          <ul class="bullets">
+            <li>Upload PDF. Flo AI extracts key terms automatically.</li>
+            <li>Users verify and correct, not fill from scratch.</li>
+            <li>Each term links back to the source clause in the PDF.</li>
+          </ul>
+        </div>
+        <div class="if h360">
+          <img src="Case study 1 Images/Contract detail - AI key terms.png" alt="Contract detail with AI-extracted key terms" />
+        </div>
+      </div>
+
+      <div class="dc" style="margin-top:1.5rem">
+        <div class="dcc">
+          <div class="dc-lbl">What we tried</div>
+          <div class="dc-txt">Manual metadata form on upload. Fill in the renewal date, value, notice period yourself.</div>
+        </div>
+        <div class="dcc">
+          <div class="dc-lbl">Why it didn't work</div>
+          <div class="dc-txt">Extra work on top of a document that already had the answers. Nobody filled it in consistently.</div>
+        </div>
+        <div class="dcc chosen">
+          <div class="dc-lbl">What we built</div>
+          <div class="dc-txt">Upload the PDF. Flo AI extracts key terms. Users verify and correct - not fill from scratch. Contract becomes structured data the platform can act on.</div>
+        </div>
+      </div>
+
+      <div class="g2">
+        <div class="sc">
+          <div class="if h240">
+            <img src="Case study 1 Images/5. Contract repository.png" alt="Contract repository view" />
+          </div>
+          <div class="sc-info">
+            <div class="sc-name">Repository</div>
+            <div class="sc-note">Status, owner, value, and days to renewal visible without opening anything.</div>
+          </div>
+        </div>
+        <div class="sc">
+          <div class="if h240">
+            <img src="Case study 1 Images/6. AI-extracted key terms.png" alt="AI-extracted contract key terms" />
+          </div>
+          <div class="sc-info">
+            <div class="sc-name">AI key terms</div>
+            <div class="sc-note">Flo AI pulls the 6–8 terms that matter. Each links to the source clause in the PDF.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BILLS -->
+    <div style="margin-top:3.5rem;padding-top:3rem;border-top:1px solid var(--k1)">
+      <div class="split">
+        <div>
+          <div class="eyebrow" style="margin-bottom:0.75rem"><span class="tag blue">P2P</span></div>
+          <h3 class="split-title">Bills - invoice, PO, contract <em>in one view.</em></h3>
+          <div class="constraint">
+            <span class="constraint-icon">⚡</span>
+            <span class="constraint-text"><strong>Engineering said no:</strong> The full 3-way match was too complex to ship in the timeline. I stripped the UI down to the three numbers that mattered - invoice, PO, contract - and proposed a phased approach. That simplified version shipped in 2 weeks. The full version followed a sprint later.</span>
+          </div>
+          <p class="split-body">The invoice, PO, and contract governing it all lived in three separate tools. No one could see all three together to verify an invoice before paying it.</p>
+          <ul class="bullets">
+            <li>Invoice, PO, and contract amounts shown side by side.</li>
+            <li>Flo AI runs the 3-way match automatically on upload.</li>
+            <li>Discrepancies flagged with the specific mismatch highlighted.</li>
+            <li>Approve or dispute from the same screen.</li>
+          </ul>
+        </div>
+        <div class="if h360">
+          <img src="Case study 1 Images/Bills , 3-way match view.png" alt="Bills 3-way match view" />
+        </div>
+      </div>
+
+      <div class="dc" style="margin-top:1.5rem">
+        <div class="dcc">
+          <div class="dc-lbl">What we tried</div>
+          <div class="dc-txt">Standalone bills list - a table of invoices with status filters. Clean but disconnected from contracts and POs.</div>
+        </div>
+        <div class="dcc">
+          <div class="dc-lbl">Why it didn't work</div>
+          <div class="dc-txt">Finance still needed two other tools to reconcile. We moved the list, not the work. The problem was untouched.</div>
+        </div>
+        <div class="dcc chosen-b">
+          <div class="dc-lbl">What we built</div>
+          <div class="dc-txt">Every bill shows invoice vs PO vs contract amounts side by side. Flo AI runs the 3-way match on upload. Approve or dispute from the same screen.</div>
+        </div>
+      </div>
+
+      <div class="match">
+        <div class="match-hd">How the 3-way match works</div>
+        <div class="match-nodes">
+          <div class="mn" style="background:var(--bll);border-radius:8px 0 0 8px">
+            <div class="mn-l" style="color:var(--bl)">Invoice</div>
+            <div class="mn-d">Amount billed by vendor</div>
+          </div>
+          <div class="ms">✕</div>
+          <div class="mn" style="background:var(--gl)">
+            <div class="mn-l" style="color:var(--gm)">Contract</div>
+            <div class="mn-d">Agreed price and terms</div>
+          </div>
+          <div class="ms">✕</div>
+          <div class="mn" style="background:var(--k1)">
+            <div class="mn-l" style="color:var(--k7)">PO</div>
+            <div class="mn-d">What was ordered</div>
+          </div>
+          <div class="ms" style="font-size:18px">→</div>
+          <div class="mn" style="background:var(--gp);border:1.5px solid var(--g);border-radius:0 8px 8px 0">
+            <div class="mn-l" style="color:var(--g)">Match result</div>
+            <div class="mn-d">Approve or flag</div>
+          </div>
+        </div>
+        <p class="match-note">Flo AI runs this on bill upload. Matches go to payment approval. Discrepancies surface the specific mismatch - amount, line item, or terms - so finance acts without investigating from scratch.</p>
+      </div>
+
+      <div class="g2">
+        <div class="sc">
+          <div class="if h280">
+            <img src="Case study 1 Images/Bills dashboard.png" alt="Bills dashboard" />
+          </div>
+          <div class="sc-info">
+            <div class="sc-name">Bills dashboard</div>
+            <div class="sc-note">Sorted by status: matched, flagged, pending. Flo AI flags surface to the top.</div>
+          </div>
+        </div>
+        <div class="sc">
+          <div class="if h280">
+            <img src="Case study 1 Images/3-way match detail.png" alt="3-way match detail view" />
+          </div>
+          <div class="sc-info">
+            <div class="sc-name">3-way match view</div>
+            <div class="sc-note">Invoice, PO, and contract side by side. Discrepancy highlighted inline. Approve or dispute from the same screen.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- ═══════════════════════════════════════════
+       04  FLO AI
+  ═══════════════════════════════════════════ -->
+  <section class="s" id="ai">
+    <div class="s-num">04 &nbsp;·&nbsp; Flo AI</div>
+    <h2 class="s-title">Procurement has real stakes. <em>Flo AI had to earn trust, not assume it.</em></h2>
+    <p class="s-lead">Procurement teams deal with six-figure contracts and budget accountability. AI that just gives answers without context gets ignored or overridden immediately. The design challenge was making AI feel like a trusted colleague, not a black box.</p>
+
+    <div class="if h480" style="margin-bottom:1.5rem">
+      <img src="Case study 1 Images/Flo AI in-context hero screen.png" alt="Flo AI in-context hero screen" />
+    </div>
+
+    <div class="g2" style="margin-bottom:1.5rem">
+      <div style="border:1px solid var(--k2);border-radius:12px;padding:1.25rem">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--k3);margin-bottom:0.5rem">Where it lives</div>
+        <p style="font-size:14px;font-weight:600;color:var(--k);margin-bottom:0.5rem">Inline at the moment of decision. Not a sidebar. Not a chatbot page.</p>
+        <p style="font-size:13px;color:var(--k5);line-height:1.55">Flo AI surfaces inside the workflow at specific trigger points: when a renewal is coming up, when a bill is uploaded, when a vendor is being evaluated. Users don't go to Flo AI. Flo AI comes to them when it has something useful to say.</p>
+      </div>
+      <div style="border:1px solid var(--k2);border-radius:12px;padding:1.25rem">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--k3);margin-bottom:0.5rem">How it earns trust</div>
+        <p style="font-size:14px;font-weight:600;color:var(--k);margin-bottom:0.5rem">Every recommendation shows a one-line rationale. Always. No black box.</p>
+        <p style="font-size:13px;color:var(--k5);line-height:1.55">Users can expand to see the full reasoning and the data source behind it. When the AI is uncertain, it says so, and the override path surfaces. When it's confident, the action is one click. The user is always in control, but the AI makes staying in control effortless.</p>
+      </div>
+    </div>
+
+    <div class="g2" style="margin-top:1.5rem">
+      <div class="sc">
+        <div class="if h280">
+          <img src="Case study 1 Images/Flo AI renewal recommendation.png" alt="Flo AI renewal recommendation" />
+        </div>
+        <div class="sc-info">
+          <div class="sc-name">Renewal recommendation</div>
+          <div class="sc-note">Flo AI surfaces renew, renegotiate, or cancel with a one-line rationale and usage data. One-click action or full reasoning on demand.</div>
+        </div>
+      </div>
+      <div class="sc">
+        <div class="if h280">
+          <img src="Case study 1 Images/Flo AI conversational intake.png" alt="Flo AI conversational intake" />
+        </div>
+        <div class="sc-info">
+          <div class="sc-name">Conversational intake</div>
+          <div class="sc-note">For complex requests, Flo guides through a back-and-forth instead of a long form. Pre-fills known fields and asks only for what's missing.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- ═══════════════════════════════════════════
+       05  DESIGN SYSTEM
+  ═══════════════════════════════════════════ -->
+  <section class="s" id="system">
+    <div class="s-num">05 &nbsp;·&nbsp; Design System</div>
+    <h2 class="s-title">Token-first. <em>AI-aware from day one.</em></h2>
+    <p class="s-lead">No existing system. No AI component patterns to reference anywhere. Built in parallel with shipping - which forced every decision to be deliberate and reusable.</p>
+
+    <div class="if h380" style="margin-bottom:1.5rem">
+      <img src="Case study 1 Images/Design system - component library.png" alt="Spendflo design system component library" />
+    </div>
+
+    <div class="g2">
+      <div class="sc">
+        <div class="if h300">
+          <img src="Case study 1 Images/Token architecture screenshot.png" alt="Token architecture in Figma" />
+        </div>
+        <div class="sc-info">
+          <div class="sc-name">Token architecture</div>
+          <div class="sc-note">3-tier structure: primitives, semantic, and component tokens. No component ever references a raw hex value. Figma variables mirrored directly to CSS custom properties.</div>
+        </div>
+      </div>
+      <div class="sc">
+        <div class="if h300">
+          <img src="Case study 1 Images/AI-native component patterns.png" alt="AI-native component patterns" />
+        </div>
+        <div class="sc-info">
+          <div class="sc-name">AI-native component patterns</div>
+          <div class="sc-note">Recommendation card with rationale surface and confidence signal. Streaming states: loading, generating, complete. Trust badge, human override indicator, and contextual activation trigger.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- ═══════════════════════════════════════════
+       06  IMPACT
+  ═══════════════════════════════════════════ -->
+  <section class="s" id="impact">
+    <div class="s-num">06 &nbsp;·&nbsp; Impact</div>
+    <h2 class="s-title" style="margin-bottom:1.5rem">Measured across 12 accounts, <em>90 days post-launch.</em></h2>
+
+    <div class="impact-band">
+      <div class="imc dark">
+        <div class="im-arr">↓</div>
+        <div class="im-num">40%</div>
+        <div class="im-desc">Reduction in procurement effort. 3-hour tasks down to under 45 minutes.</div>
+      </div>
+      <div class="imc">
+        <div class="im-arr">↑</div>
+        <div class="im-num">35%</div>
+        <div class="im-desc">Increase in weekly active usage among procurement leads vs pre-launch baseline.</div>
+      </div>
+      <div class="imc">
+        <div class="im-arr">↑</div>
+        <div class="im-num">4.3</div>
+        <div class="im-desc">AI trust rating out of 5 from in-product surveys across 200+ decisions.</div>
+      </div>
+      <div class="imc">
+        <div class="im-arr">↓</div>
+        <div class="im-num">3×</div>
+        <div class="im-desc">Faster time-to-approval after smart routing and consolidated context.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- ═══════════════════════════════════════════
+       07  MOMENTS
+  ═══════════════════════════════════════════ -->
+  <section class="s">
+    <div class="s-num">07 &nbsp;·&nbsp; Moments that shaped the product</div>
+    <h2 class="s-title">Three times the work <em>changed direction.</em></h2>
+    <p class="s-lead">Design isn't just about screens. These are the moments where the thinking mattered more than the output.</p>
+
+    <div class="g3">
+      <div style="border-top:2px solid var(--g);padding-top:1.25rem">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--g);margin-bottom:0.6rem">Research killed the roadmap</div>
+        <p style="font-size:14px;font-weight:600;color:var(--k);margin-bottom:0.4rem;line-height:1.4">The plan was to deepen spend visibility. Research said that was the wrong problem.</p>
+        <p style="font-size:13px;color:var(--k5);line-height:1.6">8 interviews with procurement leads showed they didn't care about dashboards - they needed to get purchases approved without chasing people on Slack. I brought that finding to the founding team with a reframed product brief. The original roadmap was shelved. The platform strategy came directly from this research.</p>
+      </div>
+      <div style="border-top:2px solid var(--g);padding-top:1.25rem">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--g);margin-bottom:0.6rem">Engineering said no. I redesigned around it.</div>
+        <p style="font-size:14px;font-weight:600;color:var(--k);margin-bottom:0.4rem;line-height:1.4">The 3-way match was flagged as too complex to build in the timeline.</p>
+        <p style="font-size:13px;color:var(--k5);line-height:1.6">Instead of cutting the feature, I stripped the UI to its minimum viable form - three numbers side by side: invoice, PO, contract. That was something engineering could ship in 2 weeks. I documented the fuller version as a phase 2 spec. Both shipped. The constraint made the first version cleaner than the original design.</p>
+      </div>
+      <div style="border-top:2px solid var(--g);padding-top:1.25rem">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--g);margin-bottom:0.6rem">Pushed back on leading with AI</div>
+        <p style="font-size:14px;font-weight:600;color:var(--k);margin-bottom:0.4rem;line-height:1.4">The initial direction was to lead with a conversational AI assistant as the primary interface.</p>
+        <p style="font-size:13px;color:var(--k5);line-height:1.6">Research showed procurement leads didn't trust AI recommendations without first seeing the workflow they were acting on. An AI that gave answers before users understood the context created friction, not speed. I proposed embedding Flo AI at specific decision points inside existing workflows rather than making it the front door. That framing changed the entire product architecture of Flo AI.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- ═══════════════════════════════════════════
+       08  REFLECTIONS
+  ═══════════════════════════════════════════ -->
+  <section class="s">
+    <div class="s-num">08 &nbsp;·&nbsp; Reflections</div>
+    <h2 class="s-title" style="margin-bottom:1.75rem">What I'd do <em>differently.</em></h2>
+
+    <div class="lg-grid">
+      <div class="lc">
+        <div class="lc-n">1</div>
+        <div class="lc-title">Lock the IA before designing screens</div>
+        <p class="lc-desc">A structural IA decision in week 6 caused rework on screens already in progress. IA alignment needs to be a gate, not an assumption made along the way.</p>
+      </div>
+      <div class="lc">
+        <div class="lc-n">2</div>
+        <div class="lc-title">The design system needed a dedicated owner</div>
+        <p class="lc-desc">Building in parallel was right given the timeline. Without someone fully accountable it drifted in places. Even on small teams, the system needs dedicated review time.</p>
+      </div>
+      <div class="lc">
+        <div class="lc-n">3</div>
+        <div class="lc-title">AI trust needs longitudinal signal</div>
+        <p class="lc-desc">You can't test trust in 45 minutes. The 4.3 rating came from 90 days post-launch. I'd push for a beta cohort earlier to start capturing that data before the launch scramble.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <div class="cs-footer">
+    <a href="index.html#work">← All work</a>
+
+    <a href="casestudy2.html">Next case study →</a>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="assets/components.js"></script>
+  </div>
+</body>
+</html>

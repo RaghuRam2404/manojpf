@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A Self-taught product designer who is passionate about creating beautiful and functional user-friendly products">
+  <meta name="author" content="Manoj Shakar">
+  <title>Social Media Campaign - Case Study · Manoj Shakar</title>
+  <link rel="icon" href="https://manojshakar.in/favicon.ico" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+
+    /* ────────────────────────────────────────────
+       Case-study design tokens — dark theme
+    ──────────────────────────────────────────── */
+    :root {
+      --g:   #53B772;
+      --gm:  #3d8f56;
+      --gl:  rgba(83,183,114,0.13);
+      --gp:  rgba(83,183,114,0.06);
+      --k:   #f0ede6;
+      --k7:  #d0cdc6;
+      --k5:  #9a9790;
+      --k4:  #6e6b64;
+      --k3:  rgba(255,255,255,0.28);
+      --k2:  rgba(255,255,255,0.09);
+      --k1:  #1c1c1c;
+      --w:   #111111;
+      --bl:  #6b8cf7;
+      --bll: rgba(107,140,247,0.14);
+      --or:  #e8934a;
+      --orl: rgba(232,147,74,0.10);
+      --orb: rgba(232,147,74,0.28);
+      --rd:  #e06464;
+      --rdl: rgba(224,100,100,0.10);
+      --rdb: rgba(224,100,100,0.28);
+    }
+
+    /* ── Hero ── */
+    .cs-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 140px 40px 80px;
+    }
+
+    .cs-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse 80% 80% at 20% 40%, black 0%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 20% 40%, black 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cs-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--g);
+      background: var(--gl);
+      border: 1px solid rgba(83,183,114,0.3);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .tag.blue  { color: var(--bl); background: var(--bll); border-color: rgba(107,140,247,0.28); }
+    .tag.gray  { color: var(--k4); background: var(--k1); border-color: rgba(255,255,255,0.09); }
+
+    .sep { color: var(--k4); font-size: 11px; }
+
+    .cs-h1 {
+      font-size: clamp(30px, 5vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--k);
+      letter-spacing: -0.025em;
+      max-width: 860px;
+      margin-bottom: 1rem;
+    }
+
+    .cs-h1 em { font-style: normal; color: var(--g); }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--k5);
+      max-width: 540px;
+      line-height: 1.65;
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+    }
+
+    .meta {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--k2);
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 820px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .mi {
+      flex: 1;
+      padding: 1rem 1.25rem;
+      border-right: 1px solid var(--k2);
+    }
+
+    .mi:last-child { border-right: none; }
+
+    .ml {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--k4);
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .mv { font-size: 13px; font-weight: 600; color: var(--k); }
+    .mv.hi { color: var(--g); }
+
+    /* ── Image wrappers ── */
+    .iw {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .if {
+      width: 100%;
+      border-radius: 14px;
+      background: var(--k1);
+      border: 1px solid var(--k2);
+      overflow: hidden;
+    }
+
+    .if.h480 { height: 480px; }
+    .if.h400 { height: 400px; }
+    .if.h380 { height: 380px; }
+    .if.h360 { height: 360px; }
+    .if.h320 { height: 320px; }
+    .if.h300 { height: 300px; }
+    .if.h280 { height: 280px; }
+    .if.h260 { height: 260px; }
+    .if.h240 { height: 240px; }
+    .if.h220 { height: 220px; }
+    .if.hauto { height: auto; }
+
+    .if img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .if.hauto img,
+    .if:not([class*="h"]) img { object-fit: contain; height: auto; }
+
+    .cap {
+      font-size: 12px;
+      color: var(--k4);
+      margin-top: 0.6rem;
+      padding: 0 40px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── Sections ── */
+    .s {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4.5rem 40px;
+    }
+
+    .s-num {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--k4);
+      margin-bottom: 0.4rem;
+    }
+
+    .s-title {
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--k);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .s-title em { font-style: normal; color: var(--g); }
+
+    .s-lead {
+      font-size: 15px;
+      color: var(--k5);
+      max-width: 600px;
+      line-height: 1.65;
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); }
+
+    /* ── Divider label ── */
+    .div-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .div-label span {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--k4);
+      white-space: nowrap;
+    }
+
+    .div-label::before,
+    .div-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--k2);
+    }
+
+    /* ── Split layout ── */
+    .split { display: grid; grid-template-columns: 1fr 1.6fr; gap: 2.5rem; align-items: start; }
+    .split.flip { grid-template-columns: 1.6fr 1fr; }
+
+    .split-title {
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--k);
+      letter-spacing: -0.015em;
+      margin-bottom: 0.75rem;
+    }
+
+    .split-title em { font-style: normal; color: var(--g); }
+
+    .split-body {
+      font-size: 14px;
+      color: var(--k5);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .bullets li {
+      font-size: 13px;
+      color: var(--k7);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .bullets li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--g);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    /* ── Grids ── */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+    .g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+
+    /* ── Screen card ── */
+    .sc { border: 1px solid var(--k2); border-radius: 12px; overflow: hidden; }
+    .sc-info { padding: 0.875rem 1rem; border-top: 1px solid var(--k2); }
+    .sc-name { font-size: 13px; font-weight: 600; color: var(--k); margin-bottom: 2px; }
+    .sc-note { font-size: 12px; color: var(--k5); line-height: 1.45; }
+
+    /* ── Why cards ── */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+
+    .wc {
+      padding: 1.25rem;
+      border: 1px solid var(--k2);
+      border-radius: 12px;
+      background: var(--w);
+    }
+
+    .wc-icon { font-size: 18px; margin-bottom: 0.625rem; }
+    .wc-title { font-size: 13px; font-weight: 600; color: var(--k); margin-bottom: 0.3rem; }
+    .wc-desc { font-size: 13px; color: var(--k5); line-height: 1.55; }
+
+    /* ── Insight strip ── */
+    .ins-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--k2);
+      border: 1px solid var(--k2);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .ic { background: var(--w); padding: 1.25rem; }
+    .ic.hi { background: var(--gl); }
+
+    .ic-n {
+      font-size: 26px;
+      color: rgba(255,255,255,0.08);
+      line-height: 1;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .ic.hi .ic-n { color: rgba(83,183,114,0.25); }
+    .ic-title { font-size: 13px; font-weight: 600; color: var(--k); margin-bottom: 0.3rem; }
+    .ic.hi .ic-title { color: var(--gm); }
+    .ic-desc { font-size: 13px; color: var(--k5); line-height: 1.55; }
+    .ic.hi .ic-desc { color: var(--gm); }
+
+    /* ── Persona cards ── */
+    .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+
+    .pc { border: 1px solid var(--k2); border-radius: 12px; overflow: hidden; background: var(--w); }
+    .pc-head { padding: 1rem; border-bottom: 1px solid var(--k2); }
+
+    .pc-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .pc-name { font-size: 14px; font-weight: 600; color: var(--k); letter-spacing: -0.01em; }
+    .pc-role { font-size: 11px; font-weight: 500; margin-top: 2px; }
+    .pc-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.625rem; }
+
+    .pc-rl {
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--k4);
+      margin-bottom: 2px;
+    }
+
+    .pc-rv { font-size: 13px; color: var(--k7); line-height: 1.45; }
+    .pc-rv.ac-t { color: var(--gm); font-weight: 500; }
+    .pc-rv.ac-b { color: var(--bl); font-weight: 500; }
+    .pc-rv.ac-a { color: var(--or); font-weight: 500; }
+
+    /* ── Process steps ── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--k2);
+      border: 1px solid var(--k2);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .ps { background: var(--w); padding: 1.25rem 1rem; }
+    .ps.active { background: var(--gl); }
+
+    .ps-num {
+      font-size: 20px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.08);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .ps.active .ps-num { color: rgba(83,183,114,0.3); }
+    .ps-title { font-size: 13px; font-weight: 600; color: var(--k); margin-bottom: 0.3rem; }
+    .ps.active .ps-title { color: var(--gm); }
+    .ps-desc { font-size: 12px; color: var(--k5); line-height: 1.5; }
+    .ps.active .ps-desc { color: var(--gm); }
+
+    /* ── Learnings ── */
+    .lg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .lc { border-top: 2px solid var(--k2); padding-top: 1.25rem; }
+
+    .lc-n {
+      font-size: 26px;
+      color: rgba(255,255,255,0.08);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .lc-title { font-size: 13px; font-weight: 600; color: var(--k); margin-bottom: 0.3rem; }
+    .lc-desc  { font-size: 13px; color: var(--k5); line-height: 1.55; }
+
+    /* ── Pull-quote ── */
+    .pq {
+      margin: 2rem 0;
+      padding: 1.25rem 1.5rem;
+      border-radius: 12px;
+      background: var(--gl);
+      border-left: 3px solid var(--g);
+    }
+
+    .pq p { font-size: 15px; line-height: 1.6; color: var(--k); }
+
+    .pq cite {
+      display: block;
+      margin-top: 0.4rem;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--g);
+    }
+
+    /* ── Iter label ── */
+    .iter-label {
+      padding: 7px 10px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--k2);
+    }
+
+    /* ── Case-study footer nav ── */
+    .cs-footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 2.5rem 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cs-footer a { font-size: 13px; color: var(--g); text-decoration: none; font-weight: 500; white-space: nowrap; }
+    .cs-footer a:hover { text-decoration: underline; }
+
+    html { overflow-x: hidden; }
+
+    /* ── Responsive 768px ── */
+    @media (max-width: 768px) {
+      .cs-hero, .iw, .s, .cs-footer, .cap {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .cs-footer {
+        flex-wrap: wrap;
+        gap: 0.75rem 0;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .cs-footer a    { flex: 1; }
+      .cs-footer a:last-child { text-align: right; }
+
+      .cs-h1    { font-size: 26px; line-height: 1.15; }
+      .hero-sub { font-size: 15px; }
+
+      .split, .split.flip,
+      .g2, .g3, .g4,
+      .why-grid, .persona-grid,
+      .ins-strip, .lg-grid,
+      .process-grid { grid-template-columns: 1fr; }
+
+      .meta { flex-wrap: wrap; }
+      .mi {
+        flex: 0 0 calc(50% - 0.5px);
+        padding: 0.75rem 1rem;
+        border-right: none;
+        border-bottom: 1px solid var(--k2);
+      }
+      .mi:nth-child(odd)                   { border-right: 1px solid var(--k2); }
+      .mi:last-child,
+      .mi:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+    }
+
+    @media (max-width: 480px) {
+      .cs-h1    { font-size: 22px; }
+      .hero-sub { font-size: 14px; }
+      .s-title  { font-size: 20px; }
+      .split-title { font-size: 17px; }
+      .meta     { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nlogo" href="index.html"><img src="assets/Logos/manoj%20logo.svg" alt="Manoj Shakar" class="nlogo-img"></a>
+  <ul class="nlinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="craft.html" class="active">Craft</a></li>
+  </ul>
+  <button class="nmenu" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section class="cs-hero">
+  <div class="cs-hero-grid"></div>
+  <div class="cs-hero-inner">
+    <div class="eyebrow">
+      <span class="tag">Freshworks</span>
+      <span class="sep">/</span>
+      <span class="tag gray">Social Media</span>
+      <span class="sep">/</span>
+      <span class="tag gray">Campaign UX</span>
+    </div>
+
+    <h1 class="cs-h1">One designer. One month. <em>One campaign experience.</em></h1>
+
+    <p class="hero-sub">Marketers inside Freshworks' suite were stitching together a scheduler, a design tool, and email threads to ship a single campaign. Posts existed, campaigns didn't. As the sole designer on a one-month timeline, I took the flow from a six-tool competitive teardown to engineering handoff, cutting a measured two-hour creation task to under twenty minutes.</p>
+
+    <div class="meta">
+      <div class="mi"><div class="ml">Company</div><div class="mv">Freshworks</div></div>
+      <div class="mi"><div class="ml">Timeline</div><div class="mv">1 month</div></div>
+      <div class="mi"><div class="ml">Role</div><div class="mv">Sole Product Designer</div></div>
+      <div class="mi"><div class="ml">Team</div><div class="mv">1 PM · 5 Engineers</div></div>
+      <div class="mi"><div class="ml">Task time</div><div class="mv hi">↓83% task time (from 2 hrs to &lt;20 min)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     HERO IMAGE
+═══════════════════════════════════════════ -->
+<div class="iw">
+  <div class="if hauto">
+    <img src="assets/3.png" alt="Redesigned campaign creation interface with multi-page posting and live preview" />
+  </div>
+</div>
+<p class="cap">The final creation screen: campaign name, post to multiple pages, customise per page, and a live desktop and mobile preview of the post as it will appear on each platform.</p>
+
+<hr style="margin: 4rem 0 0" />
+
+<!-- ═══════════════════════════════════════════
+     01  CONTEXT
+═══════════════════════════════════════════ -->
+<section class="s" id="overview">
+  <div class="s-num">01 &nbsp;·&nbsp; Context</div>
+  <h2 class="s-title">Posts existed. <em>Campaigns didn't.</em></h2>
+  <p class="s-lead">Every existing flow treated a post as the unit of work. But marketing teams don't think in posts, they think in campaigns: a goal, a set of coordinated posts across pages and platforms, and a result they report upward. The tooling forced them to hold the campaign in their head, or in a spreadsheet.</p>
+
+  <div class="why-grid" style="margin-bottom:2rem">
+    <div class="wc">
+      <div class="wc-icon">🧩</div>
+      <div class="wc-title">Fragmented creation flow</div>
+      <p class="wc-desc">Drafting in a design tool, copy in a doc, scheduling in a third product. Publishing one post meant context-switching across three surfaces, with approval happening over email.</p>
+    </div>
+    <div class="wc">
+      <div class="wc-icon">🫥</div>
+      <div class="wc-title">No campaign-level status</div>
+      <p class="wc-desc">Was the campaign scheduled, published, or stuck in draft? No screen answered that. Status lived in the marketer's memory and in Slack threads, and performance lived in platform exports.</p>
+    </div>
+    <div class="wc">
+      <div class="wc-icon">⏱️</div>
+      <div class="wc-title">Two hours to publish</div>
+      <p class="wc-desc">We timed the existing multi-tool process with a marketer: roughly two hours from brief to a scheduled multi-platform post. The cost wasn't effort, it was campaigns that never shipped.</p>
+    </div>
+  </div>
+
+  <div class="pq">
+    <p>⚡ <strong>Constraint:</strong> one month, one designer, scope locked. Five phases, research to final design, with every research method having to pay for its calendar time. No phase got a second week.</p>
+  </div>
+</section>
+
+<hr />
+
+<!-- ═══════════════════════════════════════════
+     02  RESEARCH
+═══════════════════════════════════════════ -->
+<section class="s" id="research">
+  <div class="s-num">02 &nbsp;·&nbsp; Research</div>
+  <h2 class="s-title">Six tools, two categories. <em>Three shared gaps.</em></h2>
+  <p class="s-lead">The market split cleanly in two: post-management tools (Ryzely, Publer, Later, Zoho Social) and comprehensive campaign suites (Mailchimp, HubSpot). I walked the full creation-to-publish flow in all six and scored them on a feature matrix: multiple post creation, live preview, character limit validation, and media upload support.</p>
+
+  <div class="g3" style="margin-bottom:1.5rem">
+    <div class="wc">
+      <div class="wc-title">Competitive teardown · 6 tools</div>
+      <p class="wc-desc">Full creation-to-publish walkthrough in each, scored on a four-row feature matrix. Answered: where does every tool break down, and what does nobody solve?</p>
+    </div>
+    <div class="wc">
+      <div class="wc-title">Baseline task timing</div>
+      <p class="wc-desc">Timed a marketer running the existing multi-tool process end to end, brief to scheduled post. The ~2 hour result became the benchmark every iteration was tested against.</p>
+    </div>
+    <div class="wc">
+      <div class="wc-title">Moderated sessions · 2 rounds</div>
+      <p class="wc-desc">Task-based sessions with practising marketers at iteration 1 and iteration 3, same task, same timer. Answered: does the design actually reduce the load, or just look like it does?</p>
+    </div>
+  </div>
+
+  <div class="if hauto" style="margin-bottom:1rem">
+    <img src="Case study 3 rework/post management tools vs comprehensive campaign tools.png" alt="Market map: post-management tools vs comprehensive campaign tools" />
+  </div>
+
+  <div class="if hauto" style="margin-bottom:0.5rem">
+    <img src="Case study 3 rework/Feature matrix across the six tools.png" alt="Feature matrix across the six tools" />
+  </div>
+  <p class="cap" style="padding:0;margin-bottom:1.5rem">The matrix that set the brief. Multiple post creation: only Publer and HubSpot. Live preview: four of six. Character limit validation: zero of six.</p>
+
+  <div class="ins-strip">
+    <div class="ic">
+      <div class="ic-n">1</div>
+      <div class="ic-title">Multi-page posting was rare and clunky</div>
+      <p class="ic-desc">Only Publer and HubSpot supported creating the same post across multiple pages, and both buried it. The rest forced page-by-page repetition. Campaign-level coordination didn't exist anywhere.</p>
+    </div>
+    <div class="ic hi">
+      <div class="ic-n">2</div>
+      <div class="ic-title">Live preview was inconsistent</div>
+      <p class="ic-desc">Later and Zoho Social had no preview at all. The four that did showed a generic render, not how the post would actually appear per platform, per device. Marketers published on faith.</p>
+    </div>
+    <div class="ic">
+      <div class="ic-n">3</div>
+      <div class="ic-title">Character limit validation: zero of six</div>
+      <p class="ic-desc">Not one tool validated content against each platform's character limits before publish. Posts silently truncated or failed on the platform's side. This gap was free to own, and it shaped both the composer and the error-state designs.</p>
+    </div>
+  </div>
+</section>
+
+<hr />
+
+<!-- ═══════════════════════════════════════════
+     03  WHO WE DESIGNED FOR
+═══════════════════════════════════════════ -->
+<section class="s" id="personas">
+  <div class="s-num">03 &nbsp;·&nbsp; Who we designed for</div>
+  <h2 class="s-title">One marketing team. <em>Three people in the flow.</em></h2>
+  <p class="s-lead">Research centred on a medium-sized e-commerce marketing team, where a campaign passes through three pairs of hands: the manager who owns the outcome, the designer who makes the creative, and the content creator who writes and ships the posts. Each shaped a structural decision in the product.</p>
+
+  <div class="persona-grid">
+    <div class="pc">
+      <div class="pc-head" style="background:var(--gl);border-color:rgba(83,183,114,.25)">
+        <div class="pc-avatar" style="background:rgba(83,183,114,0.25);color:var(--gm)">PM</div>
+        <div class="pc-name">Prem · Digital Marketing Manager</div>
+        <div class="pc-role" style="color:var(--gm)">Owns the campaign</div>
+      </div>
+      <div class="pc-body">
+        <div><div class="pc-rl">Goals</div><div class="pc-rv">Increase brand visibility, drive website traffic and conversions, optimise campaigns, and improve ROI.</div></div>
+        <div><div class="pc-rl">Challenges</div><div class="pc-rv">Limited time, managing multiple platforms, and analysing campaign performance across them.</div></div>
+        <div><div class="pc-rl">Shaped in the product</div><div class="pc-rv ac-t">The campaign list with status, impressions, and interactions per campaign, and one-click metrics. Performance without exports.</div></div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head" style="background:var(--bll);border-color:rgba(107,140,247,0.28)">
+        <div class="pc-avatar" style="background:rgba(107,140,247,0.25);color:var(--bl)">GD</div>
+        <div class="pc-name">Alex · Graphic Designer</div>
+        <div class="pc-role" style="color:var(--bl)">Makes the creative</div>
+      </div>
+      <div class="pc-body">
+        <div><div class="pc-rl">Goals</div><div class="pc-rv">Showcase creativity, attract clients, and collaborate with the rest of the marketing team.</div></div>
+        <div><div class="pc-rl">Challenges</div><div class="pc-rv">Balancing creativity with branding, finding the target audience, and time management.</div></div>
+        <div><div class="pc-rl">Shaped in the product</div><div class="pc-rv ac-b">The media gallery: upload once, reuse across posts and campaigns, with format and size validation at upload, not at publish.</div></div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-head" style="background:var(--orl);border-color:var(--orb)">
+        <div class="pc-avatar" style="background:rgba(232,147,74,0.25);color:var(--or)">CC</div>
+        <div class="pc-name">Anju · Content Creator</div>
+        <div class="pc-role" style="color:var(--or)">Writes and ships</div>
+      </div>
+      <div class="pc-body">
+        <div><div class="pc-rl">Goals</div><div class="pc-rv">Craft engaging content, increase brand awareness, and drive website traffic.</div></div>
+        <div><div class="pc-rl">Challenges</div><div class="pc-rv">Staying current with trends, maintaining consistency across platforms, and measuring what worked.</div></div>
+        <div><div class="pc-rl">Shaped in the product</div><div class="pc-rv ac-a">One composer for all pages with customise-per-page, live per-platform previews, and character counters per platform while typing.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr />
+
+<!-- ═══════════════════════════════════════════
+     04  DESIGN DECISIONS
+═══════════════════════════════════════════ -->
+<section class="s" id="decisions">
+  <div class="s-num">04 &nbsp;·&nbsp; Design decisions</div>
+  <h2 class="s-title">From sketches to a shipped flow <em>in four iterations.</em></h2>
+  <p class="s-lead">Early sketches explored two flows on paper: connecting social media platforms, and creating a campaign across them. Linear vs modular approaches were tested before anything reached Figma, and every iteration after that was annotated with what it still got wrong.</p>
+
+  <div class="if hauto" style="margin-bottom:0.5rem">
+    <img src="Case study 3 rework/connecting social media platform flow and creating social media campaign flow&quot;.png" alt="Ideation sketches: connecting platform flow and campaign flow" />
+  </div>
+  <p class="cap" style="padding:0;margin-bottom:1.5rem">The two sketched flows: connecting platform accounts, and creating a campaign across them.</p>
+
+  <div class="if hauto" style="margin-bottom:0.5rem">
+    <img src="Case study 3 rework/Wireframes - campaign creation flow with composer and preview layout.png" alt="Wireframes - campaign creation flow with composer and preview layout" />
+  </div>
+  <p class="cap" style="padding:0;margin-bottom:2rem">Low-fidelity wireframes locking the composer, page selection, media gallery, and preview layout. Validated with the PM and engineers before high-fidelity work.</p>
+
+  <h3 class="split-title">Decision 1: one composer, <em>many pages.</em></h3>
+
+  <div class="if hauto" style="margin-bottom:1.5rem">
+    <img src="Case study 3 rework/Iteration 1 - single screen, no platform switching, no post cloning.png" alt="Iteration 1 - single screen, no platform switching, no post cloning" />
+  </div>
+
+  <div class="g3" style="margin:1rem 0 1.5rem">
+    <div class="wc">
+      <div class="wc-title">What we tried</div>
+      <p class="wc-desc">Iteration 1 put everything on one screen with no way to switch between social platforms and no option to clone a post. Iteration 2's fix made creating multiple posts take far too many clicks.</p>
+    </div>
+    <div class="wc">
+      <div class="wc-title">Why it didn't work</div>
+      <p class="wc-desc">Both versions treated each post as separate work. The annotations tell the story: "no option to switch between social platform," "no option to clone the post," "creating multiple posts needs a lot of clicks."</p>
+    </div>
+    <div class="wc" style="background:var(--gl);border-color:rgba(83,183,114,0.28)">
+      <div class="wc-title" style="color:var(--gm)">What we built</div>
+      <p class="wc-desc" style="color:var(--gm)">"Post to" page cards at the top of one composer: add Facebook, Instagram, and LinkedIn pages, write once, and post to all of them in a single click. A customise-posts toggle opens per-page editing only when content needs to differ.</p>
+    </div>
+  </div>
+
+  <h3 class="split-title">Decision 2: a live preview <em>per platform, per device.</em></h3>
+
+  <div class="g2" style="margin-bottom:1.5rem">
+    <div class="if hauto">
+      <img src="Case study 3 rework/Iteration 2 - phased reveal, multiple posts took too many clicks.png" alt="Iteration 2 - phased reveal, multiple posts took too many clicks" />
+    </div>
+    <div class="if hauto">
+      <img src="Case study 3 rework/Iteration 3 - refined transitions, still missing delete and live preview.png" alt="Iteration 3 - refined transitions, still missing delete and live preview" />
+    </div>
+  </div>
+
+  <div class="g3" style="margin:1rem 0 1.5rem">
+    <div class="wc">
+      <div class="wc-title">What we tried</div>
+      <p class="wc-desc">Iterations 2 and 3 shipped without a live preview. Review annotations flagged it both times: "no live preview," alongside "no option to delete the post."</p>
+    </div>
+    <div class="wc">
+      <div class="wc-title">Why it didn't work</div>
+      <p class="wc-desc">In sessions, marketers kept asking "how will this look?" while typing. Four of six competitors had some preview; the two without it felt the most uncertain to use. We were repeating their worst gap.</p>
+    </div>
+    <div class="wc" style="background:var(--gl);border-color:rgba(83,183,114,0.28)">
+      <div class="wc-title" style="color:var(--gm)">What we built</div>
+      <p class="wc-desc" style="color:var(--gm)">A split layout: composer on the left, live preview on the right, with platform tabs (Facebook, LinkedIn, Instagram) and a desktop/mobile toggle. The preview renders the post as each platform will actually display it, updating as users type.</p>
+    </div>
+  </div>
+
+  <h3 class="split-title">Decision 3: validate at the keystroke, <em>not at publish.</em></h3>
+
+  <div class="if hauto" style="margin-bottom:1.5rem">
+    <img src="Case study 3 rework/Iteration 4 - preview-first split layout, near final.png" alt="Iteration 4 - preview-first split layout, near final" />
+  </div>
+
+  <div class="g3" style="margin:1rem 0 1.5rem">
+    <div class="wc">
+      <div class="wc-title">What we tried</div>
+      <p class="wc-desc">Following the market: no character validation. Every one of the six tools we tore down let users publish first and find out later.</p>
+    </div>
+    <div class="wc">
+      <div class="wc-title">Why it didn't work</div>
+      <p class="wc-desc">Posts truncated or failed silently on the platform's side. The same caption has different ceilings on Facebook, LinkedIn, and Instagram. The research matrix showed this gap was universal, which made it the cheapest trust win available.</p>
+    </div>
+    <div class="wc" style="background:var(--gl);border-color:rgba(83,183,114,0.28)">
+      <div class="wc-title" style="color:var(--gm)">What we built</div>
+      <p class="wc-desc" style="color:var(--gm)">Per-platform character counters inside the composer, counting against each platform's limit simultaneously. Overflow flags the specific platforms exceeded before save, with the exact overage shown. The one feature no competitor had.</p>
+    </div>
+  </div>
+
+  <h3 class="split-title">The final solution</h3>
+  <div class="if hauto" style="margin-bottom:0.5rem">
+    <img src="Case study 3 rework/Final shipped design.png" alt="Final shipped design" />
+  </div>
+  <p class="cap" style="padding:0">Create a multi-platform campaign in a single click: page cards across Facebook, Instagram, and LinkedIn, customise per page, per-platform character counters, media gallery, live desktop and mobile preview, and save as draft, schedule, or post now. Approved at design review and handed to engineering in week 3.</p>
+</section>
+
+<hr />
+
+<!-- ═══════════════════════════════════════════
+     05  EDGE CASES
+═══════════════════════════════════════════ -->
+<section class="s" id="edgecases">
+  <div class="s-num">05 &nbsp;·&nbsp; Edge Cases &amp; Error States</div>
+  <h2 class="s-title">What happens when <em>things go wrong.</em></h2>
+  <p class="s-lead">A creation flow is only as good as its error handling, and the research finding that no tool validated content made this section the differentiator. Every limit is specific, surfaced before publish, and tells the user exactly what to fix.</p>
+
+  <div class="if hauto" style="margin-bottom:1rem">
+    <img src="Case study 3 rework/per-platform character overflow, media gallery limits, upload size validation, video runtime limits, upload retry states.png" alt="Edge cases: per-platform character overflow, media gallery limits, upload size validation, video runtime limits, upload retry states" />
+  </div>
+  <p class="cap" style="padding:0;margin-bottom:1.5rem">The validation layer: character overflow per platform, page pagination at scale, gallery and file-size limits, video runtime rules, and upload states with retry.</p>
+
+  <div class="g3">
+    <div class="wc">
+      <div class="wc-title">Character overflow, per platform</div>
+      <p class="wc-desc">The composer counts against Facebook, LinkedIn, and Instagram limits simultaneously. Exceed one and the error names the platform and the exact overage, before save, not after a silent truncation.</p>
+    </div>
+    <div class="wc">
+      <div class="wc-title">Media validation at upload</div>
+      <p class="wc-desc">Image size capped at 5MB across all three platforms, a maximum of 10 images per gallery upload, and video runtime validated against the strictest platform in the post: 10 minutes for Facebook and LinkedIn, 1 minute when Instagram is included.</p>
+    </div>
+    <div class="wc">
+      <div class="wc-title">Upload states with retry</div>
+      <p class="wc-desc">Multi-file uploads show per-file progress, time remaining, and pause. A failed file states the reason — photo size, video length, format — with a one-tap retry. One failure never blocks the rest of the batch.</p>
+    </div>
+  </div>
+</section>
+
+<hr />
+
+<!-- ═══════════════════════════════════════════
+     06  OUTCOME
+═══════════════════════════════════════════ -->
+<section class="s" id="outcome">
+  <div class="s-num">06 &nbsp;·&nbsp; Outcome</div>
+  <h2 class="s-title">Benchmarked against the flow <em>it replaced.</em></h2>
+  <p class="s-lead">The same task that set the baseline was re-run on the final design in a moderated walkthrough: Prem, a Digital Marketing Manager at Dunzo Daily, connecting his Facebook pages, composing one post for three Dunzo pages, attaching creative from the media gallery, previewing per platform, and scheduling — then tracking the published campaign's impressions and interactions from the campaign list.</p>
+
+  <div class="g3" style="margin-bottom:1.5rem">
+    <div class="wc" style="background:var(--gl);border-color:rgba(83,183,114,0.28)">
+      <div style="font-size:26px;font-weight:700;letter-spacing:-0.025em;color:var(--gm);line-height:1;margin-bottom:0.4rem">&lt;20 min</div>
+      <div class="wc-title" style="color:var(--gm)">Completion time</div>
+      <p class="wc-desc" style="color:var(--gm)">Brief to scheduled multi-page campaign in the final timed walkthrough, against the ~2 hour baseline across three tools. Performance one click from the campaign list. No exports, no spreadsheets.</p>
+    </div>
+    <div class="wc">
+      <div style="font-size:26px;font-weight:700;letter-spacing:-0.025em;color:var(--k);line-height:1;margin-bottom:0.4rem">Week 3</div>
+      <div class="wc-title">Engineering handoff</div>
+      <p class="wc-desc">Approved at design review and handed to engineering with edge cases and error states specced. Shipped within the one-month window with no design rework during build.</p>
+    </div>
+    <div class="wc">
+      <div style="font-size:26px;font-weight:700;letter-spacing:-0.025em;color:var(--k);line-height:1;margin-bottom:0.4rem">1 of 1</div>
+      <div class="wc-title">Designer</div>
+      <p class="wc-desc">Sole designer across research, strategy, sketches, wireframes, four high-fidelity iterations, edge cases, and handoff. Every artifact on this page was produced inside the same month.</p>
+    </div>
+  </div>
+
+  <p class="cap" style="padding:0">The full walkthrough: connect Facebook, add Dunzo pages, compose once for all pages, upload from the media gallery, preview on Facebook, LinkedIn, and Instagram, schedule, campaign published with impressions, interactions, and per-platform post review.</p>
+</section>
+
+<hr />
+
+<!-- ═══════════════════════════════════════════
+     07  MOMENTS
+═══════════════════════════════════════════ -->
+<section class="s" id="moments">
+  <div class="s-num">07 &nbsp;·&nbsp; Moments that shaped the product</div>
+  <h2 class="s-title">Two times the work <em>changed direction.</em></h2>
+
+  <div style="border:1px solid var(--k2);border-radius:14px;padding:1.75rem;margin-bottom:1.25rem;background:var(--w)">
+    <h3 class="split-title">The matrix found the feature nobody built</h3>
+    <p style="font-size:13px;font-weight:600;color:var(--k);margin-bottom:0.6rem">Character limit validation scored zero across all six competitors.</p>
+    <p class="split-body" style="max-width:720px;margin-bottom:0">The teardown matrix was meant to tell us what to match. Its most useful row told us what to own: not one tool validated content against platform limits before publish. That single empty row became the per-platform character counters in the composer and an entire validation layer in the edge-case designs. The cheapest differentiator is the gap everyone shares.</p>
+  </div>
+
+  <div style="border:1px solid var(--k2);border-radius:14px;padding:1.75rem;background:var(--w)">
+    <h3 class="split-title">The annotations were the roadmap</h3>
+    <p style="font-size:13px;font-weight:600;color:var(--k);margin-bottom:0.6rem">Each iteration was reviewed with its failures written directly on the screen.</p>
+    <p class="split-body" style="max-width:720px;margin-bottom:0">"No option to switch between platforms." "Creating multiple posts needs a lot of clicks." "No live preview." Instead of vague feedback rounds, every review produced specific annotations pinned to the design, and each became the brief for the next iteration. Four iterations in three weeks was only possible because the criticism was this concrete.</p>
+  </div>
+</section>
+
+<hr />
+
+<!-- ═══════════════════════════════════════════
+     08  REFLECTIONS
+═══════════════════════════════════════════ -->
+<section class="s" id="reflections">
+  <div class="s-num">08 &nbsp;·&nbsp; Reflections</div>
+  <h2 class="s-title" style="margin-bottom:1.75rem">What I'd do <em>differently.</em></h2>
+
+  <div class="lg-grid">
+    <div style="border:1px solid var(--k2);border-radius:14px;padding:1.75rem;background:var(--w)">
+      <div class="lc-n">1</div>
+      <div class="lc-title">Design platform logic as a configurable layer</div>
+      <p class="lc-desc">Character limits, media caps, and video runtimes shift whenever a platform changes its rules. Keeping that logic configurable rather than hardcoded meant updates without a full redeploy. I'd push this even further from day one.</p>
+    </div>
+    <div style="border:1px solid var(--k2);border-radius:14px;padding:1.75rem;background:var(--w)">
+      <div class="lc-n">2</div>
+      <div class="lc-title">Test earlier, even on tight timelines</div>
+      <p class="lc-desc">The sessions that exposed iteration 1 happened in week 2. Running them in week 1, against the sketches, would have saved a full high-fidelity pass.</p>
+    </div>
+    <div style="border:1px solid var(--k2);border-radius:14px;padding:1.75rem;background:var(--w)">
+      <div class="lc-n">3</div>
+      <div class="lc-title">Design the expert path alongside the guided one</div>
+      <p class="lc-desc">The structured flow was the right call for launch, but power users who run campaigns daily need shortcuts: clone a past campaign, skip straight to scheduling. That escape hatch should have been in the v1 spec, not the backlog.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CASE STUDY NAV
+═══════════════════════════════════════════ -->
+<div class="cs-footer">
+  <a href="index.html#work" data-h>← All work</a>
+  <a href="casestudy1.html" data-h>Next case study →</a>
+</div>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta" id="contact">
+  <div class="fcta-bg"></div>
+  <h2 class="fcta-h">Let's craft experiences that <em>move people</em> and the numbers</h2>
+  <p class="fcta-sub">Exploring opportunities where design has a real seat at the table. Based out of Chennai, India, open to relocate across the globe.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;position:relative;z-index:1;">
+    <a href="mailto:manojshakar.com@gmail.com" class="fcta-em" data-h>manojshakar.com@gmail.com</a>
+    <a href="tel:+919994448205" class="fcta-em" data-h style="border-bottom-color:rgba(83,183,114,.18);">+91 999 444 8205</a>
+  </div>
+</section>
+
+<!-- FOOTER BOTTOM -->
+<footer>
+  <span class="fl">Manoj Shakar &copy; 2026</span>
+  <div class="flinks">
+    <a href="https://dribbble.com/manojshakar" target="_blank" rel="noopener">Dribbble</a>
+    <a href="https://linkedin.com/in/manoj-shakar" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://instagram.com/manoj.designs" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
