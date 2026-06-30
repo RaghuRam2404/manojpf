@@ -20,6 +20,22 @@ window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('sc', scrollY > 60);
 }, {passive:true});
 
+// MOBILE MENU
+const navEl = document.getElementById('nav');
+const menuBtn = navEl && navEl.querySelector('.nmenu');
+if(menuBtn){
+  menuBtn.addEventListener('click', () => {
+    const isOpen = navEl.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+  });
+  navEl.querySelectorAll('.nlinks a').forEach(a => {
+    a.addEventListener('click', () => {
+      navEl.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
 // HERO ANIMATION (index only)
 if(typeof HeroAnimation !== 'undefined' && document.getElementById('hr')){
   HeroAnimation.init({
