@@ -33,7 +33,7 @@ nav.sc{background:rgba(8,8,8,.94);backdrop-filter:blur(20px);padding:15px 48px;b
 .nmenu{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:none;padding:4px;cursor:none;z-index:201;}
 .nmenu span{display:block;height:1.5px;width:100%;background:var(--fg);border-radius:2px;transition:transform .25s,opacity .25s;}
 nav.open .nmenu span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
-nav.open .nmenu span:nth-child(2){opacity:0;}
+nav.open .nmenu span:nth-child(2){opacity:0;transform:scaleX(0);}
 nav.open .nmenu span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
 @keyframes blink{0%,100%{opacity:.8}50%{opacity:.2}}
 
