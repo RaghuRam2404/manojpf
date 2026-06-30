@@ -227,7 +227,7 @@ footer{padding:24px 48px;border-top:1px solid var(--border);display:flex;align-i
   .hleft{padding:72px 24px 48px;justify-content:flex-start;}
   .sec,.sec-gap{padding:72px 24px;}
   .wcard{padding:28px 24px;grid-template-columns:1fr;}
-  .warr{display:none;}
+  .warr{display:flex;align-self:flex-end;margin-top:16px;}
   .philgrid,.procgrid{grid-template-columns:1fr;gap:40px;}
   .philstick,.procstick{position:static;}
   .traitsgrid{grid-template-columns:1fr;}
