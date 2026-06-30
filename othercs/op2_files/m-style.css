@@ -1,0 +1,179 @@
+/** ipad **/
+@media (max-width: 1000px) , screen and (max-device-width : 1000px){
+	body{
+		/*margin: auto 20px;*/
+	}
+}
+
+/* Media Query for Mobile Screens */
+@media (max-width: 768px) {
+    .explore-projects-container {
+        gap: 24px; /* Reduce gap for smaller screens */
+        margin: 128px auto 64px auto; /* Adjust margins */
+    }
+
+    .explore-projects-title {
+        font-size: 20px; /* Reduce font size for smaller screens */
+        line-height: 24px;
+    }
+
+    .project-links {
+        gap: 16px; /* Reduce gap between project cards */
+    }
+
+    .project-card {
+        width: 100%; /* Make the card responsive */
+        max-width: none; /* Remove max-width for smaller screens */
+    }
+
+    .project-card-title {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+
+  /* Responsive project grid for mobile */
+  .projects-container {
+    padding: 0 8px;
+  }
+  .projects-row {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .project_i2 {
+    width: 100%;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    padding: 12px 0;
+  }
+  .pimg {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  .project_i2 .pimg{
+	height: unset;
+	padding: 24px 10% 0px 10%
+  }
+  .imgcontainer img {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    border-radius: 8px;
+  }
+  .pdesc {
+    font-size: 15px;
+    text-align: left;
+    margin: 12px 0 8px 0;
+  }
+  .viewcasestudy {
+    font-size: 15px;
+    padding: 10px 0;
+  }
+}
+
+/*mobile styling*/
+/*@media only screen and (min-width: 300px) and (max-width: 414px) and (max-device-width : 414px) {*/
+/*(max-device-width : 414px) and (orientation: portrait)*/
+@media (max-width: 414px) , screen and (max-device-width : 414px){
+    .header{
+    	padding:  18px 16px;
+    }
+    .footer{
+    	margin-bottom: 64px;
+    }
+    .floatmenu{
+    	display: none;
+	    position: fixed;
+	    margin-top: 0px;
+	    top: 68px;
+	    z-index: 10;
+	    right: 0;
+	    left: 0;
+    }
+	.container-flex .row{
+		width: auto;
+	}
+    .hello{
+    	/*margin-top: 132px;*/
+    }
+    .pdnone{
+    	padding: 0 24px;
+    }
+	.experiences{
+		margin-top: 20px;
+	}
+    .menuimg{
+    	
+    } 
+	.project_i2 .pheading{
+		line-height: 32px;
+	}
+	.reachout{
+		line-height: 28px;
+	}
+	.content-heading {
+		line-height: 32px;
+	}
+    .webmenu{
+		display: none;
+	}
+	.mobilemenu{
+		display: block;
+	}
+	.mobile-no-need{
+		display: none;
+	}
+	.mobile-need{
+		display: block;
+	}
+	.mobile-abt{
+		display: block;
+	}
+	.fcom{
+		margin-top: 16px;
+	}
+	.csimgcontainer{
+		width: 95%;
+		margin: 0px 2.5%; 
+	}
+	.casestudy-main-cont{
+		/*margin-top: 32px;*/
+	}
+
+	.password-holder{
+		margin-top: 25%;
+	}
+	
+	.password-holder img{
+		width: 30%;
+	}
+
+	.content-prohibit{
+		margin-top: 24px;
+		color: #333;
+		font-family: Inter;
+		font-size: 25px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+
+	.password-form .passcode{
+		width: 70%;
+	}
+}
+
+@media (max-width: 480px) {
+  .projects-container {
+    padding: 0 2px;
+  }
+  .pdesc {
+    font-size: 14px;
+  }
+  .viewcasestudy {
+    font-size: 14px;
+  }
+}
