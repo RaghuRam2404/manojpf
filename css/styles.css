@@ -178,10 +178,9 @@ footer{padding:24px 48px;border-top:1px solid var(--border);display:flex;align-i
   .story-left{position:static;}
   nav{padding:18px 24px;} nav.sc{padding:14px 24px;}
   .nlinks{display:none;}
-  .hero{grid-template-columns:1fr;grid-template-rows:auto;}
-  .hright{height:62vw;min-height:280px;}
-  .hright::before{background:linear-gradient(180deg,var(--bg) 0%,rgba(8,8,8,.4) 22%,transparent 38%);}
-  .hleft{padding:100px 24px 32px;}
+  .hero{grid-template-columns:1fr;grid-template-rows:auto;height:auto;min-height:0;}
+  .hright{display:none;}
+  .hleft{padding:72px 24px 48px;justify-content:flex-start;}
   .sec,.sec-gap{padding:72px 24px;}
   .wcard{padding:28px 24px;grid-template-columns:1fr;}
   .warr{display:none;}
