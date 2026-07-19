@@ -38,8 +38,9 @@
     var introStartedAt = performance.now();
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function drawSignalPath(width, height, offset, opacity, lineWidth, phase, time, revealProgress) {
+    function drawSignalPath(width, height, offset, opacity, lineWidth, phase, time, revealProgress, scale) {
       var isMobile = width <= 640;
+      var pathScale = scale || 1;
       var anchors = isMobile ? [
         { x: width * 0.02, y: height * 0.71 },
         { x: width * 0.26, y: height * 0.3 },
@@ -53,6 +54,14 @@
         { x: width * 0.71, y: height * 0.2 },
         { x: width * 0.9, y: height * 0.77 }
       ];
+      var centreX = width * 0.5;
+      var centreY = height * 0.5;
+      anchors = anchors.map(function (anchor) {
+        return {
+          x: centreX + (anchor.x - centreX) * pathScale,
+          y: centreY + (anchor.y - centreY) * pathScale
+        };
+      });
       var repelRadius = Math.min(width, height) * (isMobile ? 0.34 : 0.42);
       anchors = anchors.map(function (anchor, index) {
         var driftScale = isMobile ? 0.55 : 1;
@@ -147,7 +156,7 @@
       (isMobile ? [-48, 0, 48] : [-84, 0, 84]).forEach(function (offset, index) {
         var delay = index * 170;
         var revealProgress = reduceMotion ? 1 : Math.max(0, Math.min(1, (time - introStartedAt - delay) / 930));
-        drawSignalPath(width, height, offset, index === 1 ? 0.3 : 0.15, index === 1 ? 1.55 : 1.05, index * 2.1 + 0.6, time, revealProgress);
+        drawSignalPath(width, height, offset, index === 1 ? 0.3 : 0.15, index === 1 ? 1.55 : 1.05, index * 2.1 + 0.6, time, revealProgress, isMobile ? 1.12 : 1.16);
       });
       drawTravellingHighlight(width, height, time);
     }
