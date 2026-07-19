@@ -254,21 +254,30 @@
       if (width < 80 || height < 50 || width < height * 0.4) return false;
 
       var leftToRightStroke = stroke[0].x <= stroke[stroke.length - 1].x ? stroke : stroke.slice().reverse();
-      var leftPeakY = Infinity;
-      var rightPeakY = Infinity;
-      var valleyY = -Infinity;
-      leftToRightStroke.forEach(function (point) {
-        var normalizedX = (point.x - minX) / width;
-        if (normalizedX < 0.42) leftPeakY = Math.min(leftPeakY, point.y);
-        if (normalizedX > 0.58) rightPeakY = Math.min(rightPeakY, point.y);
-        if (normalizedX > 0.28 && normalizedX < 0.72) valleyY = Math.max(valleyY, point.y);
-      });
       var start = leftToRightStroke[0];
       var end = leftToRightStroke[leftToRightStroke.length - 1];
-      var endpointsLow = start.y > minY + height * 0.4 && end.y > minY + height * 0.4;
-      var twoPeaks = leftPeakY < minY + height * 0.54 && rightPeakY < minY + height * 0.54;
-      var centreValley = valleyY > minY + height * 0.34 && valleyY - Math.max(leftPeakY, rightPeakY) > height * 0.16;
-      return endpointsLow && twoPeaks && centreValley;
+      var leftPeakOffset = Infinity;
+      var rightPeakOffset = Infinity;
+      var valleyOffset = -Infinity;
+      var forwardDistance = 0;
+      var backwardDistance = 0;
+      leftToRightStroke.forEach(function (point) {
+        var normalizedX = (point.x - minX) / width;
+        var baselineY = start.y + (end.y - start.y) * normalizedX;
+        var verticalOffset = point.y - baselineY;
+        if (normalizedX < 0.42) leftPeakOffset = Math.min(leftPeakOffset, verticalOffset);
+        if (normalizedX > 0.58) rightPeakOffset = Math.min(rightPeakOffset, verticalOffset);
+        if (normalizedX > 0.28 && normalizedX < 0.72) valleyOffset = Math.max(valleyOffset, verticalOffset);
+      });
+      for (var index = 1; index < leftToRightStroke.length; index++) {
+        var horizontalDelta = leftToRightStroke[index].x - leftToRightStroke[index - 1].x;
+        if (horizontalDelta >= 0) forwardDistance += horizontalDelta;
+        else backwardDistance -= horizontalDelta;
+      }
+      var twoPeaks = leftPeakOffset < -height * 0.1 && rightPeakOffset < -height * 0.1;
+      var centreValley = valleyOffset - Math.max(leftPeakOffset, rightPeakOffset) > height * 0.18;
+      var progressesForward = forwardDistance > 0 && backwardDistance < forwardDistance * 0.3;
+      return twoPeaks && centreValley && progressesForward;
     }
 
     function finishStroke() {
