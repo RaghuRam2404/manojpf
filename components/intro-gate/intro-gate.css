@@ -10,8 +10,6 @@
 .intro-gate__backdrop { height: 106%; inset: -3%; position: absolute; transform: translate3d(var(--intro-backdrop-x), var(--intro-backdrop-y), 0); transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1); width: 106%; }
 .intro-gate__canvas { -webkit-touch-callout: none; clip-path: inset(48% 0 48% 0); cursor: none; height: 100%; inset: 0; opacity: 0; position: absolute; touch-action: none; transition: clip-path 1.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; user-select: none; -webkit-user-select: none; width: 100%; }
 #intro-gate.is-ready .intro-gate__canvas { clip-path: inset(0); opacity: 1; }
-.intro-gate__scan { background: linear-gradient(90deg, transparent, rgba(185, 244, 198, 0.8), transparent); box-shadow: 0 0 34px 9px rgba(83, 183, 114, 0.5); height: 1px; left: 0; opacity: 0; position: absolute; top: 50%; transform: scaleX(0); transform-origin: center; width: 100%; }
-#intro-gate.is-ready .intro-gate__scan { animation: intro-scan 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 .intro-gate__content { bottom: max(32px, env(safe-area-inset-bottom)); font-family: 'Inter', system-ui, sans-serif; left: 0; opacity: 0; pointer-events: none; position: absolute; right: 0; text-align: center; transform: translateY(18px); transition: opacity 0.6s ease 0.42s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.42s; z-index: 1; }
 #intro-gate.is-ready .intro-gate__content { opacity: 1; transform: translateY(0); }
 .intro-gate__logo { animation: intro-rise 0.7s ease 0.12s forwards; filter: brightness(0) invert(1); height: auto; margin: 0 auto 28px; opacity: 0; width: 120px; }
@@ -32,17 +30,16 @@
 .intro-gate__brush.is-visible { opacity: 1; }
 .intro-gate__brush.is-drawing::before { border-color: #b9f4c6; transform: scale(0.68); }
 .intro-gate__brush.is-drawing::after { box-shadow: 0 0 14px 3px rgba(185, 244, 198, 0.78); transform: scale(1.35); }
-#intro-gate.is-missed .intro-gate__prompt { animation: intro-shake 0.38s ease; }
+#intro-gate.is-missed .intro-gate__prompt { animation: intro-shake 0.38s ease; opacity: 1; }
 #intro-gate.is-leaving { opacity: 0; pointer-events: none; transition: opacity 0.65s ease; }
 .intro-gate__reveal { background: radial-gradient(circle, #dfffe4 0%, #a4eeb2 18%, #53b772 45%, rgba(83, 183, 114, 0.72) 60%, rgba(83, 183, 114, 0.18) 75%, transparent 82%); border-radius: 50%; box-shadow: 0 0 36px 12px rgba(83, 183, 114, 0.28); height: 88px; margin: -44px 0 0 -44px; pointer-events: none; position: fixed; transform: scale(0); transition: transform 0.32s cubic-bezier(0.16, 0.82, 0.18, 1); width: 88px; z-index: 10002; }
 #intro-gate.is-leaving { opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
 .intro-gate__reveal.is-active { transform: scale(42); }
 @keyframes intro-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes intro-shake { 25% { transform: translateX(-7px); } 75% { transform: translateX(7px); } }
-@keyframes intro-scan { 0% { opacity: 0; transform: scaleX(0); } 18% { opacity: 1; transform: scaleX(0.8); } 100% { opacity: 0; transform: scaleX(1.15); } }
 @keyframes intro-grid-drift { to { transform: translate3d(12px, -8px, 0); } }
 @keyframes intro-drift-one { 50% { transform: translate(9vw, 7vw) scale(1.12); } }
 @keyframes intro-drift-two { 50% { transform: translate(-8vw, -9vw) scale(1.16); } }
 @media (max-width: 640px) { .intro-gate__content { bottom: max(22px, env(safe-area-inset-bottom)); padding: 0 20px; } .intro-gate__logo { margin-bottom: 22px; width: 108px; } .intro-gate__prompt { font-size: 24px; } .intro-gate__skip-action { gap: 6px; } .intro-gate__skip-hint { font-size: 11px; } .intro-gate__skip { font-size: 10px; } }
 @media (pointer: coarse) { .intro-gate__canvas { cursor: crosshair; } .intro-gate__brush { display: none; } }
-@media (prefers-reduced-motion: reduce) { .intro-gate__logo, .intro-gate__eyebrow, .intro-gate__prompt, .intro-gate__skip-action { animation: none; opacity: 1; } .intro-gate__canvas { clip-path: none; transition: none; } .intro-gate__content, .intro-gate__texture, #intro-gate::before { animation: none; opacity: 1; transform: none; transition: none; } .intro-gate__scan { display: none; } .intro-gate__wash { animation: none; } .intro-gate__reveal { transition-duration: 0.2s; } }
+@media (prefers-reduced-motion: reduce) { .intro-gate__logo, .intro-gate__eyebrow, .intro-gate__prompt, .intro-gate__skip-action { animation: none; opacity: 1; } .intro-gate__canvas { clip-path: none; transition: none; } .intro-gate__content, .intro-gate__texture, #intro-gate::before { animation: none; opacity: 1; transform: none; transition: none; } .intro-gate__wash { animation: none; } .intro-gate__reveal { transition-duration: 0.2s; } }
