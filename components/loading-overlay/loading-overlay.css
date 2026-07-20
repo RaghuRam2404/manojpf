@@ -1,0 +1,59 @@
+loading-overlay {
+  align-items: center;
+  background: var(--loading-overlay-background, #080808);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100vh;
+  inset: 0;
+  justify-content: center;
+  position: fixed;
+  width: 100vw;
+  z-index: 9999;
+}
+
+.loading-overlay__logo {
+  display: inline-block;
+  height: auto;
+  margin: 0;
+  width: 80px;
+}
+
+.loading-overlay__indicator {
+  display: flex;
+  gap: 4px;
+  height: 20px;
+  width: 20px;
+}
+
+.loading-overlay__bar {
+  animation: loading-overlay-pulse 0.8s infinite ease-in-out;
+  background-color: #6e6b64;
+  height: 100%;
+  transform-origin: center;
+  width: 4px;
+}
+
+.loading-overlay__bar:nth-child(1) {
+  animation-delay: -0.5s;
+}
+
+.loading-overlay__bar:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.loading-overlay__bar:nth-child(3) {
+  animation-delay: -0.1s;
+}
+
+@keyframes loading-overlay-pulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scaleY(0.2);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
