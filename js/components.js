@@ -42,7 +42,12 @@ document.addEventListener('click', function (e) {
   }, 250);
 });
 
-function bodyLoad() {
+var pageRevealStarted = false;
+
+function revealPage() {
+  if (pageRevealStarted) return;
+  pageRevealStarted = true;
+
   var minDelay = new Promise(function (resolve) { setTimeout(resolve, 500); });
 
   var images = Array.from(document.images);
@@ -54,13 +59,20 @@ function bodyLoad() {
     });
   });
 
-  Promise.all([minDelay].concat(imagePromises)).then(function () {
-    var holder = document.getElementById('loading_holder');
-    if (!holder) return;
-    holder.style.opacity = '0';
+  var holder = document.getElementById('loading_holder');
+  if (holder) {
+    holder.style.opacity = '1';
     holder.style.transition = 'opacity 0.4s ease';
+    holder.style.display = 'flex';
+  }
+
+  Promise.all([minDelay].concat(imagePromises)).then(function () {
+    if (holder) {
+      holder.style.opacity = '0';
+      holder.style.transition = 'opacity 0.4s ease';
+    }
     setTimeout(function () {
-      holder.style.display = 'none';
+      if (holder) holder.style.display = 'none';
       var body = document.querySelector('.body');
       if (body) body.style.display = 'block';
       window.dispatchEvent(new CustomEvent('bodyshown'));
@@ -75,3 +87,9 @@ function bodyLoad() {
     }, 400);
   });
 }
+
+function bodyLoad() {
+  revealPage();
+}
+
+window.revealPageAfterIntro = revealPage;

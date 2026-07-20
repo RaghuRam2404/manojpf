@@ -215,16 +215,12 @@
       if (!entered) requestAnimationFrame(animateBackdrop);
     }
 
-    function enter(origin) {
+    function enter() {
       if (entered) return;
       entered = true;
-      var reveal = document.createElement('div');
-      reveal.className = 'intro-gate__reveal';
-      reveal.style.left = origin.x + 'px'; reveal.style.top = origin.y + 'px';
-      document.body.appendChild(reveal);
-      requestAnimationFrame(function () { reveal.classList.add('is-active'); });
-        setTimeout(function () { gate.classList.add('is-leaving'); }, 125);
-        setTimeout(function () { gate.remove(); reveal.remove(); }, 360);
+      if (typeof window.revealPageAfterIntro === 'function') window.revealPageAfterIntro();
+      gate.classList.add('is-leaving');
+      setTimeout(function () { gate.remove(); }, 360);
     }
 
     canvas.addEventListener('pointerdown', function (event) {
@@ -293,7 +289,7 @@
       if (!drawing) return;
       drawing = false;
       brush.classList.remove('is-drawing');
-      if (isMStroke(points)) { enter(lastPoint); return; }
+      if (isMStroke(points)) { enter(); return; }
       failedStrokeFadeUntil = performance.now() + 650;
       failedStrokeCleanupTimer = setTimeout(function () {
         if (!drawing && !entered) context.clearRect(0, 0, canvas.width, canvas.height);
@@ -305,8 +301,8 @@
     canvas.addEventListener('pointercancel', finishStroke);
     canvas.addEventListener('pointerleave', function () { if (!drawing) brush.classList.remove('is-visible'); fieldPointer.active = false; });
     skipButton.addEventListener('pointerenter', function () { brush.classList.remove('is-visible'); });
-    skipButton.addEventListener('click', function () { enter({ x: window.innerWidth / 2, y: window.innerHeight / 2 }); });
-    window.addEventListener('keydown', function (event) { if (event.key === 'Escape') enter({ x: window.innerWidth / 2, y: window.innerHeight / 2 }); });
+    skipButton.addEventListener('click', enter);
+    window.addEventListener('keydown', function (event) { if (event.key === 'Escape') enter(); });
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas(); drawFrame(); requestAnimationFrame(animateBackdrop);
     requestAnimationFrame(function () { gate.classList.add('is-ready'); });
