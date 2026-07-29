@@ -131,7 +131,12 @@ h1.hn .ac{color:var(--accent);}
 .procitem.in{opacity:1;transform:translateY(0);}
 .procn{font-size:11px;color:var(--accent);font-weight:600;margin-top:2px;}
 .proch{font-size:14px;font-weight:600;margin-bottom:8px;line-height:1.3;}
-.procp{font-size:13px;color:var(--fg2);line-height:1.65;}
+.procp{font-size:13.5px;color:rgba(240,237,230,.68);line-height:1.82;max-width:62ch;letter-spacing:.01em;text-wrap:pretty;}
+.procp::first-line{color:rgba(240,237,230,.93);font-weight:500;letter-spacing:.012em;}
+.procitem-loop{padding:22px 0 0;border-bottom:none;align-items:center;}
+.procn-loop{margin-top:0;color:rgba(240,237,230,.34);}
+.procloop{font-size:13px;color:rgba(240,237,230,.46);line-height:1.72;max-width:62ch;letter-spacing:.01em;}
+.procloop-ic{display:inline-block;color:rgba(240,237,230,.34);font-size:24px;line-height:1;transform:translateY(1px);}
 
 /* TRAITS */
 .traitsgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
