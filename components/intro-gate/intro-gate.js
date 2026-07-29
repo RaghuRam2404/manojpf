@@ -1,6 +1,33 @@
 (function () {
   var componentScript = document.currentScript;
   var componentUrl = new URL('.', componentScript.src);
+  var introGateUnlockKey = 'introGateUnlockTimestamp';
+  var introGateUnlockDurationMs = 24 * 60 * 60 * 1000;
+
+  function rememberSuccessfulIntroUnlock() {
+    try {
+      window.localStorage.setItem(introGateUnlockKey, String(Date.now()));
+    } catch (error) {
+      // Ignore storage failures (private mode, blocked storage, etc.).
+    }
+  }
+
+  function shouldSkipIntroGate() {
+    try {
+      var rawTimestamp = window.localStorage.getItem(introGateUnlockKey);
+      if (!rawTimestamp) return false;
+      var timestamp = Number(rawTimestamp);
+      if (!Number.isFinite(timestamp)) {
+        window.localStorage.removeItem(introGateUnlockKey);
+        return false;
+      }
+      var withinUnlockWindow = Date.now() - timestamp < introGateUnlockDurationMs;
+      if (!withinUnlockWindow) window.localStorage.removeItem(introGateUnlockKey);
+      return withinUnlockWindow;
+    } catch (error) {
+      return false;
+    }
+  }
 
   function activateLegacyLoader() {
     var legacyLoader = document.getElementById('loading_holder');
@@ -215,8 +242,10 @@
       if (!entered) requestAnimationFrame(animateBackdrop);
     }
 
-    function enter() {
+    function enter(options) {
+      options = options || {};
       if (entered) return;
+      if (options.persistUnlock) rememberSuccessfulIntroUnlock();
       entered = true;
       if (typeof window.revealPageAfterIntro === 'function') window.revealPageAfterIntro();
       gate.classList.add('is-leaving');
@@ -289,7 +318,7 @@
       if (!drawing) return;
       drawing = false;
       brush.classList.remove('is-drawing');
-      if (isMStroke(points)) { enter(); return; }
+      if (isMStroke(points)) { enter({ persistUnlock: true }); return; }
       failedStrokeFadeUntil = performance.now() + 650;
       failedStrokeCleanupTimer = setTimeout(function () {
         if (!drawing && !entered) context.clearRect(0, 0, canvas.width, canvas.height);
@@ -309,6 +338,10 @@
   }
 
   if (!window.USE_INTERACTIVE_INTRO) { activateLegacyLoader(); return; }
+  if (shouldSkipIntroGate()) {
+    if (typeof window.revealPageAfterIntro === 'function') window.revealPageAfterIntro();
+    return;
+  }
   addStylesheet();
   fetch(new URL('intro-gate.html', componentUrl))
     .then(function (response) { if (!response.ok) throw new Error('Unable to load intro gate markup'); return response.text(); })
