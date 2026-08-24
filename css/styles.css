@@ -49,6 +49,10 @@ nav.open .nmenu span:nth-child(3){transform:translateY(-50%) rotate(-45deg);}
 h1.hn{font-size:clamp(32px,min(5.2vw,9vh),76px);font-weight:700;letter-spacing:-.04em;line-height:1.05;margin-bottom:clamp(12px,2.5vh,22px);opacity:1;}
 h1.hn .ac{color:var(--accent);}
 .hintro{font-size:clamp(14px,1.3vw,15px);color:var(--fg2);line-height:1.72;max-width:420px;margin-bottom:clamp(20px,4vh,40px);opacity:1;}
+.hintro a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(83,183,114,.35);display:inline-block;position:relative;transition:color .2s ease,border-color .2s ease;}
+.hintro a::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:1px;background:rgba(83,183,114,.8);transform:scaleX(0);transform-origin:left center;transition:transform .25s ease;}
+.hintro a:hover,.hintro a:focus-visible{color:#9ee0ae;border-color:rgba(83,183,114,.8);}
+.hintro a:hover::after,.hintro a:focus-visible::after{transform:scaleX(1);}
 .hbtns{display:flex;gap:14px;flex-wrap:wrap;opacity:1;}
 .bl{background:var(--accent);color:#fff;font-size:13px;font-weight:600;padding:13px 28px;border-radius:28px;text-decoration:none;display:inline-block;transition:transform .15s,box-shadow .2s;}
 .bl:hover{transform:scale(1.04);box-shadow:0 0 28px rgba(83,183,114,.35);}
